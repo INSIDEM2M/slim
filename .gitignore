@@ -2,3 +2,7 @@ node_modules
 www
 dll
 .yarnclean
+yarn-error.log
+typings
+.awcache
+coverage.json

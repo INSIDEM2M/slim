@@ -6,4 +6,7 @@ import { Component } from "@angular/core";
     styleUrls: ["./app.style.scss"]
 })
 export class AppComponent {
+
+    commit: string = environment.commit;
+    buildDate: Date = environment.buildDate;
 }

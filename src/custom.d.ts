@@ -1,4 +1,7 @@
 declare var environment: {
-    isProduction: boolean;
-    buildDate: Date
+    production?: boolean;
+    development?: boolean;
+    buildDate: Date;
+    commit: string;
+    current: string;
 };
