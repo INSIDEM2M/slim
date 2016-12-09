@@ -6,3 +6,4 @@ yarn-error.log
 typings
 .awcache
 coverage.json
+.DS_Store
