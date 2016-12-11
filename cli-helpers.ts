@@ -52,7 +52,7 @@ export function getIm2mConfig(rootDir: string): IM2MConfig {
         dllDir: "dll",
         baseHref: "/",
         angular: {
-            aotTsConfig: "src/tsconfig.json",
+            aotTsConfig: "tsconfig.json",
             appModule: "app/app.module#AppModule"
         },
         typescript: {
