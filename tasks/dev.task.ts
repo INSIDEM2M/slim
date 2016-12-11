@@ -3,20 +3,13 @@ import * as webpackMerge from "webpack-merge";
 import * as webpack from "webpack";
 import * as path from "path";
 import { Server } from "http";
-import * as opn from "opn";
 
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getDevConfigPartial } from "../webpack/webpack.config.dev";
-import { getDllConfigPartial } from "../webpack/webpack.config.dll";
 import { getAvailablePort, openBrowser } from "../cli-helpers";
 import { logger } from "../logger";
 import * as chalk from "chalk";
 import * as readline from "readline";
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
 
 export default function (env: EnvironmentVariables, config: IM2MConfig, open: boolean) {
     return getAvailablePort().then(port => {
@@ -51,6 +44,10 @@ function prettyPrintConfig(webpackConfig: webpack.Configuration): string {
 }
 
 function startServer(server: Server | any, port: number, open: boolean, baseHref: string) {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
     return new Promise((resolve, reject) => {
         const s = server.listen(port);
         s.on("close", () => {

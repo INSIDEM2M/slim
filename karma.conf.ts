@@ -1,24 +1,32 @@
 import * as path from "path";
-import { argv } from "yargs";
+import * as webpack from "webpack";
+import * as karma from "karma";
 
-export function getKarmaConfig(testFile: string, polyfills: string, vendors: string, port: number, watch: boolean, coverage: boolean, coverageDir: string) {
-    const config = {
+export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, polyfillsPattern: string, port: number, watch: boolean, coverage: boolean, coverageDir: string, webpackConfig: webpack.Configuration, browsers: string[]): karma.ConfigOptions {
+    const config: any = {
         basePath: "",
         frameworks: ["jasmine"],
         exclude: [],
         preprocessors: {},
-        files: [{
-            pattern: polyfills,
-            included: true,
-            watched: false
-        }, {
-            pattern: vendors,
-            included: true,
-            watched: false
-        }, {
-            pattern: testFile,
-            watched: watch
-        }],
+        webpack: webpackConfig,
+        webpackMiddleware: {
+            stats: "errors-only",
+            quiet: true
+        },
+        files: [
+            {
+                pattern: polyfillsPattern,
+                watched: false
+            },
+            {
+                pattern: vendorsPattern,
+                watched: false
+            },
+            {
+                pattern: testFilePattern,
+                watched: false,
+            }
+        ],
         coverageReporter: {
             type: "in-memory"
         },
@@ -33,16 +41,14 @@ export function getKarmaConfig(testFile: string, polyfills: string, vendors: str
         port: port,
         colors: true,
         autoWatch: watch,
-        browsers: [
-            "Chrome"
-        ],
+        browsers: browsers,
         singleRun: !watch
     }
-    config.preprocessors[testFile] = [
+    config.preprocessors[testFilePattern] = [
+        "webpack",
         "sourcemap"
     ];
     if (coverage) {
-        config.preprocessors[testFile].unshift("coverage");
         config.reporters.push("coverage", "remap-coverage");
     }
     return config;

@@ -1,7 +1,12 @@
 export =[
+    "core-js/es6",
+    "core-js/es7/reflect",
     "ts-helpers",
-    "zone.js",
-    "core-js/client/shim.js",
-    "core-js/es6/reflect.js",
-    "core-js/es7/reflect.js"
+    "zone.js/dist/zone",
+    "zone.js/dist/long-stack-trace-zone",
+    "zone.js/dist/async-test",
+    "zone.js/dist/fake-async-test",
+    "zone.js/dist/sync-test",
+    "zone.js/dist/proxy",
+    "zone.js/dist/jasmine-patch"
 ];

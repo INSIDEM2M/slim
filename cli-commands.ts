@@ -1,3 +1,5 @@
+import * as chalk from "chalk";
+
 export const commands: Command[] = [
     {
         name: "new", options: [
@@ -22,7 +24,8 @@ export const commands: Command[] = [
     {
         name: "test", description: "Run the unit tests.", options: [
             { name: "watch", alias: "w", type: Boolean, description: "Watch the test und project files and re-run the unit tests on change." },
-            { name: "coverage", type: Boolean, description: "Create coverage report." }
+            { name: "coverage", type: Boolean, description: "Create coverage report." },
+            { name: "browsers", type: String, description: `Comma separated list of browsers to run the tests in. Example: ${chalk.bold("chrome,firefox,safari")}. Default is ${chalk.bold("chrome")}.` }
         ]
     },
     {

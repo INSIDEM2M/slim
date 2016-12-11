@@ -8,8 +8,12 @@ import { Component } from "@angular/core";
 export class AboutComponent {
 
     test: number;
-   
-   constructor() {
-       console.log("About");
-   }
+
+    constructor() {
+        console.log("About");
+    }
+
+    someMethod() {
+        console.log("Great");
+    }
 }

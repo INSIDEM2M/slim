@@ -6,6 +6,8 @@ declare module "autoprefixer";
 
 declare type Environment = "development" | "production" | string;
 
+declare type Browser = "Chrome" | "Firefox" | "Safari";
+
 declare interface Options {
     component?: boolean;
     portal?: boolean;
@@ -16,6 +18,7 @@ declare interface Options {
     open?: boolean;
     watch?: boolean;
     coverage?: boolean;
+    browsers?: string;
     nobuild?: boolean;
     specs?: string[];
     patch?: boolean;

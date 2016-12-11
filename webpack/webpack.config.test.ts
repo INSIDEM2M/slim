@@ -1,32 +1,24 @@
 import * as webpack from "webpack";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
-import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as path from "path";
-import { ForkCheckerPlugin } from "awesome-typescript-loader";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
 
-export function getTestConfigPartial(targetDir: string, sourceDir: string, testEntryFile: string, testFiles: string[], dllDir: string): webpack.Configuration {
+export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDir: string): webpack.Configuration {
     return {
-        output: {
-            path: targetDir,
-            filename: "[name].js"
-        },
-        entry: {
-            tests: [testEntryFile].concat(testFiles)
-        },
+        entry: {},
         devtool: "inline-source-map",
         module: {
             rules: [
                 {
                     test: /\.js$/,
                     enforce: 'pre',
-                    loader: 'source-map-loader'
+                    loader: 'source-map-loader',
                 },
                 {
                     test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
                     enforce: 'post',
+                    include: sourceDir,
                     exclude: [
                         /\.(e2e|spec)\.ts$/,
                         /node_modules/
@@ -56,12 +48,7 @@ export function getTestConfigPartial(targetDir: string, sourceDir: string, testE
                 context: ".",
                 manifest: require(path.join(dllDir, "vendors.dll.json"))
             }),
-            new CopyWebpackPlugin([
-                {
-                    from: path.join(dllDir, "*.js"),
-                    flatten: true
-                }
-            ])
+            new NamedModulesPlugin()
         ]
     }
 }
