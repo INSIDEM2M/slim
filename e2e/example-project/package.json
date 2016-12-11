@@ -1,0 +1,27 @@
+{
+  "name": "slim-e2e-test",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ../../cli-entry.ts build",
+    "clean": "rimraf ../../www ../../dll",
+    "start": "node ../../cli-entry.ts dev"
+  },
+  "dependencies": {
+    "@angular/common": "2.2.4",
+    "@angular/compiler": "2.2.4",
+    "@angular/core": "2.2.4",
+    "@angular/forms": "2.2.4",
+    "@angular/http": "2.2.4",
+    "@angular/platform-browser": "2.2.4",
+    "@angular/platform-browser-dynamic": "2.2.4",
+    "@angular/router": "~3.2.0",
+    "bootstrap": "4.0.0-alpha.4",
+    "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
+    "rxjs": "5.0.0-beta.12",
+    "ts-helpers": "^1.1.2",
+    "typescript": "2.0.10",
+    "zone.js": "^0.6.21"
+  }
+}
