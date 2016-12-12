@@ -4,8 +4,19 @@ import dllTask from "./tasks/dll.task";
 import buildTask from "./tasks/build.task";
 import serveTask from "./tasks/serve.task";
 import testTask from "./tasks/test.task";
+import * as readline from "readline";
+import { timer } from "./logger";
 
 export function main() {
+
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    rl.on("SIGINT", () => {
+        process.exit(0);
+    });
 
     const command = getCommand();
     const options = getOptions();
@@ -20,14 +31,10 @@ export function main() {
             // Create new project/component
             break;
         case "dev":
-            if (options["update-dlls"]) {
-                exitCode = dllTask(environmentVariables, im2mConfig).then(() => devTask(environmentVariables, im2mConfig, options.open));
-            } else {
-                exitCode = devTask(environmentVariables, im2mConfig, options.open);
-            }
+            exitCode = dllTask(environmentVariables, im2mConfig, options["update-dlls"]).then(() => devTask(environmentVariables, im2mConfig, options.open));
             break;
         case "build":
-            if (options["serve"]) {
+            if (options.serve) {
                 exitCode = buildTask(environmentVariables, im2mConfig, options.minify, options.aot).then(() => serveTask(environmentVariables, im2mConfig, options.open));
             } else {
                 exitCode = buildTask(environmentVariables, im2mConfig, options.minify, options.aot);
@@ -35,7 +42,10 @@ export function main() {
             break;
         case "test":
             const browsers = parseBrowsers(options.browsers);
-            exitCode = testTask(environmentVariables, im2mConfig, options.watch, options.coverage, browsers);
+            if (!options.watch) {
+                timer.start("Running the unit tests");
+            }
+            exitCode = dllTask(environmentVariables, im2mConfig, options["update-dlls"]).then(() => testTask(environmentVariables, im2mConfig, options.watch, options.coverage, browsers));
             break;
         case "e2e":
             // Run E2E tests

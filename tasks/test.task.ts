@@ -6,8 +6,7 @@ import { getAvailablePort } from "../cli-helpers";
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getTestConfigPartial } from "../webpack/webpack.config.test";
 import { getKarmaConfig } from "../karma.conf";
-import { logger } from "../logger";
-import * as readline from "readline";
+import { logger, timer } from "../logger";
 
 export default function (env: EnvironmentVariables, config: IM2MConfig, watch: boolean, coverage: boolean, browsers: string[]) {
     return getAvailablePort().then(port => {
@@ -24,16 +23,13 @@ export default function (env: EnvironmentVariables, config: IM2MConfig, watch: b
         const karmaConfig = getKarmaConfig(testSetupPattern, vendorsPattern, polyfillsPattern, port, watch, coverage, config.coverageDir, webpackConfig, browsers);
         logger.info("Building test bundle...");
         return new Promise((resolve) => {
-            const server = new karma.Server(karmaConfig, resolve);
+            const server = new karma.Server(karmaConfig, (exitCode) => {
+                if (!watch) {
+                    timer.end("Running the unit tests");
+                }
+                resolve(exitCode);
+            });
             server.start();
-            const rl = readline.createInterface({
-                input: process.stdin,
-                output: process.stdout
-            });
-
-            rl.on("SIGINT", () => {
-                karma.stopper.stop(karmaConfig, resolve);
-            });
         });
     });
 }

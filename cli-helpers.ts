@@ -9,9 +9,52 @@ import * as chalk from "chalk";
 import { commands } from "./cli-commands";
 import { logger } from "./logger";
 import * as opn from "opn";
+import * as fs from "fs";
+import { VENDORS } from "./webpack/webpack.vendors";
+import { POLYFILLS } from "./webpack/webpack.polyfills";
 
 export function parseBrowsers(browserOption: string): string[] {
     return typeof browserOption === "string" ? browserOption.split(",").map(option => option.charAt(0).toUpperCase().concat(option.substr(1))) : ["Chrome"];
+}
+
+export function getDllDependencies(config: IM2MConfig): string[] {
+    const additionalVendors = config.typescript ? Array.isArray(config.typescript.vendors) ? config.typescript.vendors : [] : [];
+    return VENDORS.concat(POLYFILLS).concat(additionalVendors);
+}
+
+export function dllsUpToDate(dllDir: string, dllCacheFile: string, pkg: any, dllDependencies: string[]): boolean {
+    const dllCacheFilePath = path.join(dllDir, dllCacheFile);
+    const dllCacheExists = fs.existsSync(dllCacheFilePath);
+    if (!dllCacheExists) {
+        return false;
+    } else {
+        const dllCacheFileContent = fs.readFileSync(dllCacheFilePath, "utf-8");
+        try {
+            const dllCache = JSON.parse(dllCacheFileContent);
+            let result = true;
+            for (let dep of dllDependencies) {
+                result = result && (pkg.dependencies[dep] === dllCache.dependencies[dep]);
+            }
+            return result;
+        } catch (error) {
+            fs.unlinkSync(dllCacheFilePath);
+            return false;
+        }
+    }
+}
+
+export function writeDllCache(dllDir: string, dllCacheFile: string, dllDependencies: string[], pkg: any) {
+    const dllCachePath = path.join(dllDir, dllCacheFile);
+    const dllCache = {
+        dependencies: {}
+    };
+    for (let dep of dllDependencies) {
+        dllCache.dependencies[dep] = pkg.dependencies[dep];
+    }
+    if (!fs.existsSync(dllDir)) {
+        fs.mkdirSync(dllDir);
+    }
+    fs.writeFileSync(dllCachePath, JSON.stringify(dllCache, null, 2), { encoding: "utf-8" });
 }
 
 export function getCurrentCommit(): string {
