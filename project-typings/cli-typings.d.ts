@@ -24,6 +24,7 @@ declare interface Options {
     patch?: boolean;
     minor?: boolean;
     major?: boolean;
+    "xml-report"?: string;
     "use-version"?: string;
     "update-dlls": boolean;
 }

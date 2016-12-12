@@ -45,7 +45,7 @@ export function main() {
             if (!options.watch) {
                 timer.start("Running the unit tests");
             }
-            exitCode = dllTask(environmentVariables, im2mConfig, options["update-dlls"]).then(() => testTask(environmentVariables, im2mConfig, options.watch, options.coverage, browsers));
+            exitCode = dllTask(environmentVariables, im2mConfig, options["update-dlls"]).then(() => testTask(environmentVariables, im2mConfig, options.watch, options.coverage, browsers, options["xml-report"]));
             break;
         case "e2e":
             // Run E2E tests

@@ -10,10 +10,6 @@ export class AboutComponent {
     test: number;
 
     constructor() {
-        console.log("About");
-    }
-
-    someMethod() {
-        console.log("Great");
+        console.log("About 2");
     }
 }

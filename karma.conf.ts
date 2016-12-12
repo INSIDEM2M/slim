@@ -2,7 +2,7 @@ import * as path from "path";
 import * as webpack from "webpack";
 import * as karma from "karma";
 
-export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, polyfillsPattern: string, port: number, watch: boolean, coverage: boolean, coverageDir: string, webpackConfig: webpack.Configuration, browsers: string[]): karma.ConfigOptions {
+export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, polyfillsPattern: string, port: number, watch: boolean, coverage: boolean, coverageDir: string, webpackConfig: webpack.Configuration, browsers: string[], xmlReport: string): karma.ConfigOptions {
     const config: any = {
         basePath: "",
         frameworks: ["jasmine"],
@@ -35,6 +35,9 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
             json: path.join(coverageDir, "coverage.json"),
             html: path.join(coverageDir, "html")
         },
+        junitReporter: {
+            outputFile: xmlReport,
+        },
         reporters: [
             "mocha"
         ],
@@ -48,6 +51,9 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
         "webpack",
         "sourcemap"
     ];
+    if (xmlReport) {
+        config.reporters.push("junit");
+    }
     if (coverage) {
         config.reporters.push("coverage", "remap-coverage");
     }

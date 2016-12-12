@@ -8,7 +8,7 @@ import { getTestConfigPartial } from "../webpack/webpack.config.test";
 import { getKarmaConfig } from "../karma.conf";
 import { logger, timer } from "../logger";
 
-export default function (env: EnvironmentVariables, config: IM2MConfig, watch: boolean, coverage: boolean, browsers: string[]) {
+export default function (env: EnvironmentVariables, config: IM2MConfig, watch: boolean, coverage: boolean, browsers: string[], xmlReport: string) {
     return getAvailablePort().then(port => {
         const indexPath = path.join(config.sourceDir, "index.html");
         const polyfillsPattern = path.join(config.dllDir, "polyfills.dll.js");
@@ -20,7 +20,7 @@ export default function (env: EnvironmentVariables, config: IM2MConfig, watch: b
         const webpackConfig = (webpackMerge as any).strategy({
             "entry": "replace"
         })(commonConfig, testConfig);
-        const karmaConfig = getKarmaConfig(testSetupPattern, vendorsPattern, polyfillsPattern, port, watch, coverage, config.coverageDir, webpackConfig, browsers);
+        const karmaConfig = getKarmaConfig(testSetupPattern, vendorsPattern, polyfillsPattern, port, watch, coverage, config.coverageDir, webpackConfig, browsers, typeof xmlReport === "string" ? path.join(config.rootDir, xmlReport) : null);
         logger.info("Building test bundle...");
         return new Promise((resolve) => {
             const server = new karma.Server(karmaConfig, (exitCode) => {
