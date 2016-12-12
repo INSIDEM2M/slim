@@ -57,6 +57,10 @@ export function writeDllCache(dllDir: string, dllCacheFile: string, dllDependenc
     fs.writeFileSync(dllCachePath, JSON.stringify(dllCache, null, 2), { encoding: "utf-8" });
 }
 
+export function parseBrowsers(browserOption: string): string[] {
+    return typeof browserOption === "string" ? browserOption.split(",").map(option => option.charAt(0).toUpperCase().concat(option.substr(1))) : ["Chrome"];
+}
+
 export function getCurrentCommit(): string {
     return JSON.stringify(childProcess
         .execSync("git rev-parse HEAD")
