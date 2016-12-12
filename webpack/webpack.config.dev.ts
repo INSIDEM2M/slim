@@ -2,7 +2,7 @@ import * as webpack from "webpack";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as path from "path";
-import { ForkCheckerPlugin } from "awesome-typescript-loader";
+import { CheckerPlugin } from "awesome-typescript-loader";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
@@ -61,7 +61,7 @@ export function getDevConfigPartial(devIndexPath: string, targetDir: string, dll
             new HtmlWebpackPlugin({
                 template: devIndexPath
             }),
-            new ForkCheckerPlugin(),
+            new CheckerPlugin(),
             new CopyWebpackPlugin([
                 {
                     from: path.join(dllDir, "*.js"),
