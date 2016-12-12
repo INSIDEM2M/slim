@@ -1,5 +1,6 @@
 import * as webpack from "webpack";
 import * as path from "path";
+import { CheckerPlugin } from "awesome-typescript-loader";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
@@ -48,7 +49,8 @@ export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDi
                 context: ".",
                 manifest: require(path.join(dllDir, "vendors.dll.json"))
             }),
-            new NamedModulesPlugin()
+            new NamedModulesPlugin(),
+            new CheckerPlugin()
         ]
     }
 }
