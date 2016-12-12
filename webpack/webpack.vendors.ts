@@ -1,4 +1,4 @@
-export =[
+export const VENDORS = [
     "@angular/common",
     "@angular/compiler",
     "@angular/core",

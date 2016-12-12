@@ -43,6 +43,7 @@ declare interface IM2MConfig {
     typescript?: {
         entry: string;
         output: string;
+        vendors?: string[];
     };
     sass?: {
         includePaths?: string[];
