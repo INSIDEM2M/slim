@@ -1,5 +1,6 @@
 import * as webpack from "webpack";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
@@ -68,6 +69,7 @@ export function getDevConfigPartial(devIndexPath: string, targetDir: string, dll
                     flatten: true
                 }
             ]),
+            new ProgressBarPlugin(),
             new NamedModulesPlugin(),
         ]
     }

@@ -1,5 +1,5 @@
 import * as webpack from "webpack";
-import * as path from "path";
+import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
 import { AotPlugin } from "@ngtools/webpack";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 
@@ -7,7 +7,8 @@ export function getBuildConfigPartial(indexPath: string, targetDir: string, outp
     let plugins = [
         new HtmlWebpackPlugin({
             template: indexPath
-        })
+        }),
+        new ProgressBarPlugin()
     ];
     let module = {
         rules: []

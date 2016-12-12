@@ -1,7 +1,10 @@
+import { AboutComponent } from "./about.component";
+
 describe("About", () => {
 
     it("True should equal true", () => {
-        expect(true).toEqual(true);
+        const c = new AboutComponent();
+        expect(c).not.toBe(null);
     });
 
     it("True should not equal false", () => {

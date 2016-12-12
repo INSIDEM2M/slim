@@ -1,11 +1,11 @@
 import * as webpack from "webpack";
-import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
-
+import * as path from "path";
 
 export function getCommonConfigPartial(devIndexPath: string, environment: any, config: IM2MConfig) {
     let conf: any = {
         resolve: {
-            extensions: [".ts", ".js", ".json"]
+            extensions: [".ts", ".js", ".json"],
+            modules: ["node_modules", path.resolve(__dirname, path.join(config.rootDir, "node_modules"))]
         },
         module: {
             rules: [
@@ -74,7 +74,6 @@ export function getCommonConfigPartial(devIndexPath: string, environment: any, c
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
                 "./src"
             ),
-            new ProgressBarPlugin(),
             new webpack.DefinePlugin({ environment })
         ]
     }

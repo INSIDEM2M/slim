@@ -1,58 +1,39 @@
 import * as path from "path";
-import * as webpack from "webpack";
 import * as webpackMerge from "webpack-merge";
 import * as karma from "karma";
-import * as glob from "glob";
 
 import { getAvailablePort } from "../cli-helpers";
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getTestConfigPartial } from "../webpack/webpack.config.test";
-import { getDevConfigPartial } from "../webpack/webpack.config.dev";
 import { getKarmaConfig } from "../karma.conf";
 import { logger } from "../logger";
+import * as readline from "readline";
 
-export default function (env: EnvironmentVariables, config: IM2MConfig, watch: boolean, coverage: boolean) {
+export default function (env: EnvironmentVariables, config: IM2MConfig, watch: boolean, coverage: boolean, browsers: string[]) {
     return getAvailablePort().then(port => {
         const indexPath = path.join(config.sourceDir, "index.html");
-        const testFile = path.join(config.targetDir, "tests.js");
-        const testFiles = glob.sync(path.join(config.sourceDir, "**", "*.spec.ts"));
-        const polyfillsFile = path.join(config.targetDir, "polyfills.dll.js");
-        const vendorsFile = path.join(config.targetDir, "vendors.dll.js");
-        const karmaConfig = getKarmaConfig(testFile, polyfillsFile, vendorsFile, port, watch, coverage, config.coverageDir);
+        const polyfillsPattern = path.join(config.dllDir, "polyfills.dll.js");
+        const vendorsPattern = path.join(config.dllDir, "vendors.dll.js");
+        const testSetupPattern = path.join(config.rootDir, "test-bundle.ts");
+
         const commonConfig = getCommonConfigPartial(indexPath, env, config);
-        const testConfig = getTestConfigPartial(config.targetDir, config.sourceDir, path.join(__dirname, "test-bundle.ts"), testFiles, config.dllDir);
+        const testConfig = getTestConfigPartial(config.targetDir, config.sourceDir, config.dllDir);
         const webpackConfig = (webpackMerge as any).strategy({
             "entry": "replace"
         })(commonConfig, testConfig);
-        const compiler = webpack(webpackConfig);
-        return buildTest(compiler, watch)
-            .then(() => {
-                return new Promise((resolve, reject) => {
-                    const server = new karma.Server(karmaConfig, (exitCode) => {
-                        resolve(exitCode);
-                    });
-                    server.start();
-                })
+        const karmaConfig = getKarmaConfig(testSetupPattern, vendorsPattern, polyfillsPattern, port, watch, coverage, config.coverageDir, webpackConfig, browsers);
+        logger.info("Building test bundle...");
+        return new Promise((resolve) => {
+            const server = new karma.Server(karmaConfig, resolve);
+            server.start();
+            const rl = readline.createInterface({
+                input: process.stdin,
+                output: process.stdout
             });
-    });
-}
 
-function buildTest(compiler: webpack.compiler.Compiler, watch: boolean) {
-    return new Promise((resolve, reject) => {
-        if (!watch) {
-            compiler.run((error, stats) => {
-                if (stats.hasErrors()) {
-                    return reject(stats.toJson().errors[0]);
-                }
-                resolve(0);
+            rl.on("SIGINT", () => {
+                karma.stopper.stop(karmaConfig, resolve);
             });
-        } else {
-            compiler.watch({}, (error, stats) => {
-                if (stats.hasErrors()) {
-                    logger.error(stats.toJson().errors[0]);
-                }
-                resolve(0);
-            });
-        }
+        });
     });
 }
