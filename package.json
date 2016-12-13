@@ -73,7 +73,7 @@
     "@types/html-webpack-plugin": "^2.22.4",
     "@types/jasmine": "^2.5.38",
     "@types/karma": "^0.13.33",
-    "@types/node": "^0.0.2",
+    "@types/node": "^6.0.52",
     "@types/opn": "^3.0.28",
     "@types/webpack-dev-server": "^1.12.5",
     "@types/webpack-merge": "^0.0.4",
