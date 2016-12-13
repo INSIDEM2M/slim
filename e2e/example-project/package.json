@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "node ../../cli-entry.ts build",
-    "clean": "rimraf ../../www ../../dll",
-    "start": "node ../../cli-entry.ts dev"
+    "build": "node ../../src/cli-entry.ts build",
+    "start": "node ../../src/cli-entry.ts dev",
+    "test": "node ../../src/cli-entry.ts test"
   },
   "dependencies": {
     "@angular/common": "2.2.4",

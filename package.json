@@ -2,7 +2,7 @@
   "name": "slim",
   "version": "0.0.1",
   "bin": {
-    "slim": "cli-entry.ts"
+    "slim": "src/cli-entry.ts"
   },
   "license": "MIT",
   "dependencies": {

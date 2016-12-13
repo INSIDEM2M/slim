@@ -5,7 +5,7 @@ import * as karma from "karma";
 import { getAvailablePort } from "../cli-helpers";
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getTestConfigPartial } from "../webpack/webpack.config.test";
-import { getKarmaConfig } from "../karma.conf";
+import { getKarmaConfig } from "../config/karma.conf";
 import { logger, timer } from "../logger";
 
 export default function (env: EnvironmentVariables, config: IM2MConfig, watch: boolean, coverage: boolean, browsers: string[], xmlReport: string) {
