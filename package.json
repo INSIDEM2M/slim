@@ -1,7 +1,9 @@
 {
   "name": "slim",
   "version": "0.0.1",
-  "main": "cli-entry.ts",
+  "bin": {
+    "slim": "cli-entry.ts"
+  },
   "license": "MIT",
   "dependencies": {
     "@angular/compiler": "2.2.3",

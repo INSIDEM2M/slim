@@ -1,5 +1,5 @@
 {
-  "name": "angular2-webpack",
+  "name": "slim",
   "dependencies": {
     "command-line-args": "registry:npm/command-line-args#3.0.2+20161102220831",
     "command-line-commands": "registry:npm/command-line-commands#1.0.4+20161102220911"
