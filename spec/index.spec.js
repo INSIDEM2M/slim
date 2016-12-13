@@ -16,7 +16,7 @@ function installExampleProject() {
 
 function buildExampleProject() {
     return new Promise(function (resolve) {
-        spawn("yarn", ["run", "e2e"], {
+        spawn("yarn", ["run", "build"], {
             cwd: path.join(cwd, "e2e", "example-project"),
             stdio: "inherit"
         }).on("close", function (code) {
