@@ -57,10 +57,6 @@ export function writeDllCache(dllDir: string, dllCacheFile: string, dllDependenc
     fs.writeFileSync(dllCachePath, JSON.stringify(dllCache, null, 2), { encoding: "utf-8" });
 }
 
-export function parseBrowsers(browserOption: string): string[] {
-    return typeof browserOption === "string" ? browserOption.split(",").map(option => option.charAt(0).toUpperCase().concat(option.substr(1))) : ["Chrome"];
-}
-
 export function getCurrentCommit(): string {
     return JSON.stringify(childProcess
         .execSync("git rev-parse HEAD")
@@ -100,6 +96,7 @@ export function getIm2mConfig(rootDir: string): IM2MConfig {
         sourceDir: "src",
         targetDir: "www",
         coverageDir: "coverage",
+        e2eDir: "e2e",
         dllDir: "dll",
         baseHref: "/",
         angular: {

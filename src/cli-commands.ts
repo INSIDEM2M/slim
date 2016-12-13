@@ -31,7 +31,8 @@ export const commands: Command[] = [
     },
     {
         name: "e2e", description: "", options: [
-            { name: "nobuild", description: "Use the last build for the E2E test.", type: Boolean },
+            { name: "no-build", description: "Use the last build for the E2E test.", type: Boolean },
+            { name: "no-update", description: "Do not update the webdriver binaries.", type: Boolean },
             { name: "specs", typeLabel: "[underline]{files}", description: "Only run the these E2E tests." }
         ]
     },

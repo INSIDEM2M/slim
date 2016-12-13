@@ -4,7 +4,7 @@ import * as localWebServer from "local-web-server";
 import { Server } from "http";
 import { logger } from "../logger";
 
-export default function (env: EnvironmentVariables, config: IM2MConfig, open: boolean) {
+export default function (env: EnvironmentVariables, config: IM2MConfig, open: boolean, forcePort?: number, quitAfterStart?: boolean, silent: boolean = true) {
     return getAvailablePort().then(port => {
         const server = localWebServer({
             static: {
@@ -12,19 +12,23 @@ export default function (env: EnvironmentVariables, config: IM2MConfig, open: bo
             },
             compress: true,
             log: {
-                format: "tiny"
+                format: silent ? "none" : "tiny"
             }
         });
-        logger.info("Started http server at port " + port);
-        return startServer(server, port, open);
+        logger.info("Starting http server at port " + port  + "...");
+        return startServer(server, forcePort ? forcePort : port, open, quitAfterStart);
     });
 }
 
-function startServer(server: Server, port: number, open: boolean) {
+function startServer(server: Server, port: number, open: boolean, quitAfterStart?: boolean): Promise<number> {
     return new Promise((resolve, reject) => {
-        const s = server.listen(port);
+        server.listen(port);
         if (open) {
             opn(`http://localhost:${port}`);
+        }
+        logger.debug("Server started.");
+        if (quitAfterStart) {
+            resolve(port);
         }
     });
 }
