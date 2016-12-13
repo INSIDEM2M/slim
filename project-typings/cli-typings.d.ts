@@ -19,11 +19,12 @@ declare interface Options {
     watch?: boolean;
     coverage?: boolean;
     browsers?: string;
-    nobuild?: boolean;
     specs?: string[];
     patch?: boolean;
     minor?: boolean;
     major?: boolean;
+    "no-update"?: boolean;
+    "no-build"?: boolean;
     "xml-report"?: string;
     "use-version"?: string;
     "update-dlls": boolean;
