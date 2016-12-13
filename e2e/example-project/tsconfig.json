@@ -16,7 +16,7 @@
         "node_modules"
     ],
     "include": [
-        "./**/*.ts",
+        "./src/**/*.ts",
         "../../project-typings/**/*.ts"
     ]
 }

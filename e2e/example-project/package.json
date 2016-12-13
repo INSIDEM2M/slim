@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node ../../src/cli-entry.ts build",
     "start": "node ../../src/cli-entry.ts dev",
-    "test": "node ../../src/cli-entry.ts test"
+    "test": "node ../../src/cli-entry.ts test",
+    "e2e": "node ../../src/cli-entry.ts e2e"
   },
   "dependencies": {
     "@angular/common": "2.2.4",
