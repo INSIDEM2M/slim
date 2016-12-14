@@ -132,7 +132,7 @@
 
 "@types/node@^6.0.52":
   version "6.0.52"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/node/-/node-6.0.52.tgz#1ac3a99b42320f9e463482f25af4c2359473aaa6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.52.tgz#1ac3a99b42320f9e463482f25af4c2359473aaa6"
 
 "@types/opn@^3.0.28":
   version "3.0.28"
