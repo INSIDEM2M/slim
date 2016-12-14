@@ -130,9 +130,9 @@
   version "6.0.51"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.51.tgz#84cbf25111516ec9304d0b61469dc0fa9d12ba32"
 
-"@types/node@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-0.0.2.tgz#0da4934902fbf68a97a0f53204a35ad2224917bc"
+"@types/node@^6.0.52":
+  version "6.0.52"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/node/-/node-6.0.52.tgz#1ac3a99b42320f9e463482f25af4c2359473aaa6"
 
 "@types/opn@^3.0.28":
   version "3.0.28"
