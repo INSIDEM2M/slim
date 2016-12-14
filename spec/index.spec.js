@@ -14,17 +14,20 @@ function installExampleProject() {
     });
 }
 
-function buildExampleProject() {
+function testExampleProject() {
     return new Promise(function (resolve) {
-        spawn("yarn", ["run", "build"], {
+        spawn("yarn", ["run", "e2e"], {
             cwd: path.join(cwd, "e2e", "example-project"),
             stdio: "inherit"
         }).on("close", function (code) {
             resolve(code);
         });
+
     });
 }
 
-installExampleProject().then(buildExampleProject).then(function (code) {
+
+
+installExampleProject().then(testExampleProject).then(function (code) {
     process.exit(code);
 });
