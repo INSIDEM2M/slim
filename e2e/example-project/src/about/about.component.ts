@@ -12,4 +12,8 @@ export class AboutComponent {
     constructor() {
         console.log("About 2");
     }
+
+    noCoverage() {
+        console.log("No coverage");
+    }
 }

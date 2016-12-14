@@ -2,6 +2,8 @@ import * as path from "path";
 import * as webpack from "webpack";
 import * as karma from "karma";
 
+import { argv } from "yargs";
+
 export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, polyfillsPattern: string, port: number, watch: boolean, coverage: boolean, coverageDir: string, webpackConfig: webpack.Configuration, browsers: string[], xmlReport: string): karma.ConfigOptions {
     const config: any = {
         basePath: "",
@@ -9,7 +11,7 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
         exclude: [],
         preprocessors: {},
         webpack: webpackConfig,
-        webpackMiddleware: {
+        webpackMiddleware: argv["debug"] ? {} : {
             stats: "errors-only",
             quiet: true
         },
@@ -48,6 +50,7 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
         singleRun: !watch
     }
     config.preprocessors[testFilePattern] = [
+        "coverage",
         "webpack",
         "sourcemap"
     ];
