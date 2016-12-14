@@ -19,7 +19,7 @@ declare interface Options {
     watch?: boolean;
     coverage?: boolean;
     browsers?: string;
-    specs?: string[];
+    specs?: string;
     patch?: boolean;
     minor?: boolean;
     major?: boolean;
