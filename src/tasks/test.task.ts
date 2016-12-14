@@ -13,7 +13,7 @@ export default function (env: EnvironmentVariables, config: IM2MConfig, watch: b
         const indexPath = path.join(config.sourceDir, "index.html");
         const polyfillsPattern = path.join(config.dllDir, "polyfills.dll.js");
         const vendorsPattern = path.join(config.dllDir, "vendors.dll.js");
-        const testSetupPattern = path.join(config.rootDir, "test-bundle.ts");
+        const testSetupPattern = path.join(config.rootDir, "test-bundle.js");
 
         const commonConfig = getCommonConfigPartial(indexPath, env, config);
         const testConfig = getTestConfigPartial(config.targetDir, config.sourceDir, config.dllDir);
@@ -26,6 +26,9 @@ export default function (env: EnvironmentVariables, config: IM2MConfig, watch: b
             const server = new karma.Server(karmaConfig, (exitCode) => {
                 if (!watch) {
                     timer.end("Running the unit tests");
+                }
+                if (coverage) {
+                    logger.info("Wrote coverage report to " + config.coverageDir + ".");
                 }
                 resolve(exitCode);
             });
