@@ -9,7 +9,7 @@ import { timer, logger } from "../logger";
 export default function (env: EnvironmentVariables, config: IM2MConfig, minify: boolean, aot: boolean) {
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
-    const buildConfig = getBuildConfigPartial(indexPath, config.targetDir, config.typescript.output, config.typescript.entry, minify, aot, aot ? path.join(config.rootDir, config.angular.aotTsConfig) : null, aot ? path.join(config.sourceDir, config.angular.appModule) : null);
+    const buildConfig = getBuildConfigPartial(config.targetDir, config.typescript.output, config.typescript.entry, minify, aot, aot ? path.join(config.rootDir, config.angular.aotTsConfig) : null, aot ? path.join(config.sourceDir, config.angular.appModule) : null);
     const webpackConfig = webpackMerge(commonConfig, buildConfig);
     logger.info(`Building ${minify ? "minified " : ""}application${aot ? " using the Angular AOT compiler" : ""}...`);
     return runBuild(webpackConfig);
