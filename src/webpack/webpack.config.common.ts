@@ -1,7 +1,8 @@
 import * as webpack from "webpack";
 import * as path from "path";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 
-export function getCommonConfigPartial(devIndexPath: string, environment: any, config: IM2MConfig) {
+export function getCommonConfigPartial(indexPath: string, environment: any, config: IM2MConfig) {
     let conf: any = {
         resolve: {
             extensions: [".ts", ".js", ".json"],
@@ -44,7 +45,7 @@ export function getCommonConfigPartial(devIndexPath: string, environment: any, c
                     loader: "source-map-loader"
                 },
                 { test: /\.json$/, loader: "json-loader" },
-                { test: /\.html/, loader: "raw-loader", exclude: [devIndexPath] },
+                { test: /\.html/, loader: "raw-loader", exclude: [indexPath] },
                 { test: /\.css$/, loader: "raw-loader" },
                 {
                     test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
@@ -74,7 +75,10 @@ export function getCommonConfigPartial(devIndexPath: string, environment: any, c
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
                 "./src"
             ),
-            new webpack.DefinePlugin({ environment })
+            new webpack.DefinePlugin({ environment }),
+            new HtmlWebpackPlugin({
+                template: indexPath
+            })
         ]
     }
 

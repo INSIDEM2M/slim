@@ -4,18 +4,22 @@ import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
+import { DllTagPlugin } from "./plugins/dll-tags.plugin";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
 
-export function getDevConfigPartial(devIndexPath: string, targetDir: string, dllDir: string, publicDir: string, output: string, entry: string, port?: number): webpack.Configuration {
-    return {
+export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir: string, output: string, entry: string, port?: number): webpack.Configuration {
+    const config: any = {
         output: {
             path: targetDir,
-            filename: "[name].[hash]"
+            filename: "[name].[hash].js"
         },
         entry: {
             app: [entry]
+        },
+        performance: {
+            hints: false
         },
         devtool: "cheap-module-eval-source-map",
         devServer: {
@@ -59,9 +63,7 @@ export function getDevConfigPartial(devIndexPath: string, targetDir: string, dll
                 context: ".",
                 manifest: require(path.join(dllDir, "vendors.dll.json"))
             }),
-            new HtmlWebpackPlugin({
-                template: devIndexPath
-            }),
+            new DllTagPlugin(["vendors", "polyfills"]),
             new CheckerPlugin(),
             new CopyWebpackPlugin([
                 {
@@ -73,4 +75,5 @@ export function getDevConfigPartial(devIndexPath: string, targetDir: string, dll
             new NamedModulesPlugin(),
         ]
     }
+    return config;
 }

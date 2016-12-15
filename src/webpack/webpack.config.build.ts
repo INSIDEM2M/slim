@@ -1,13 +1,9 @@
 import * as webpack from "webpack";
 import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
 import { AotPlugin } from "@ngtools/webpack";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
 
-export function getBuildConfigPartial(indexPath: string, targetDir: string, output: string, entry: string, minify: boolean, aot: boolean, tsconfigPath?: string, appModule?: string): webpack.Configuration {
+export function getBuildConfigPartial(targetDir: string, output: string, entry: string, minify: boolean, aot: boolean, tsconfigPath?: string, appModule?: string): webpack.Configuration {
     let plugins = [
-        new HtmlWebpackPlugin({
-            template: indexPath
-        }),
         new ProgressBarPlugin()
     ];
     let module = {
@@ -53,7 +49,7 @@ export function getBuildConfigPartial(indexPath: string, targetDir: string, outp
         module,
         output: {
             path: targetDir,
-            filename: "[name].[hash]"
+            filename: "[name].[hash].js"
         },
         entry: {
             app: entry,
