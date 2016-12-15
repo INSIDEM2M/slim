@@ -27,7 +27,6 @@ function createWebpackDevConfig(env: EnvironmentVariables, config: IM2MConfig, p
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
     const devConfig = getDevConfigPartial(config.targetDir, config.dllDir, config.baseHref, config.typescript.output, config.typescript.entry, port);
     const webpackConfig = webpackMerge(commonConfig, devConfig);
-    webpackConfig.entry["app"].unshift(`webpack-dev-server/client?http://localhost:${port}/`);
     logger.trace("Created webpack development config.", prettyPrintConfig(webpackConfig));
     return webpackConfig;
 }

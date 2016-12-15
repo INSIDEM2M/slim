@@ -45,6 +45,12 @@
   dependencies:
     tsickle "^0.1.7"
 
+"@angularclass/hmr-loader@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@angularclass/hmr-loader/-/hmr-loader-3.0.2.tgz#c789182411f09d0b98929e6acbfd3e4aeaace597"
+  dependencies:
+    loader-utils "^0.2.15"
+
 "@ngtools/webpack@^1.1.9":
   version "1.1.9"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-1.1.9.tgz#ec40fb5e0082d517ae332b76de3fb46341fb8c7f"

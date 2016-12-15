@@ -1,9 +1,10 @@
 import "./shims";
 
-import { Component, NgModule, enableProdMode } from "@angular/core";
+import { Component, NgModule, enableProdMode, ApplicationRef } from "@angular/core";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
-import { BrowserModule } from "@angular/platform-browser";
+import { BrowserModule, enableDebugTools } from "@angular/platform-browser";
 import { AppModule } from "./app/app.module";
+import { bootloader } from "@angularclass/hmr";
 
 if (environment.current === "production") {
     enableProdMode();
@@ -11,4 +12,9 @@ if (environment.current === "production") {
 
 console.log(environment);
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+export function main() {
+    return platformBrowserDynamic().bootstrapModule(AppModule)
+        .catch(err => console.error(err));
+}
+
+bootloader(main);

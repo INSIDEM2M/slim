@@ -1,5 +1,4 @@
 import * as webpack from "webpack";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as path from "path";
@@ -16,7 +15,11 @@ export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir
             filename: "[name].[hash].js"
         },
         entry: {
-            app: [entry]
+            app: [
+                `webpack-dev-server/client?http://localhost:${port}/`,
+                "webpack/hot/only-dev-server",
+                entry
+            ]
         },
         performance: {
             hints: false
@@ -34,13 +37,22 @@ export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir
             watchOptions: {
                 aggregateTimeout: 300,
                 poll: 1000
-            }
+            },
+            hot: true,
+            clientLogLevel: "warning"
         },
         module: {
             rules: [
                 {
                     test: /\.ts$/,
                     use: [
+                        {
+                            loader: "@angularclass/hmr-loader",
+                            query: {
+                                pretty: true,
+                                prod: false
+                            }
+                        },
                         {
                             loader: "awesome-typescript-loader",
                             options: {
@@ -65,6 +77,7 @@ export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir
             }),
             new DllTagPlugin(["vendors", "polyfills"]),
             new CheckerPlugin(),
+            new webpack.HotModuleReplacementPlugin(),
             new CopyWebpackPlugin([
                 {
                     from: path.join(dllDir, "*.js"),
