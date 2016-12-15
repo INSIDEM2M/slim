@@ -53,7 +53,7 @@ export function getBuildConfigPartial(indexPath: string, targetDir: string, outp
         module,
         output: {
             path: targetDir,
-            filename: "[name].[hash]"
+            filename: "[name].[hash].js"
         },
         entry: {
             app: entry,
