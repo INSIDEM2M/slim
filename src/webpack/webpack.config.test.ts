@@ -32,7 +32,8 @@ export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDi
                         {
                             loader: "awesome-typescript-loader",
                             options: {
-                                useCache: true
+                                useCache: true,
+                                silent: true
                             }
                         },
                         "angular2-template-loader?keepUrl=true"
