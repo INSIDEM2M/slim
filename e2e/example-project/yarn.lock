@@ -34,6 +34,10 @@
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-3.2.4.tgz#dfec71ad072ec031364ba5d08bd6fe03fd5beadc"
 
+"@angularclass/hmr@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@angularclass/hmr/-/hmr-1.2.2.tgz#46a18f89a1e94d05c268b83c9480e005f73fc265"
+
 bootstrap@4.0.0-alpha.4:
   version "4.0.0-alpha.4"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-alpha.4.tgz#823cb353d6c50a38df98aa18ec4df56ef0355e7a"
