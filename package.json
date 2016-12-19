@@ -41,7 +41,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
     "local-web-server": "^1.2.6",
-    "node-sass": "^3.13.0",
+    "node-sass": "^4.1.0",
     "opn": "^4.0.2",
     "portfinder": "^1.0.10",
     "postcss-loader": "^1.2.0",
