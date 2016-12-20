@@ -7,7 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@angular/compiler": "2.2.3",
-    "@angular/compiler-cli": "2.2.3",
+    "@angular/compiler-cli": "2.4.0",
     "@angular/core": "2.2.3",
     "@ngtools/webpack": "^1.1.9",
     "angular2-template-loader": "^0.6.0",
