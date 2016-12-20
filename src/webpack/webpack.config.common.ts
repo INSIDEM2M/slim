@@ -42,7 +42,10 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 },
                 {
                     test: /\.js$/,
-                    loader: "source-map-loader"
+                    loader: "source-map-loader",
+                    exclude: [
+                        /ionic-angular/
+                    ]
                 },
                 { test: /\.json$/, loader: "json-loader" },
                 { test: /\.html/, loader: "raw-loader", exclude: [indexPath] },

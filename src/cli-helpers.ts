@@ -12,14 +12,29 @@ import * as opn from "opn";
 import * as fs from "fs";
 import { VENDORS } from "./webpack/webpack.vendors";
 import { POLYFILLS } from "./webpack/webpack.polyfills";
+import { merge } from "lodash";
 
 export function parseBrowsers(browserOption: string): string[] {
     return typeof browserOption === "string" ? browserOption.split(",").map(option => option.charAt(0).toUpperCase().concat(option.substr(1))) : ["Chrome"];
 }
 
 export function getDllDependencies(config: IM2MConfig): string[] {
-    const additionalVendors = config.typescript ? Array.isArray(config.typescript.vendors) ? config.typescript.vendors : [] : [];
-    return VENDORS.concat(POLYFILLS).concat(additionalVendors);
+    const additionalVendors = config.typescript && Array.isArray(config.typescript.vendors) ? config.typescript.vendors : [];
+    return VENDORS.concat(POLYFILLS).concat(additionalVendors).map(vendor => {
+        // This is needed to compare vendors with deep import paths like
+        // zone.js/dist/long-stack-trace-zone.js. In this case we have to check whether
+        // the version of zone.js has changed.
+        if (vendor.includes("/")) {
+            // Scoped npm packages contain a '/' in their name that we have to preserve
+            if (vendor.startsWith("@")) {
+                return vendor.split("/")[0] + "/" + vendor.split("/")[1];
+            } else {
+                return vendor.split("/")[0];
+            }
+        } else {
+            return vendor;
+        }
+    });
 }
 
 export function dllsUpToDate(dllDir: string, dllCacheFile: string, pkg: any, dllDependencies: string[]): boolean {
@@ -109,7 +124,8 @@ export function getIm2mConfig(rootDir: string): IM2MConfig {
         }
     };
     try {
-        config = Object.assign(config, require(path.join(rootDir, "im2m.config.ts")));
+        const im2mConfig = require(path.join(rootDir, "im2m.config.ts"));
+        config = merge(config, im2mConfig);
         logger.debug("im2m.config.ts:\n" + JSON.stringify(config, null, 2));
     } catch (error) {
         logger.debug("Did not find a im2m.config.ts file in the current directory.");
