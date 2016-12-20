@@ -12,6 +12,6 @@ export default function (env: EnvironmentVariables, config: IM2MConfig, port: nu
         } else {
             return exitCode;
         }
-    })
+    });
 }
 

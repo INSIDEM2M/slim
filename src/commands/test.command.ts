@@ -41,4 +41,4 @@ export const testCommand: yargs.CommandModule = {
             .then(() => testTask(environmentVariables, im2mConfig, options.watch, options.coverage, browsers, options["xml-report"]))
             .then((exitCode: number) => process.exit(exitCode));
     }
-}
+};

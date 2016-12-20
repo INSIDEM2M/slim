@@ -24,4 +24,4 @@ export const devCommand: yargs.CommandModule = {
         const environmentVariables = getEnvironment(rootDir);
         return dllTask(environmentVariables, im2mConfig, options["update-dlls"]).then(() => devTask(environmentVariables, im2mConfig, options.open));
     }
-}
+};

@@ -33,4 +33,4 @@ export const e2eCommand: yargs.CommandModule = {
                 process.exit(exitCode);
             });
     }
-}
+};

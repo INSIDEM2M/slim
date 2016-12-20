@@ -7,4 +7,4 @@ export const publishCommand: yargs.CommandModule = {
     handler: (options: Options) => {
         logger.error("Not yet implemented!");
     }
-}
+};

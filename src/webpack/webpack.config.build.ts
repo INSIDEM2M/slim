@@ -42,7 +42,7 @@ export function getBuildConfigPartial(targetDir: string, output: string, entry: 
                 ],
                 exclude: [/\.(spec|e2e|d)\.ts$/]
             }
-        )
+        );
     }
     let config = {
         plugins,

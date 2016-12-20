@@ -52,23 +52,23 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 { test: /\.css$/, loader: "raw-loader" },
                 {
                     test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+                    loader: "url-loader?limit=10000&mimetype=application/font-woff"
                 },
                 {
                     test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+                    loader: "url-loader?limit=10000&mimetype=application/font-woff"
                 },
                 {
                     test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+                    loader: "url-loader?limit=10000&mimetype=application/octet-stream"
                 },
                 {
                     test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: 'file-loader'
+                    loader: "file-loader"
                 },
                 {
                     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+                    loader: "url-loader?limit=10000&mimetype=image/svg+xml"
                 }
             ]
         },
@@ -83,12 +83,12 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 template: indexPath
             })
         ]
-    }
+    };
 
     if (Array.isArray(config.sass.globalStyles) && config.sass.globalStyles.length > 0) {
         conf.entry = {
             styles: config.sass.globalStyles
-        }
+        };
     }
 
     return conf;

@@ -36,4 +36,4 @@ export const buildCommand: yargs.CommandModule = {
             process.exit(code);
         });
     }
-}
+};

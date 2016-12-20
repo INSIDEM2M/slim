@@ -7,4 +7,4 @@ export const changelogCommand: yargs.CommandModule = {
     handler: (options: Options) => {
         logger.error("Not yet implemented!");
     }
-}
+};

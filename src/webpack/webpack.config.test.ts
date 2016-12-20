@@ -13,12 +13,12 @@ export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDi
             rules: [
                 {
                     test: /\.js$/,
-                    enforce: 'pre',
-                    loader: 'source-map-loader',
+                    enforce: "pre",
+                    loader: "source-map-loader",
                 },
                 {
-                    test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
-                    enforce: 'post',
+                    test: /\.(js|ts)$/, loader: "istanbul-instrumenter-loader",
+                    enforce: "post",
                     include: sourceDir,
                     exclude: [
                         /\.(e2e|spec)\.ts$/,
@@ -53,5 +53,5 @@ export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDi
             new NamedModulesPlugin(),
             new CheckerPlugin()
         ]
-    }
+    };
 }

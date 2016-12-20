@@ -23,4 +23,4 @@ export const newCommand: yargs.CommandModule = {
     handler: (options: Options) => {
         logger.error("Not yet implemented!");
     }
-}
+};

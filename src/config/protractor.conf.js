@@ -4,7 +4,7 @@ exports.config = {
 
     exclude: [],
 
-    framework: 'jasmine',
+    framework: "jasmine",
 
     jasmineNodeOpts: {
         showTiming: true,
@@ -30,4 +30,4 @@ exports.config = {
     directConnect: true,
 
     useAllAngular2AppRoots: true
-}
+};
