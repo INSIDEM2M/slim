@@ -43,8 +43,8 @@ declare interface IM2MConfig {
         aotTsConfig?: string;
     };
     typescript?: {
-        entry: string;
-        output: string;
+        entry?: string;
+        output?: string;
         vendors?: string[];
     };
     sass?: {
