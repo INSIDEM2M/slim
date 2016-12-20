@@ -32,8 +32,8 @@ export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir
             historyApiFallback: {
                 disableDotRule: true,
             },
-            stats: 'minimal',
-            host: '0.0.0.0',
+            stats: "minimal",
+            host: "0.0.0.0",
             watchOptions: {
                 aggregateTimeout: 300,
                 poll: 1000
@@ -87,6 +87,6 @@ export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir
             new ProgressBarPlugin(),
             new NamedModulesPlugin(),
         ]
-    }
+    };
     return config;
 }
