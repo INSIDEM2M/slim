@@ -1,12 +1,7 @@
 import * as childProcess from "child_process";
 import * as portFinder from "portfinder";
 import * as path from "path";
-import * as commandLineArgs from "command-line-args";
-import * as commandLineUsage from "command-line-usage";
-import * as commandLineCommands from "command-line-commands";
-import * as chalk from "chalk";
 
-import { commands } from "./cli-commands";
 import { logger } from "./logger";
 import * as opn from "opn";
 import * as fs from "fs";
@@ -151,40 +146,4 @@ export function getPackage(rootDir: string) {
         pkg = {}
     }
     return pkg;
-}
-
-export function getCommand(): string {
-    const { command } = commandLineCommands(commands.map(command => command.name).concat(null));
-    return command;
-}
-
-export function getOptions(): Options {
-    const { argv } = commandLineCommands(commands.map(command => command.name).concat(null));
-    let optionDefinitions = [{ name: "debug" }, { name: "trace" }, { name: "config" }, { name: "cwd" }];
-
-    commands.forEach(c => {
-        optionDefinitions = optionDefinitions.concat(c.options || []);
-    });
-
-    return commandLineArgs(optionDefinitions, argv);
-}
-
-export function getCommandLineUsage(): string {
-    const sections: CommandLineUsageSection[] = [
-        {
-            header: `${chalk.blue("Inside M2M CLI")}`,
-            content: `$ ${chalk.bold("im2m")} <command> <options>`
-        },
-        {
-            header: `${chalk.blue("Available commands")}`
-        }
-    ];
-    commands.forEach(c => {
-        sections.push({
-            header: c.name,
-            content: c.description,
-            optionList: c.options
-        });
-    });
-    return commandLineUsage(sections);
 }

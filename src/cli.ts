@@ -1,12 +1,15 @@
-import { getCommandLineUsage, getCommand, getOptions, getIm2mConfig, getEnvironment, parseBrowsers, getAvailablePort } from "./cli-helpers";
-import devTask from "./tasks/dev.task";
-import dllTask from "./tasks/dll.task";
-import buildTask from "./tasks/build.task";
-import serveTask from "./tasks/serve.task";
-import testTask from "./tasks/test.task";
-import e2eTask from "./tasks/e2e.task";
+import * as yargs from "yargs";
 import * as readline from "readline";
-import { timer } from "./logger";
+import { devCommand } from "./commands/dev.command";
+import { buildCommand } from "./commands/build.command";
+import { testCommand } from "./commands/test.command";
+import { e2eCommand } from "./commands/e2e.command";
+import { publishCommand } from "./commands/publish.command";
+import { releaseCommand } from "./commands/release.command";
+import { changelogCommand } from "./commands/changelog.command";
+import { newCommand } from "./commands/new.command";
+import * as chalk from "chalk";
+import * as path from "path";
 
 export function main() {
 
@@ -19,55 +22,23 @@ export function main() {
         process.exit(0);
     });
 
-    const command = getCommand();
-    const options = getOptions();
-    const rootDir = process.cwd();
 
-    const im2mConfig = getIm2mConfig(rootDir);
-    const environmentVariables = getEnvironment(rootDir);
+    yargs
+        .locale("en")
+        .version(require(path.join(__dirname, "..", "package.json")).version)
+        .usage("Usage: $0 <command> [options]")
+        .command(newCommand)
+        .command(devCommand)
+        .command(buildCommand)
+        .command(testCommand)
+        .command(e2eCommand)
+        .command(changelogCommand)
+        .command(releaseCommand)
+        .command(publishCommand)
+        .alias("h", "help")
+        .alias("v", "version")
+        .demand(1)
+        .epilog(`Run ${chalk.bold("$0 <command> --help")} for more information on the specific command.`)
+        .help().argv;
 
-    let exitCode: Promise<number>;
-    switch (command) {
-        case "new":
-            // Create new project/component
-            break;
-        case "dev":
-            exitCode = dllTask(environmentVariables, im2mConfig, options["update-dlls"]).then(() => devTask(environmentVariables, im2mConfig, options.open));
-            break;
-        case "build":
-            if (options.serve) {
-                exitCode = buildTask(environmentVariables, im2mConfig, options.minify, options.aot).then(() => serveTask(environmentVariables, im2mConfig, options.open));
-            } else {
-                exitCode = buildTask(environmentVariables, im2mConfig, options.minify, options.aot);
-            }
-            break;
-        case "test":
-            const browsers = parseBrowsers(options.browsers);
-            if (!options.watch) {
-                timer.start("Running the unit tests");
-            }
-            exitCode = dllTask(environmentVariables, im2mConfig, options["update-dlls"]).then(() => testTask(environmentVariables, im2mConfig, options.watch, options.coverage, browsers, options["xml-report"]));
-            break;
-        case "e2e":
-            exitCode = (options["no-build"] ? Promise.resolve() : buildTask(environmentVariables, im2mConfig, options.minify, options.aot))
-                .then(() => getAvailablePort())
-                .then((port) => serveTask(environmentVariables, im2mConfig, options.open, port, true))
-                .then((port) => e2eTask(environmentVariables, im2mConfig, port, options["no-update"], options.specs));
-            break;
-        case "release":
-            // Update version
-            break;
-        case "changelog":
-            // Update changelog
-            break;
-        case "publish":
-            // Push to npm/git
-            break;
-        default:
-            console.log(getCommandLineUsage());
-            break;
-    }
-    Promise.resolve(exitCode).then(code => {
-        process.exit(code);
-    });
 }
