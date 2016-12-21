@@ -1,8 +1,12 @@
 {
   "name": "slim",
   "version": "0.0.1",
+  "scripts": {
+    "build": "tsc",
+    "postinstall": "yarn run build"
+  },
   "bin": {
-    "slim": "src/cli-entry.ts"
+    "slim": "dist/cli-entry.js"
   },
   "license": "MIT",
   "dependencies": {

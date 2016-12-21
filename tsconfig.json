@@ -8,12 +8,14 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "noEmitHelpers": true,
+        "outDir": "dist",
         "lib": [
             "es2015",
             "dom"
         ]
     },
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "e2e"
     ]
 }
