@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "node ../../dist/cli-entry.js build",
-    "start": "node ../../dist/cli-entry.js dev",
-    "test": "node ../../dist/cli-entry.js test",
-    "e2e": "node ../../dist/cli-entry.js e2e"
+    "build": "node ../../src/cli-entry.ts build",
+    "start": "node ../../src/cli-entry.ts dev",
+    "test": "node ../../src/cli-entry.ts test",
+    "e2e": "node ../../src/cli-entry.ts e2e"
   },
   "dependencies": {
     "@angular/common": "2.2.4",
