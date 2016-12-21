@@ -1,8 +1,5 @@
 import * as yargs from "yargs";
 import { getIm2mConfig, getEnvironment, getAvailablePort } from "../cli-helpers";
-import buildTask from "../tasks/build.task";
-import serveTask from "../tasks/serve.task";
-import e2eTask from "../tasks/e2e.task";
 
 export const e2eCommand: yargs.CommandModule = {
     command: "e2e",
@@ -22,6 +19,9 @@ export const e2eCommand: yargs.CommandModule = {
         }
     },
     handler: (options: Options) => {
+        const e2eTask = require("../tasks/e2e.task");
+        const serveTask = require("../tasks/serve.task");
+        const buildTask = require("../tasks/build.task");
         const rootDir = process.cwd();
         const im2mConfig = getIm2mConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);

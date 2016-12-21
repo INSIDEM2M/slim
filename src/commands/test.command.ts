@@ -1,8 +1,6 @@
 import * as yargs from "yargs";
 import * as chalk from "chalk";
-import { getIm2mConfig, getEnvironment, parseBrowsers } from "../cli-helpers";
-import dllTask from "../tasks/dll.task";
-import testTask from "../tasks/test.task";
+import { getIm2mConfig, getEnvironment } from "../cli-helpers";
 import { timer } from "../logger";
 
 export const testCommand: yargs.CommandModule = {
@@ -30,6 +28,8 @@ export const testCommand: yargs.CommandModule = {
         }
     },
     handler: (options: Options) => {
+        const dllTask = require("../tasks/dll.task");
+        const testTask = require("../tasks/test.task");
         const rootDir = process.cwd();
         const im2mConfig = getIm2mConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
@@ -42,3 +42,7 @@ export const testCommand: yargs.CommandModule = {
             .then((exitCode: number) => process.exit(exitCode));
     }
 };
+
+function parseBrowsers(browserOption: string): string[] {
+    return typeof browserOption === "string" ? browserOption.split(",").map(option => option.charAt(0).toUpperCase().concat(option.substr(1))) : ["Chrome"];
+}

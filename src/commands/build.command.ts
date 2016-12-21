@@ -1,7 +1,5 @@
 import * as yargs from "yargs";
 import { getIm2mConfig, getEnvironment } from "../cli-helpers";
-import buildTask from "../tasks/build.task";
-import serveTask from "../tasks/serve.task";
 
 export const buildCommand: yargs.CommandModule = {
     command: "build",
@@ -27,6 +25,8 @@ export const buildCommand: yargs.CommandModule = {
         const im2mConfig = getIm2mConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
         let exitCode: Promise<number>;
+        const buildTask = require("../tasks/build.task");
+        const serveTask = require("../tasks/serve.task");
         if (options.serve) {
             exitCode = buildTask(environmentVariables, im2mConfig, options.minify, options.aot).then(() => serveTask(environmentVariables, im2mConfig, options.open));
         } else {

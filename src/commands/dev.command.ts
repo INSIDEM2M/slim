@@ -1,7 +1,5 @@
 import * as yargs from "yargs";
 import { getIm2mConfig, getEnvironment } from "../cli-helpers";
-import dllTask from "../tasks/dll.task";
-import devTask from "../tasks/dev.task";
 
 export const devCommand: yargs.CommandModule = {
     command: "dev",
@@ -19,6 +17,8 @@ export const devCommand: yargs.CommandModule = {
         }
     },
     handler: (options: Options) => {
+        const dllTask = require("../tasks/dll.task");
+        const devTask = require("../tasks/dev.task");
         const rootDir = process.cwd();
         const im2mConfig = getIm2mConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
