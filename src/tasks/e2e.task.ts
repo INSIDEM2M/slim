@@ -42,7 +42,7 @@ function webDriverUpdate(): Promise<number> {
 
 function runProtractor(port: number, specs: string) {
     return new Promise((resolve) => {
-        const configPath = path.resolve("/", path.join(__dirname, "config", "protractor.conf.js"));
+        const configPath = path.resolve("/", path.join(__dirname, "..", "config", "protractor.conf.js"));
         logger.debug(`Running the following command: protractor ${configPath} --port ${port} --specs ${specs}`);
         const protractorProcess = spawn(getProtractorBinaryPath("protractor"), [configPath, "--port", String(port), "--specs", specs], { stdio: "inherit" });
         protractorProcess.on("close", (exitCode) => {
