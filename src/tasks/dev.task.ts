@@ -11,7 +11,7 @@ import { logger } from "../logger";
 import * as chalk from "chalk";
 import * as readline from "readline";
 
-export default function (env: EnvironmentVariables, config: IM2MConfig, open: boolean) {
+module.exports = function (env: EnvironmentVariables, config: IM2MConfig, open: boolean) {
     return getAvailablePort().then(port => {
         const webpackConfig = createWebpackDevConfig(env, config, port);
         const compiler = webpack(webpackConfig);
@@ -20,7 +20,7 @@ export default function (env: EnvironmentVariables, config: IM2MConfig, open: bo
         const server = new WebpackDevServer(compiler, webpackConfig.devServer);
         return startServer(server, port, open, config.baseHref);
     });
-}
+};
 
 function createWebpackDevConfig(env: EnvironmentVariables, config: IM2MConfig, port: number): webpack.Configuration {
     const indexPath = path.join(config.sourceDir, "index.html");
@@ -38,7 +38,7 @@ function prettyPrintConfig(webpackConfig: webpack.Configuration): string {
             return undefined;
         }
         return value;
-    }
+    };
     return JSON.stringify(webpackConfig, replacerFn, 2);
 }
 

@@ -30,7 +30,7 @@ function testExampleProject(projectName) {
 
 installExampleProject("example-project")
     .then(() => testExampleProject("example-project"))
-installExampleProject("example-app")
+    .then(() => installExampleProject("example-app"))
     .then(() => testExampleProject("example-app"))
     .then(function (code) {
         process.exit(code);
