@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@angular/compiler": "2.2.3",
-    "@angular/compiler-cli": "2.2.3",
+    "@angular/compiler-cli": "2.4.0",
     "@angular/core": "2.2.3",
     "@angularclass/hmr": "^1.2.2",
     "@angularclass/hmr-loader": "^3.0.2",
