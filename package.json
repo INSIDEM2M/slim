@@ -64,7 +64,7 @@
     "webpack-dev-server": "2.2.0-rc.0",
     "webpack-merge": "^2.0.0",
     "yargs": "^6.5.0",
-    "zone.js": "^0.6.21"
+    "zone.js": "^0.7.3"
   },
   "devDependencies": {
     "@angular/common": "2.2.3",
