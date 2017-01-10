@@ -27,7 +27,5 @@ exports.config = {
             args: ["--no-sandbox"]
         }
     },
-    directConnect: true,
-
-    useAllAngular2AppRoots: true
+    directConnect: true
 };
