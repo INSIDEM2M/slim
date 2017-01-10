@@ -9,3 +9,4 @@ coverage
 coverage.json
 .DS_Store
 dist
+docs
