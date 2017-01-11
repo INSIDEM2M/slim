@@ -5,7 +5,7 @@
     "build": "tsc"
   },
   "bin": {
-    "slim": "dist/cli-entry.js"
+    "slim": "src/cli-entry.ts"
   },
   "license": "MIT",
   "dependencies": {
