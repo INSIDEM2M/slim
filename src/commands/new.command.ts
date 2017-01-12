@@ -3,7 +3,7 @@ import * as yargs from "yargs";
 import * as path from "path";
 import * as os from "os";
 
-function getTemplates(): yargs.CommandBuilder {
+let builder: yargs.CommandBuilder = ((): yargs.CommandBuilder => {
     
     let templates: yargs.CommandBuilder = {
         "component": {
@@ -35,10 +35,7 @@ function getTemplates(): yargs.CommandBuilder {
     //TODO: (0xe282b0) check that aliases are unique;
    
     return templates;
-}
-
-
-let builder: yargs.CommandBuilder = getTemplates();
+})();
 
 export const newCommand: yargs.CommandModule = {
     command: "new",
@@ -62,13 +59,19 @@ export const newCommand: yargs.CommandModule = {
         ).then(function (answers) {
 
             let nodegit = require("nodegit");
-            let os = require("os");
-            console.log("check if local availabe");
-            console.log("pull if availabe");
-            console.log("clone if not available");
+            let fs = require('fs');
 
             let targetPath = path.join(os.homedir(), ".slim", answers.project.type);
-            return nodegit.Clone(
+            
+            if (fs.existsSync(path)) {            
+                nodegit.Repository.open(targetPath)
+                    .then((repo) => repo.fetchAll())
+                    .then((repo) => repo.mergeBranches("master", "origin/master"))
+                console.log("check if local availabe");
+                console.log("pull if availabe");
+                console.log("clone if not available");
+            }else{
+                nodegit.Clone(
                 builder[answers.project.type].url,
                 targetPath,
                 {
@@ -82,7 +85,8 @@ export const newCommand: yargs.CommandModule = {
                         }
                     }
                 })
-        }).then(function (answers) {
+
+            .then(function () {
             return new Promise((ok, reject) => {
                 // console.log(JSON.stringify(builder[answers.project.type], null, '  '));
                 console.log("Read template.js");
@@ -96,7 +100,9 @@ export const newCommand: yargs.CommandModule = {
             })
         }).then(function (code) {
             process.exit(code);
-        });
+            });
+        }});
+
 
 
     }
