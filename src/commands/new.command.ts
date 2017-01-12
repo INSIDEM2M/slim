@@ -14,7 +14,8 @@ let builder: yargs.CommandBuilder = ((): yargs.CommandBuilder => {
         "portal": {
             alias: "p",
             type: "boolean",
-            description: "Create a portal project."
+            description: "Create a portal project.",
+            url: "https://github.com/0xE282B0/slim-test-template"
         },
         "app": {
             alias: "a",
@@ -63,14 +64,17 @@ export const newCommand: yargs.CommandModule = {
 
             let targetPath = path.join(os.homedir(), ".slim", answers.project.type);
             
-            if (fs.existsSync(path)) {            
+            if (fs.existsSync(targetPath)) {  
+
                 nodegit.Repository.open(targetPath)
                     .then((repo) => repo.fetchAll())
                     .then((repo) => repo.mergeBranches("master", "origin/master"))
+                    .then(()=>scaffold(targetPath, process.cwd()),()=>{console.log("error")})
+
                 console.log("check if local availabe");
                 console.log("pull if availabe");
-                console.log("clone if not available");
             }else{
+                console.log("clone if not available");
                 nodegit.Clone(
                 builder[answers.project.type].url,
                 targetPath,
@@ -85,25 +89,51 @@ export const newCommand: yargs.CommandModule = {
                         }
                     }
                 })
+                .then(()=>scaffold(targetPath, process.cwd()))
+            }
+        });                
 
-            .then(function () {
-            return new Promise((ok, reject) => {
-                // console.log(JSON.stringify(builder[answers.project.type], null, '  '));
+    }
+};
+
+const scaffold = (source,target)=>{
+                let _ = require('underscore');
+                let fs = require('fs');
+                var glob = require("glob")
+
+                let templateConfig = require(path.join(source,"template.ts")).config;
+
+                
+
+                var inquirer = require('inquirer');
+                inquirer.prompt(templateConfig.questions)
+                .then((answers)=>new Promise((resolve,jeject)=>resolve(templateConfig.mapper(answers))))
+                .then(answers=>new Promise((resolve,reject)=>{
+
+                    glob(templateConfig.include, {cwd:source}, function (er, files) {
+
+                        for(let f of files){
+                            console.log(f);
+                            fs.writeFile(path.join(target,f), 
+                            _.template(fs.readFileSync(path.join(source,f), { 'encoding':'utf8'}))(answers),
+                             function(err) {
+                                if(err) {
+                                    return console.log(err);
+                                }
+
+                                console.log("The file was saved!");
+
+                            }); 
+                        }
+
+                                resolve(0);
+                    });
+                }))
+
                 console.log("Read template.js");
                 console.log("Check if description is complete");
                 console.log("run before scaffolding script (check deps)");
                 console.log("ask questions");
                 console.log("replace placeholders");
                 console.log("run after scaffolding script");
-
-                ok(0);
-            })
-        }).then(function (code) {
-            process.exit(code);
-            });
-        }});
-
-
-
-    }
-};
+}
