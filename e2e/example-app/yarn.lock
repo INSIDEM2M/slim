@@ -66,9 +66,9 @@ core-js@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.4.1.tgz#4de911e667b0eae9124e34254b53aea6fc618d3e"
 
-ionic-angular@^2.0.0-rc.4:
-  version "2.0.0-rc.4-201612192257"
-  resolved "https://registry.yarnpkg.com/ionic-angular/-/ionic-angular-2.0.0-rc.4-201612192257.tgz#5c72e352e692fab85f26199524b372db7b1416c6"
+ionic-angular@^2.0.0-rc.5:
+  version "2.0.0-rc.5"
+  resolved "https://registry.yarnpkg.com/ionic-angular/-/ionic-angular-2.0.0-rc.5.tgz#66074afd0b1a142e6772663a005e1253f78583b2"
 
 ionicons@^3.0.0:
   version "3.0.0"
