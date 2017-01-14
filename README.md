@@ -8,6 +8,12 @@ and [Sass](http://sass-lang.com/).
 > The project is currently under active development. Although the API is pretty stable, there will be
 changes until version 1.0.0 is released.
 
+## Installation
+
+```bash
+npm install -g slim
+```
+
 ## Usage
 
 The CLI has several commands that take different options, like the Git CLI.
