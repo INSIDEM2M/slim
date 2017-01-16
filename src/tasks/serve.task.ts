@@ -4,7 +4,7 @@ import * as localWebServer from "local-web-server";
 import { Server } from "http";
 import { logger } from "../logger";
 
-module.exports = function (env: EnvironmentVariables, config: IM2MConfig, open: boolean, forcePort?: number, quitAfterStart?: boolean, silent: boolean = true) {
+module.exports = function (env: EnvironmentVariables, config: SlimConfig, open: boolean, forcePort?: number, quitAfterStart?: boolean, silent: boolean = true) {
     return getAvailablePort().then(port => {
         const server = localWebServer({
             static: {

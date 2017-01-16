@@ -2,7 +2,7 @@ import * as path from "path";
 import { spawn } from "child_process";
 import { logger } from "../logger";
 
-module.exports = function (env: EnvironmentVariables, config: IM2MConfig, port: number, skipWebDriverUpdate: boolean, specs?: string) {
+module.exports = function (env: EnvironmentVariables, config: SlimConfig, port: number, skipWebDriverUpdate: boolean, specs?: string) {
     return (skipWebDriverUpdate ? Promise.resolve(0) : webDriverUpdate()).then((exitCode) => {
         if (exitCode === 0) {
             let specPaths = path.join(config.e2eDir, "**", "*.e2e.ts");

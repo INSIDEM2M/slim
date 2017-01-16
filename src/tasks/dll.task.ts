@@ -11,7 +11,7 @@ import { logger, timer } from "../logger";
 
 const DLL_CACHE_FILE_NAME = "dll.cache.json";
 
-module.exports = function (env: EnvironmentVariables, config: IM2MConfig, forceUpdate: boolean) {
+module.exports = function (env: EnvironmentVariables, config: SlimConfig, forceUpdate: boolean) {
     const pkg = JSON.parse(fs.readFileSync(path.join(config.rootDir, "package.json"), "utf-8"));
     const dllDependencies = getDllDependencies(config);
     if (forceUpdate) {
@@ -27,7 +27,7 @@ module.exports = function (env: EnvironmentVariables, config: IM2MConfig, forceU
     }
 };
 
-function updateDlls(env: EnvironmentVariables, config: IM2MConfig, dllDependencies: string[], pkg: any) {
+function updateDlls(env: EnvironmentVariables, config: SlimConfig, dllDependencies: string[], pkg: any) {
     logger.info("Updating DLL cache...");
     timer.start("DLL cache update");
     writeDllCache(config.dllDir, DLL_CACHE_FILE_NAME, dllDependencies, pkg);
@@ -55,7 +55,7 @@ function runBuild(config: webpack.Configuration) {
     });
 }
 
-export function getDllDependencies(config: IM2MConfig): string[] {
+export function getDllDependencies(config: SlimConfig): string[] {
     const additionalVendors = config.typescript && Array.isArray(config.typescript.vendors) ? config.typescript.vendors : [];
     return VENDORS.concat(POLYFILLS).concat(additionalVendors).map(vendor => {
         // This is needed to compare vendors with deep import paths like

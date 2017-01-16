@@ -2,11 +2,15 @@ import * as webpack from "webpack";
 import * as path from "path";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 
-export function getCommonConfigPartial(indexPath: string, environment: any, config: IM2MConfig) {
+export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig) {
     let conf: any = {
         resolve: {
             extensions: [".ts", ".js", ".json"],
             modules: ["node_modules", path.resolve(__dirname, path.join(config.rootDir, "node_modules"))]
+        },
+        resolveLoader: {
+            extensions: [".js"],
+            modules: ["node_modules", path.resolve(__dirname, "../../", "node_modules")]
         },
         module: {
             rules: [

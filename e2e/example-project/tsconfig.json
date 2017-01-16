@@ -17,6 +17,6 @@
     ],
     "include": [
         "./src/**/*.ts",
-        "../../project-typings/**/*.ts"
+        "../../project-typings/slim.config.d.ts"
     ]
 }

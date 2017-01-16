@@ -38,8 +38,8 @@ export function getEnvironment(rootDir: string): EnvironmentVariables {
     return Object.assign({}, pkg[environment], { version, commit, buildDate, current: JSON.stringify(environment) });
 }
 
-export function getIm2mConfig(rootDir: string): IM2MConfig {
-    let config: IM2MConfig = {
+export function getSlimConfig(rootDir: string): SlimConfig {
+    let config: SlimConfig = {
         rootDir: rootDir,
         sourceDir: "src",
         targetDir: "www",
@@ -57,16 +57,16 @@ export function getIm2mConfig(rootDir: string): IM2MConfig {
         }
     };
     try {
-        const im2mConfig = require(path.join(rootDir, "im2m.config.ts"));
-        config = merge(config, im2mConfig);
-        logger.debug("im2m.config.ts:\n" + JSON.stringify(config, null, 2));
+        const slimConfig = require(path.join(rootDir, "slim.config.ts"));
+        config = merge(config, slimConfig);
+        logger.debug("slim.config.ts:\n" + JSON.stringify(config, null, 2));
     } catch (error) {
-        logger.debug("Did not find a im2m.config.ts file in the current directory.");
+        logger.debug("Did not find a slim.config.ts file in the current directory.");
     }
     return normalizeConfig(config);
 }
 
-function normalizeConfig(config: IM2MConfig): IM2MConfig {
+function normalizeConfig(config: SlimConfig): SlimConfig {
     config.sourceDir = path.join(config.rootDir, config.sourceDir);
     config.targetDir = path.join(config.rootDir, config.targetDir);
     config.dllDir = path.join(config.rootDir, config.dllDir);
