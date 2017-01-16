@@ -8,6 +8,10 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             extensions: [".ts", ".js", ".json"],
             modules: ["node_modules", path.resolve(__dirname, path.join(config.rootDir, "node_modules"))]
         },
+        resolveLoader: {
+            extensions: [".js"],
+            modules: ["node_modules", path.resolve(__dirname, "../../", "node_modules")]
+        },
         module: {
             rules: [
                 {
