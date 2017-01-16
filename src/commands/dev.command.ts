@@ -1,5 +1,5 @@
 import * as yargs from "yargs";
-import { getIm2mConfig, getEnvironment } from "../cli-helpers";
+import { getSlimConfig, getEnvironment } from "../cli-helpers";
 
 export const devCommand: yargs.CommandModule = {
     command: "dev",
@@ -20,8 +20,8 @@ export const devCommand: yargs.CommandModule = {
         const dllTask = require("../tasks/dll.task");
         const devTask = require("../tasks/dev.task");
         const rootDir = process.cwd();
-        const im2mConfig = getIm2mConfig(rootDir);
+        const slimConfig = getSlimConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
-        return dllTask(environmentVariables, im2mConfig, options["update-dlls"]).then(() => devTask(environmentVariables, im2mConfig, options.open));
+        return dllTask(environmentVariables, slimConfig, options["update-dlls"]).then(() => devTask(environmentVariables, slimConfig, options.open));
     }
 };

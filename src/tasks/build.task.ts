@@ -6,7 +6,7 @@ import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getBuildConfigPartial } from "../webpack/webpack.config.build";
 import { timer, logger } from "../logger";
 
-module.exports = function (env: EnvironmentVariables, config: IM2MConfig, minify: boolean, aot: boolean) {
+module.exports = function (env: EnvironmentVariables, config: SlimConfig, minify: boolean, aot: boolean) {
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
     const buildConfig = getBuildConfigPartial(config.targetDir, config.typescript.output, config.typescript.entry, minify, aot, aot ? path.join(config.rootDir, config.angular.aotTsConfig) : null, aot ? path.join(config.sourceDir, config.angular.appModule) : null);

@@ -1,6 +1,6 @@
 import * as yargs from "yargs";
 import * as chalk from "chalk";
-import { getIm2mConfig, getEnvironment } from "../cli-helpers";
+import { getSlimConfig, getEnvironment } from "../cli-helpers";
 import { timer } from "../logger";
 
 export const testCommand: yargs.CommandModule = {
@@ -31,14 +31,14 @@ export const testCommand: yargs.CommandModule = {
         const dllTask = require("../tasks/dll.task");
         const testTask = require("../tasks/test.task");
         const rootDir = process.cwd();
-        const im2mConfig = getIm2mConfig(rootDir);
+        const slimConfig = getSlimConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
         const browsers = parseBrowsers(options.browsers);
         if (!options.watch) {
             timer.start("Running the unit tests");
         }
-        return dllTask(environmentVariables, im2mConfig, options["update-dlls"])
-            .then(() => testTask(environmentVariables, im2mConfig, options.watch, options.coverage, browsers, options["xml-report"]))
+        return dllTask(environmentVariables, slimConfig, options["update-dlls"])
+            .then(() => testTask(environmentVariables, slimConfig, options.watch, options.coverage, browsers, options["xml-report"]))
             .then((exitCode: number) => process.exit(exitCode));
     }
 };
