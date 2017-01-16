@@ -1,5 +1,5 @@
 import * as yargs from "yargs";
-import { getIm2mConfig, getEnvironment, getAvailablePort } from "../cli-helpers";
+import { getSlimConfig, getEnvironment, getAvailablePort } from "../cli-helpers";
 
 export const e2eCommand: yargs.CommandModule = {
     command: "e2e",
@@ -23,12 +23,12 @@ export const e2eCommand: yargs.CommandModule = {
         const serveTask = require("../tasks/serve.task");
         const buildTask = require("../tasks/build.task");
         const rootDir = process.cwd();
-        const im2mConfig = getIm2mConfig(rootDir);
+        const slimConfig = getSlimConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
-        (options["no-build"] ? Promise.resolve() : buildTask(environmentVariables, im2mConfig, options.minify, options.aot))
+        (options["no-build"] ? Promise.resolve() : buildTask(environmentVariables, slimConfig, options.minify, options.aot))
             .then(() => getAvailablePort())
-            .then((port) => serveTask(environmentVariables, im2mConfig, options.open, port, true))
-            .then((port) => e2eTask(environmentVariables, im2mConfig, port, options["no-update"], options.specs))
+            .then((port) => serveTask(environmentVariables, slimConfig, options.open, port, true))
+            .then((port) => e2eTask(environmentVariables, slimConfig, port, options["no-update"], options.specs))
             .then((exitCode: number) => {
                 process.exit(exitCode);
             });

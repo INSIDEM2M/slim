@@ -1,6 +1,6 @@
 import * as path from "path";
 
-const config: IM2MConfig = {
+const config: SlimConfig = {
     sass: {
         includePaths: [
             path.join(__dirname, "src"),
@@ -15,6 +15,6 @@ const config: IM2MConfig = {
             "ionic-angular"
         ]
     }
-}
+};
 
 export = config;

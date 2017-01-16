@@ -2,7 +2,7 @@ import * as webpack from "webpack";
 import * as path from "path";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 
-export function getCommonConfigPartial(indexPath: string, environment: any, config: IM2MConfig) {
+export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig) {
     let conf: any = {
         resolve: {
             extensions: [".ts", ".js", ".json"],

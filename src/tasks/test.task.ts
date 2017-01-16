@@ -8,7 +8,7 @@ import { getTestConfigPartial } from "../webpack/webpack.config.test";
 import { getKarmaConfig } from "../config/karma.conf";
 import { logger, timer } from "../logger";
 
-module.exports = function (env: EnvironmentVariables, config: IM2MConfig, watch: boolean, coverage: boolean, browsers: string[], xmlReport: string) {
+module.exports = function (env: EnvironmentVariables, config: SlimConfig, watch: boolean, coverage: boolean, browsers: string[], xmlReport: string) {
     return getAvailablePort().then(port => {
         const indexPath = path.join(config.sourceDir, "index.html");
         const polyfillsPattern = path.join(config.dllDir, "polyfills.dll.js");

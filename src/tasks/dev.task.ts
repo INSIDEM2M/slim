@@ -11,7 +11,7 @@ import { logger } from "../logger";
 import * as chalk from "chalk";
 import * as readline from "readline";
 
-module.exports = function (env: EnvironmentVariables, config: IM2MConfig, open: boolean) {
+module.exports = function (env: EnvironmentVariables, config: SlimConfig, open: boolean) {
     return getAvailablePort().then(port => {
         const webpackConfig = createWebpackDevConfig(env, config, port);
         const compiler = webpack(webpackConfig);
@@ -22,7 +22,7 @@ module.exports = function (env: EnvironmentVariables, config: IM2MConfig, open: 
     });
 };
 
-function createWebpackDevConfig(env: EnvironmentVariables, config: IM2MConfig, port: number): webpack.Configuration {
+function createWebpackDevConfig(env: EnvironmentVariables, config: SlimConfig, port: number): webpack.Configuration {
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
     const devConfig = getDevConfigPartial(config.targetDir, config.dllDir, config.baseHref, config.typescript.output, config.typescript.entry, port);
