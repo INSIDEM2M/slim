@@ -1,8 +1,9 @@
 import { spawn } from "child_process";
 import * as path from "path";
 import { logger } from "../logger";
+import { SlimConfig } from "../config/slim-config/slim-config";
 
-module.exports = function (env: EnvironmentVariables, config: IM2MConfig) {
+module.exports = function (env: EnvironmentVariables, config: SlimConfig) {
     logger.info("Creating documentation...");
     const docProcess = spawn(getCompodocBinaryPath(), ["--tsconfig", "tsconfig.json", "--theme", "vagrant", "--hideGenerator", "--disableGraph", "--output", "docs"], {
         cwd: config.rootDir,
