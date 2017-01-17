@@ -2,7 +2,7 @@
  * Configuration for the slim CLI. All directory paths are relative to the
  * rootDir if not stated explicitly.
  */
-export interface SlimConfig {
+export declare interface SlimConfig {
 
     /**
      * The root directory of the project. Defaults to the current
