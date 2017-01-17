@@ -6,11 +6,14 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
     let conf: any = {
         resolve: {
             extensions: [".ts", ".js", ".json"],
-            modules: ["node_modules", path.resolve(__dirname, path.join(config.rootDir, "node_modules"))]
+            modules: [
+                path.resolve(process.cwd(), path.join(config.rootDir, "node_modules")),
+                path.resolve(__dirname, "../../", "node_modules")
+            ]
         },
         resolveLoader: {
             extensions: [".js"],
-            modules: ["node_modules", path.resolve(__dirname, "../../", "node_modules")]
+            modules: [path.resolve(__dirname, "../../", "node_modules")]
         },
         module: {
             rules: [
