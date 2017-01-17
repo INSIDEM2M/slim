@@ -1,8 +1,9 @@
 import * as webpack from "webpack";
 import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
 import { AotPlugin } from "@ngtools/webpack";
+import { SlimConfig } from "../config/slim-config/slim-config";
 
-export function getBuildConfigPartial(targetDir: string, output: string, entry: string, minify: boolean, aot: boolean, tsconfigPath?: string, appModule?: string): webpack.Configuration {
+export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: boolean): webpack.Configuration {
     let plugins = [
         new ProgressBarPlugin()
     ];
@@ -21,8 +22,8 @@ export function getBuildConfigPartial(targetDir: string, output: string, entry: 
     if (aot) {
         plugins.push(
             new AotPlugin({
-                tsConfigPath: tsconfigPath,
-                entryModule: appModule
+                tsConfigPath: config.angular.aotTsConfig,
+                entryModule: config.angular.appModule
             })
         );
         module.rules.push(
@@ -44,16 +45,32 @@ export function getBuildConfigPartial(targetDir: string, output: string, entry: 
             }
         );
     }
-    let config = {
+    module.rules.push(
+        {
+            test: /.*\.(gif|png|jpe?g)$/i,
+            loaders: [
+                "file-loader",
+                {
+                    loader: "image-webpack-loader",
+                    query: {
+                        progressive: config.images.minify.progressive,
+                        optimizationLevel: config.images.minify.optimizationLevel,
+                        interlaced: config.images.minify.interlaced
+                    }
+                }
+            ]
+        }
+    );
+    let conf = {
         plugins,
         module,
         output: {
-            path: targetDir,
+            path: config.targetDir,
             filename: "[name].[hash].js"
         },
         entry: {
-            app: entry,
+            app: config.typescript.entry,
         },
     };
-    return config;
+    return conf;
 }

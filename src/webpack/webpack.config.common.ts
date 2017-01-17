@@ -1,16 +1,21 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import * as CopyWebpackPlugin from "copy-webpack-plugin";
+import { SlimConfig } from "../config/slim-config/slim-config";
 
 export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig) {
     let conf: any = {
         resolve: {
             extensions: [".ts", ".js", ".json"],
-            modules: ["node_modules", path.resolve(__dirname, path.join(config.rootDir, "node_modules"))]
+            modules: [
+                path.resolve(process.cwd(), path.join(config.rootDir, "node_modules")),
+                path.resolve(__dirname, "../../", "node_modules")
+            ]
         },
         resolveLoader: {
             extensions: [".js"],
-            modules: ["node_modules", path.resolve(__dirname, "../../", "node_modules")]
+            modules: [path.resolve(__dirname, "../../", "node_modules")]
         },
         module: {
             rules: [
@@ -85,7 +90,13 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             new webpack.DefinePlugin({ environment }),
             new HtmlWebpackPlugin({
                 template: indexPath
-            })
+            }),
+            new CopyWebpackPlugin(config.extras.entries.map(extra => {
+                return {
+                    from: extra,
+                    flatten: config.extras.flatten
+                };
+            }))
         ]
     };
 
