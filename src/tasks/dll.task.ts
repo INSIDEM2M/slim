@@ -8,6 +8,7 @@ import * as fs from "fs";
 import { VENDORS } from "../webpack/webpack.vendors";
 import { POLYFILLS } from "../webpack/webpack.polyfills";
 import { logger, timer } from "../logger";
+import { SlimConfig } from "../config/slim-config/slim-config";
 
 const DLL_CACHE_FILE_NAME = "dll.cache.json";
 

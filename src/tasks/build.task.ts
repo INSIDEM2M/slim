@@ -5,11 +5,12 @@ import * as webpackMerge from "webpack-merge";
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getBuildConfigPartial } from "../webpack/webpack.config.build";
 import { timer, logger } from "../logger";
+import { SlimConfig } from "../config/slim-config/slim-config";
 
 module.exports = function (env: EnvironmentVariables, config: SlimConfig, minify: boolean, aot: boolean) {
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
-    const buildConfig = getBuildConfigPartial(config.targetDir, config.typescript.output, config.typescript.entry, minify, aot, aot ? path.join(config.rootDir, config.angular.aotTsConfig) : null, aot ? path.join(config.sourceDir, config.angular.appModule) : null);
+    const buildConfig = getBuildConfigPartial(config, minify, aot);
     const webpackConfig = webpackMerge(commonConfig, buildConfig);
     logger.info(`Building ${minify ? "minified " : ""}application${aot ? " using the Angular AOT compiler" : ""}...`);
     return runBuild(webpackConfig);
