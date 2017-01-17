@@ -4,8 +4,9 @@ import * as path from "path";
 import { logger } from "./logger";
 import * as opn from "opn";
 import { merge } from "lodash";
+import { SlimConfig, defaultSlimConfig } from "./config/slim-config";
 
-export function getCurrentCommit(): string {
+function getCurrentCommit(): string {
     return JSON.stringify(childProcess
         .execSync("git rev-parse HEAD")
         .toString().trim());
@@ -39,26 +40,10 @@ export function getEnvironment(rootDir: string): EnvironmentVariables {
 }
 
 export function getSlimConfig(rootDir: string): SlimConfig {
-    let config: SlimConfig = {
-        rootDir: rootDir,
-        sourceDir: "src",
-        targetDir: "www",
-        coverageDir: "coverage",
-        e2eDir: "e2e",
-        dllDir: "dll",
-        baseHref: "/",
-        angular: {
-            aotTsConfig: "tsconfig.json",
-            appModule: "app/app.module#AppModule"
-        },
-        typescript: {
-            entry: "bootstrap.ts",
-            output: "app.js"
-        }
-    };
+    let config = defaultSlimConfig;
     try {
-        const slimConfig = require(path.join(rootDir, "slim.config.ts"));
-        config = merge(config, slimConfig);
+        const projectSlimConfig = require(path.join(rootDir, "slim.config.ts"));
+        config = merge(config, projectSlimConfig);
         logger.debug("slim.config.ts:\n" + JSON.stringify(config, null, 2));
     } catch (error) {
         logger.debug("Did not find a slim.config.ts file in the current directory.");

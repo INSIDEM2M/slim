@@ -4,21 +4,22 @@ import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
 import { DllTagPlugin } from "./plugins/dll-tags.plugin";
+import { SlimConfig } from "../config/slim-config/slim-config";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
 
-export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir: string, output: string, entry: string, port?: number): webpack.Configuration {
-    const config: any = {
+export function getDevConfigPartial(config: SlimConfig, port?: number): webpack.Configuration {
+    const conf: any = {
         output: {
-            path: targetDir,
+            path: config.targetDir,
             filename: "[name].[hash].js"
         },
         entry: {
             app: [
                 `webpack-dev-server/client?http://localhost:${port}/`,
                 "webpack/hot/only-dev-server",
-                entry
+                config.typescript.entry
             ]
         },
         performance: {
@@ -26,7 +27,6 @@ export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir
         },
         devtool: "cheap-module-eval-source-map",
         devServer: {
-            contentBase: publicDir,
             compress: true,
             port: port,
             historyApiFallback: {
@@ -35,8 +35,7 @@ export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir
             stats: "minimal",
             host: "0.0.0.0",
             watchOptions: {
-                aggregateTimeout: 300,
-                poll: 1000
+                aggregateTimeout: 300
             },
             hot: true,
             clientLogLevel: "warning"
@@ -63,24 +62,28 @@ export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir
                         "angular2-template-loader?keepUrl=true"
                     ],
                     exclude: [/\.(spec|e2e|d)\.ts$/]
+                },
+                {
+                    test: /.*\.(gif|png|jpe?g|svg)$/i,
+                    loader: "file-loader"
                 }
             ]
         },
         plugins: [
             new DllReferencePlugin({
                 context: ".",
-                manifest: require(path.join(dllDir, "polyfills.dll.json"))
+                manifest: require(path.join(config.dllDir, "polyfills.dll.json"))
             }),
             new DllReferencePlugin({
                 context: ".",
-                manifest: require(path.join(dllDir, "vendors.dll.json"))
+                manifest: require(path.join(config.dllDir, "vendors.dll.json"))
             }),
             new DllTagPlugin(["vendors", "polyfills"]),
             new CheckerPlugin(),
             new webpack.HotModuleReplacementPlugin(),
             new CopyWebpackPlugin([
                 {
-                    from: path.join(dllDir, "*.js"),
+                    from: path.join(config.dllDir, "*.js"),
                     flatten: true
                 }
             ]),
@@ -88,5 +91,5 @@ export function getDevConfigPartial(targetDir: string, dllDir: string, publicDir
             new NamedModulesPlugin(),
         ]
     };
-    return config;
+    return conf;
 }

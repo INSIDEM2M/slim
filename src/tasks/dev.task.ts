@@ -10,6 +10,7 @@ import { getAvailablePort, openBrowser } from "../cli-helpers";
 import { logger } from "../logger";
 import * as chalk from "chalk";
 import * as readline from "readline";
+import { SlimConfig } from "../config/slim-config/slim-config";
 
 module.exports = function (env: EnvironmentVariables, config: SlimConfig, open: boolean) {
     return getAvailablePort().then(port => {
@@ -25,7 +26,7 @@ module.exports = function (env: EnvironmentVariables, config: SlimConfig, open: 
 function createWebpackDevConfig(env: EnvironmentVariables, config: SlimConfig, port: number): webpack.Configuration {
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
-    const devConfig = getDevConfigPartial(config.targetDir, config.dllDir, config.baseHref, config.typescript.output, config.typescript.entry, port);
+    const devConfig = getDevConfigPartial(config, port);
     const webpackConfig = webpackMerge(commonConfig, devConfig);
     logger.trace("Created webpack development config.", prettyPrintConfig(webpackConfig));
     return webpackConfig;
