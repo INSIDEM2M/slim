@@ -1,0 +1,15 @@
+node_modules
+www
+dll
+.yarnclean
+yarn-error.log
+typings
+.awcache
+coverage
+coverage.json
+.DS_Store
+docs
+e2e
+spec
+src
+project-typings
