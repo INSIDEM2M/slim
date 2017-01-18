@@ -60,7 +60,8 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                     test: /\.js$/,
                     loader: "source-map-loader",
                     exclude: [
-                        /ionic-angular/
+                        /ionic-angular/,
+                        /ionic-native/
                     ]
                 },
                 { test: /\.json$/, loader: "json-loader" },
