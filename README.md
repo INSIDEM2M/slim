@@ -1,4 +1,4 @@
-# slim-angular-cli
+# slim-cli
 
 [![Build Status](https://travis-ci.org/INSIDEM2M/slim.svg?branch=develop)](https://travis-ci.org/INSIDEM2M/slim)
 
@@ -11,7 +11,7 @@ changes until version 1.0.0 is released.
 ## Installation
 
 ```bash
-yarn global add slim-angular-cli
+yarn global add slim-cli
 ```
 
 ## Usage
