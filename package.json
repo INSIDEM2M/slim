@@ -2,10 +2,10 @@
   "name": "slim-cli",
   "version": "0.1.0",
   "scripts": {
-    "build": "tsc"
+    "prepublish": "tsc"
   },
   "bin": {
-    "slim": "src/cli-entry.ts"
+    "slim": "dist/cli-entry.js"
   },
   "license": "MIT",
   "dependencies": {

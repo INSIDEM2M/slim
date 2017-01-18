@@ -1,3 +1,5 @@
+/// <reference types='typescript/lib/typescriptServices' />
+
 declare module "portfinder";
 declare module "command-line-usage";
 declare module "progress-bar-webpack-plugin";
