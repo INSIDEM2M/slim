@@ -1,11 +1,15 @@
 import * as webpack from "webpack";
 import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import { AotPlugin } from "@ngtools/webpack";
 import { SlimConfig } from "../config/slim-config/slim-config";
 
-export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: boolean): webpack.Configuration {
+export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: boolean, indexPath: string): webpack.Configuration {
     let plugins = [
-        new ProgressBarPlugin()
+        new ProgressBarPlugin(),
+        new HtmlWebpackPlugin({
+            template: indexPath
+        })
     ];
     let module = {
         rules: []

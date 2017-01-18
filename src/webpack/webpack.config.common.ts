@@ -1,6 +1,5 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import { SlimConfig } from "../config/slim-config/slim-config";
 
@@ -88,9 +87,6 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 "./src"
             ),
             new webpack.DefinePlugin({ environment }),
-            new HtmlWebpackPlugin({
-                template: indexPath
-            }),
             new CopyWebpackPlugin(config.extras.entries.map(extra => {
                 return {
                     from: extra,
