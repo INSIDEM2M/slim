@@ -1,4 +1,4 @@
-# slim
+# slim-angular-cli
 
 [![Build Status](https://travis-ci.org/INSIDEM2M/slim.svg?branch=develop)](https://travis-ci.org/INSIDEM2M/slim)
 
@@ -11,7 +11,7 @@ changes until version 1.0.0 is released.
 ## Installation
 
 ```bash
-npm install -g slim
+yarn global add slim-angular-cli
 ```
 
 ## Usage
@@ -48,7 +48,7 @@ Perform the following steps to use the version of `slim` that is currently in de
 ```bash
 git clone https://github.com/INSIDEM2M/slim
 cd slim
-npm link
+yarn link
 ```
 
 ## License
