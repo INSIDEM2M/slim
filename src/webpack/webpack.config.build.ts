@@ -42,7 +42,13 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
             {
                 test: /\.ts$/,
                 loaders: [
-                    "awesome-typescript-loader",
+                    {
+                        loader: "awesome-typescript-loader",
+                        options: {
+                            transpileOnly: true,
+                            useTranspileModule: true
+                        }
+                    },
                     "angular2-template-loader?keepUrl=true"
                 ],
                 exclude: [/\.(spec|e2e|d)\.ts$/]

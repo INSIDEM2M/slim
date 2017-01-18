@@ -22,7 +22,16 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                     test: /\.style\.scss$/,
                     use: [
                         "raw-loader",
-                        "postcss-loader",
+                        {
+                            loader: "postcss-loader",
+                            options: {
+                                plugins: function () {
+                                    return [
+                                        require("autoprefixer")
+                                    ];
+                                }
+                            }
+                        },
                         {
                             loader: "sass-loader",
                             options: {
@@ -38,7 +47,6 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                     use: [
                         "style-loader",
                         "css-loader?importLoaders=1",
-                        "postcss-loader",
                         {
                             loader: "sass-loader",
                             options: {

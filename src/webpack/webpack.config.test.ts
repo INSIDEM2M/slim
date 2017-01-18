@@ -7,7 +7,6 @@ const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
 
 export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDir: string): webpack.Configuration {
     return {
-        entry: {},
         devtool: "inline-source-map",
         module: {
             rules: [
@@ -23,7 +22,10 @@ export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDi
                     exclude: [
                         /\.(e2e|spec)\.ts$/,
                         /node_modules/
-                    ]
+                    ],
+                    options: {
+                        esModules: true
+                    }
                 },
                 {
                     test: /\.ts$/,
@@ -32,8 +34,10 @@ export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDi
                         {
                             loader: "awesome-typescript-loader",
                             options: {
-                                useCache: true,
-                                silent: true
+                                useTranspileModule: true,
+                                transpileOnly: true,
+                                silent: true,
+                                useCache: true
                             }
                         },
                         "angular2-template-loader?keepUrl=true"
