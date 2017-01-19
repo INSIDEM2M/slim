@@ -72,6 +72,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
         }
     );
     let conf = {
+        bail: true,
         plugins,
         module,
         output: {

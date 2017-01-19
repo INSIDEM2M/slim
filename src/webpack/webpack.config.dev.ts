@@ -1,5 +1,4 @@
 import * as webpack from "webpack";
-import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as path from "path";
@@ -92,7 +91,6 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?
                     flatten: true
                 }
             ]),
-            new ProgressBarPlugin(),
             new NamedModulesPlugin(),
         ]
     };
