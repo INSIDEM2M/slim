@@ -84,7 +84,7 @@ export const newCommand: yargs.CommandModule = {
 };
 
 const scaffold = (source, target) => {
-    let _ = require('underscore');
+    let _ = require('lodash');
     let fs = require('fs');
     var glob = require("glob")
 
