@@ -2,7 +2,7 @@
   "name": "slim-cli",
   "version": "0.1.4",
   "scripts": {
-    "prepublishOnly": "tsc"
+    "build": "tsc && cp src/config/protractor.conf.js dist/config/"
   },
   "bin": {
     "slim": "dist/cli-entry.js"
