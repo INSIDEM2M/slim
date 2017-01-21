@@ -10,3 +10,4 @@ coverage.json
 .DS_Store
 dist
 docs
+yarn.lock
