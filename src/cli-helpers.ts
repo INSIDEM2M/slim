@@ -5,6 +5,7 @@ import { logger } from "./logger";
 import * as opn from "opn";
 import { merge } from "lodash";
 import { SlimConfig, defaultSlimConfig } from "./config/slim-config";
+import * as fs from "fs";
 
 function getCurrentCommit(): string {
     return JSON.stringify(childProcess
@@ -41,13 +42,14 @@ export function getEnvironment(rootDir: string): EnvironmentVariables {
 
 export function getSlimConfig(rootDir: string): SlimConfig {
     let config = defaultSlimConfig;
-    try {
-        const projectSlimConfig = require(path.join(rootDir, "slim.config.ts"));
+    const slimConfigPath = path.join(rootDir, "slim.config.ts");
+    if (fs.existsSync(slimConfigPath)) {
+        const projectSlimConfig = require(slimConfigPath);
         config = merge(config, projectSlimConfig);
-        logger.debug("slim.config.ts:\n" + JSON.stringify(config, null, 2));
-    } catch (error) {
+    } else {
         logger.debug("Did not find a slim.config.ts file in the current directory.");
     }
+    logger.debug("slim.config.ts:\n" + JSON.stringify(config, null, 2));
     return normalizeConfig(config);
 }
 
@@ -57,6 +59,8 @@ function normalizeConfig(config: SlimConfig): SlimConfig {
     config.dllDir = path.join(config.rootDir, config.dllDir);
     config.coverageDir = path.join(config.rootDir, config.coverageDir);
     config.typescript.entry = path.join(config.sourceDir, config.typescript.entry);
+    config.angular.aotTsConfig = path.join(config.rootDir, config.angular.aotTsConfig);
+    config.angular.appModule = path.join(config.rootDir, config.angular.appModule);
     return config;
 }
 

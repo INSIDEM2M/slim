@@ -27,7 +27,8 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
         plugins.push(
             new AotPlugin({
                 tsConfigPath: config.angular.aotTsConfig,
-                entryModule: config.angular.appModule
+                entryModule: config.angular.appModule,
+                typeChecking: config.typescript.typecheck
             })
         );
         module.rules.push(
@@ -45,8 +46,8 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
                     {
                         loader: "awesome-typescript-loader",
                         options: {
-                            transpileOnly: true,
-                            useTranspileModule: true
+                            transpileOnly: !config.typescript.typecheck,
+                            useTranspileModule: !config.typescript.typecheck
                         }
                     },
                     "angular2-template-loader?keepUrl=true"
