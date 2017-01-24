@@ -7,7 +7,7 @@
     "url": "https://github.com/INSIDEM2M/slim"
   },
   "scripts": {
-    "prepublishOnly": "tsc"
+    "build": "tsc && cp src/config/postcss.config.js dist/config/ && cp src/config/protractor.conf.js dist/config/"
   },
   "bin": {
     "slim": "dist/cli-entry.js"

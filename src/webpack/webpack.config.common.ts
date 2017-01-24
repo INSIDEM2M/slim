@@ -9,12 +9,12 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             extensions: [".ts", ".js", ".json"],
             modules: [
                 path.resolve(process.cwd(), path.join(config.rootDir, "node_modules")),
-                path.resolve(__dirname, "../../", "node_modules")
+                path.resolve(__dirname, "..", "..", "node_modules")
             ]
         },
         resolveLoader: {
             extensions: [".js"],
-            modules: [path.resolve(__dirname, "../../", "node_modules")]
+            modules: [path.resolve(__dirname, "..", "..", "node_modules")]
         },
         module: {
             rules: [
@@ -25,11 +25,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                         {
                             loader: "postcss-loader",
                             options: {
-                                plugins: function () {
-                                    return [
-                                        require("autoprefixer")
-                                    ];
-                                }
+                                config: path.resolve(__dirname, "..", "config")
                             }
                         },
                         {
@@ -45,15 +41,20 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                     test: /\.scss$/,
                     exclude: /\.style\.scss$/,
                     use: [
-                        "style-loader",                        
+                        "style-loader",
                         {
-                            loader: 'css-loader',
+                            loader: "css-loader",
                             options: {
                                 importLoaders: 1,
-                                localIdentName: '[name]'
+                                localIdentName: "[name]"
                             }
                         },
-                        "postcss-loader",
+                        {
+                            loader: "postcss-loader",
+                            options: {
+                                config: path.resolve(__dirname, "..", "config")
+                            }
+                        },
                         {
                             loader: "sass-loader",
                             options: {
