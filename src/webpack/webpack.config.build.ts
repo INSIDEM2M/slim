@@ -1,11 +1,15 @@
 import * as webpack from "webpack";
 import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import { AotPlugin } from "@ngtools/webpack";
 import { SlimConfig } from "../config/slim-config/slim-config";
 
-export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: boolean): webpack.Configuration {
+export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: boolean, indexPath: string): webpack.Configuration {
     let plugins = [
-        new ProgressBarPlugin()
+        new ProgressBarPlugin(),
+        new HtmlWebpackPlugin({
+            template: indexPath
+        })
     ];
     let module = {
         rules: []
@@ -23,7 +27,8 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
         plugins.push(
             new AotPlugin({
                 tsConfigPath: config.angular.aotTsConfig,
-                entryModule: config.angular.appModule
+                entryModule: config.angular.appModule,
+                typeChecking: config.typescript.typecheck
             })
         );
         module.rules.push(
@@ -38,7 +43,13 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
             {
                 test: /\.ts$/,
                 loaders: [
-                    "awesome-typescript-loader",
+                    {
+                        loader: "awesome-typescript-loader",
+                        options: {
+                            transpileOnly: !config.typescript.typecheck,
+                            useTranspileModule: !config.typescript.typecheck
+                        }
+                    },
                     "angular2-template-loader?keepUrl=true"
                 ],
                 exclude: [/\.(spec|e2e|d)\.ts$/]

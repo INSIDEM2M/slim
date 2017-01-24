@@ -1,6 +1,5 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import { SlimConfig } from "../config/slim-config/slim-config";
 
@@ -23,7 +22,16 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                     test: /\.style\.scss$/,
                     use: [
                         "raw-loader",
-                        "postcss-loader",
+                        {
+                            loader: "postcss-loader",
+                            options: {
+                                plugins: function () {
+                                    return [
+                                        require("autoprefixer")
+                                    ];
+                                }
+                            }
+                        },
                         {
                             loader: "sass-loader",
                             options: {
@@ -37,7 +45,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                     test: /\.scss$/,
                     exclude: /\.style\.scss$/,
                     use: [
-                        "style-loader",
+                        "style-loader",                        
                         {
                             loader: 'css-loader',
                             options: {
@@ -94,9 +102,6 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 "./src"
             ),
             new webpack.DefinePlugin({ environment }),
-            new HtmlWebpackPlugin({
-                template: indexPath
-            }),
             new CopyWebpackPlugin(config.extras.entries.map(extra => {
                 return {
                     from: extra,

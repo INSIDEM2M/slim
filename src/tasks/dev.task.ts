@@ -26,7 +26,7 @@ module.exports = function (env: EnvironmentVariables, config: SlimConfig, open: 
 function createWebpackDevConfig(env: EnvironmentVariables, config: SlimConfig, port: number): webpack.Configuration {
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
-    const devConfig = getDevConfigPartial(config, port);
+    const devConfig = getDevConfigPartial(config, indexPath, port);
     const webpackConfig = webpackMerge(commonConfig, devConfig);
     logger.trace("Created webpack development config.", prettyPrintConfig(webpackConfig));
     return webpackConfig;

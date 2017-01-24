@@ -10,6 +10,7 @@ import { changelogCommand } from "./commands/changelog.command";
 import { newCommand } from "./commands/new.command";
 import * as chalk from "chalk";
 import * as path from "path";
+import { docCommand } from "./commands/doc.command";
 
 export function main() {
 
@@ -32,6 +33,7 @@ export function main() {
         .command(buildCommand)
         .command(testCommand)
         .command(e2eCommand)
+        .command(docCommand)
         .command(changelogCommand)
         .command(releaseCommand)
         .command(publishCommand)

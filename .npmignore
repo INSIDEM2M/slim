@@ -8,6 +8,8 @@ typings
 coverage
 coverage.json
 .DS_Store
-dist
 docs
-yarn.lock
+e2e
+spec
+src
+project-typings

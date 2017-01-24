@@ -10,7 +10,7 @@ import { SlimConfig } from "../config/slim-config/slim-config";
 module.exports = function (env: EnvironmentVariables, config: SlimConfig, minify: boolean, aot: boolean) {
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
-    const buildConfig = getBuildConfigPartial(config, minify, aot);
+    const buildConfig = getBuildConfigPartial(config, minify, aot, indexPath);
     const webpackConfig = webpackMerge(commonConfig, buildConfig);
     logger.info(`Building ${minify ? "minified " : ""}application${aot ? " using the Angular AOT compiler" : ""}...`);
     return runBuild(webpackConfig);

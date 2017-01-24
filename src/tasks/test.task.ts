@@ -18,9 +18,8 @@ module.exports = function (env: EnvironmentVariables, config: SlimConfig, watch:
 
         const commonConfig = getCommonConfigPartial(indexPath, env, config);
         const testConfig = getTestConfigPartial(config.targetDir, config.sourceDir, config.dllDir);
-        const webpackConfig = (webpackMerge as any).strategy({
-            "entry": "replace"
-        })(commonConfig, testConfig);
+        const webpackConfig = webpackMerge(commonConfig, testConfig);
+        delete webpackConfig.entry;
         const karmaConfig = getKarmaConfig(testSetupPattern, vendorsPattern, polyfillsPattern, port, watch, coverage, config.coverageDir, webpackConfig, browsers, typeof xmlReport === "string" ? path.join(config.rootDir, xmlReport) : null);
         logger.info("Building test bundle...");
         return new Promise((resolve) => {

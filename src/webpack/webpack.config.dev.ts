@@ -1,5 +1,6 @@
 import * as webpack from "webpack";
 import * as ProgressBarPlugin from "progress-bar-webpack-plugin";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
@@ -9,7 +10,7 @@ import { SlimConfig } from "../config/slim-config/slim-config";
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
 
-export function getDevConfigPartial(config: SlimConfig, port?: number): webpack.Configuration {
+export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?: number): webpack.Configuration {
     const conf: any = {
         output: {
             path: config.targetDir,
@@ -55,7 +56,8 @@ export function getDevConfigPartial(config: SlimConfig, port?: number): webpack.
                         {
                             loader: "awesome-typescript-loader",
                             options: {
-                                useTranspileModule: true,
+                                useTranspileModule: !config.typescript.typecheck,
+                                transpileOnly: !config.typescript.typecheck,
                                 useCache: true
                             }
                         },
@@ -70,6 +72,9 @@ export function getDevConfigPartial(config: SlimConfig, port?: number): webpack.
             ]
         },
         plugins: [
+            new HtmlWebpackPlugin({
+                template: indexPath
+            }),
             new DllReferencePlugin({
                 context: ".",
                 manifest: require(path.join(config.dllDir, "polyfills.dll.json"))
