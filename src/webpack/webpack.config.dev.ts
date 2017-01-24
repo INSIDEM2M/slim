@@ -13,7 +13,7 @@ export function getDevConfigPartial(config: SlimConfig, port?: number): webpack.
     const conf: any = {
         output: {
             path: config.targetDir,
-            filename: "[name].[hash].js"
+            filename: "[name].js"
         },
         entry: {
             app: [
@@ -65,7 +65,7 @@ export function getDevConfigPartial(config: SlimConfig, port?: number): webpack.
                 },
                 {
                     test: /.*\.(gif|png|jpe?g|svg)$/i,
-                    loader: "file-loader"
+                    loader: "file-loader?name=[name].[ext]"
                 }
             ]
         },

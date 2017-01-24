@@ -38,7 +38,13 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                     exclude: /\.style\.scss$/,
                     use: [
                         "style-loader",
-                        "css-loader?importLoaders=1",
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                                localIdentName: '[name]'
+                            }
+                        },
                         "postcss-loader",
                         {
                             loader: "sass-loader",
@@ -61,23 +67,23 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 { test: /\.css$/, loader: "raw-loader" },
                 {
                     test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: "url-loader?limit=10000&mimetype=application/font-woff"
+                    loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]"
                 },
                 {
                     test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: "url-loader?limit=10000&mimetype=application/font-woff"
+                    loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]"
                 },
                 {
                     test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: "url-loader?limit=10000&mimetype=application/octet-stream"
+                    loader: "url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]"
                 },
                 {
                     test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: "file-loader"
+                    loader: "file-loader?name=[name].[ext]"
                 },
                 {
                     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: "url-loader?limit=10000&mimetype=image/svg+xml"
+                    loader: "url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]"
                 }
             ]
         },

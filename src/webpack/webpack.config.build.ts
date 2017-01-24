@@ -49,7 +49,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
         {
             test: /.*\.(gif|png|jpe?g)$/i,
             loaders: [
-                "file-loader",
+                "file-loader?name=[name].[ext]",
                 {
                     loader: "image-webpack-loader",
                     query: {
@@ -61,12 +61,13 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
             ]
         }
     );
+    module.rules.push({ test: /\.svg/, loader: "file-loader?name=[name].[ext]" });
     let conf = {
         plugins,
         module,
         output: {
             path: config.targetDir,
-            filename: "[name].[hash].js"
+            filename: "[name].js"
         },
         entry: {
             app: config.typescript.entry,
