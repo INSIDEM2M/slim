@@ -1,3 +1,8 @@
+require("ts-node").register({
+    fast: true,
+    disableWarnings: true
+});
+
 var SpecReporter = require("jasmine-spec-reporter").SpecReporter;
 
 exports.config = {
