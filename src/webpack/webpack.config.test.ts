@@ -1,11 +1,12 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
+import { SlimConfig } from "../config/slim-config/slim-config";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
 
-export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDir: string): webpack.Configuration {
+export function getTestConfigPartial(config: SlimConfig): webpack.Configuration {
     return {
         devtool: "inline-source-map",
         module: {
@@ -18,7 +19,7 @@ export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDi
                 {
                     test: /\.(js|ts)$/, loader: "istanbul-instrumenter-loader",
                     enforce: "post",
-                    include: sourceDir,
+                    include: config.sourceDir,
                     exclude: [
                         /\.(e2e|spec)\.ts$/,
                         /node_modules/
@@ -48,11 +49,11 @@ export function getTestConfigPartial(targetDir: string, sourceDir: string, dllDi
         plugins: [
             new DllReferencePlugin({
                 context: ".",
-                manifest: require(path.join(dllDir, "polyfills.dll.json"))
+                manifest: require(path.join(config.dllDir, "polyfills.dll.json"))
             }),
             new DllReferencePlugin({
                 context: ".",
-                manifest: require(path.join(dllDir, "vendors.dll.json"))
+                manifest: require(path.join(config.dllDir, "vendors.dll.json"))
             }),
             new NamedModulesPlugin(),
             new CheckerPlugin()
