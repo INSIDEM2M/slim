@@ -9,12 +9,13 @@ export const defaultSlimConfig: SlimConfig = {
     coverageDir: "coverage",
     e2eDir: "e2e",
     angular: {
-        appModule: "app/app.module.ts",
-        aotTsConfig: "tsconfig.json"
+        appModule: "./src/app/app.module#AppModule",
+        aotTsConfig: "./tsconfig.json"
     },
     typescript: {
         entry: "bootstrap.ts",
-        output: "app.js"
+        output: "app.js",
+        typecheck: false
     },
     sass: {
         outputStyle: "compressed",
@@ -30,5 +31,11 @@ export const defaultSlimConfig: SlimConfig = {
     },
     extras: {
         entries: []
+    },
+    webpack: {
+        ignoreSourceMaps: [
+            "ionic-angular",
+            "ionic-native"
+        ]
     }
 };
