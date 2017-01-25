@@ -5,11 +5,11 @@ export const e2eCommand: yargs.CommandModule = {
     command: "e2e",
     describe: "Run the E2E tests.",
     builder: {
-        "no-build": {
+        "skip-build": {
             type: "boolean",
             description: "Use the last build for the E2E test."
         },
-        "no-update": {
+        "skip-update": {
             type: "boolean",
             description: "Do not update the webdriver binaries."
         },
@@ -25,10 +25,10 @@ export const e2eCommand: yargs.CommandModule = {
         const rootDir = process.cwd();
         const slimConfig = getSlimConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
-        (options["no-build"] ? Promise.resolve() : buildTask(environmentVariables, slimConfig, options.minify, options.aot))
+        (options["skip-build"] === true ? Promise.resolve(0) : buildTask(environmentVariables, slimConfig, options.minify, options.aot))
             .then(() => getAvailablePort())
             .then((port) => serveTask(environmentVariables, slimConfig, options.open, port, true))
-            .then((port) => e2eTask(environmentVariables, slimConfig, port, options["no-update"], options.specs))
+            .then((port) => e2eTask(environmentVariables, slimConfig, port, options["skip-update"], options.specs))
             .then((exitCode: number) => {
                 process.exit(exitCode);
             });
