@@ -13,7 +13,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             ]
         },
         resolveLoader: {
-            extensions: [".js"],
+            extensions: [".js", ".ts"],
             modules: [path.resolve(__dirname, "../../", "node_modules"), path.join(__dirname, "loaders")]
         },
         module: {
