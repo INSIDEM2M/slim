@@ -3,7 +3,7 @@ import * as path from "path";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import { SlimConfig } from "../config/slim-config/slim-config";
 
-export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig) {
+export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig, stripSassImports: boolean = false) {
     let conf: any = {
         resolve: {
             extensions: [".ts", ".js", ".json"],
@@ -14,7 +14,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
         },
         resolveLoader: {
             extensions: [".js"],
-            modules: [path.resolve(__dirname, "../../", "node_modules")]
+            modules: [path.resolve(__dirname, "../../", "node_modules"), path.join(__dirname, "loaders")]
         },
         module: {
             rules: [
@@ -38,6 +38,12 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                                 sourceMap: true,
                                 includePaths: config.sass.includePaths
                             }
+                        },
+                        {
+                            loader: "strip-sass-imports-loader",
+                            options: {
+                                importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting
+                            }
                         }
                     ]
                 },
@@ -52,6 +58,12 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                             options: {
                                 sourceMap: true,
                                 includePaths: config.sass.includePaths
+                            }
+                        },
+                        {
+                            loader: "strip-sass-imports-loader",
+                            options: {
+                                importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting
                             }
                         }
                     ]
