@@ -58,6 +58,17 @@ export declare interface SlimConfig {
     };
 
     /**
+     * Webpack settings
+     */
+    webpack?: {
+
+        /**
+         * Ignore these modules because they have errors in their source maps.
+         */
+        ignoreSourceMaps: string[]
+    };
+
+    /**
      * TypeScript settings.
      */
     typescript?: {
