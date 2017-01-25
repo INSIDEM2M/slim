@@ -8,9 +8,13 @@ import { SlimConfig, defaultSlimConfig } from "./config/slim-config";
 import * as fs from "fs";
 
 function getCurrentCommit(): string {
-    return JSON.stringify(childProcess
-        .execSync("git rev-parse HEAD")
-        .toString().trim());
+    if (fs.existsSync(path.join(process.cwd(), ".git"))) {
+        return JSON.stringify(childProcess
+            .execSync("git rev-parse HEAD")
+            .toString().trim());
+    } else {
+        return JSON.stringify("");
+    }
 }
 
 export function getAvailablePort(): Promise<number> {
