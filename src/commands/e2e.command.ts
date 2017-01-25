@@ -25,7 +25,6 @@ export const e2eCommand: yargs.CommandModule = {
         const rootDir = process.cwd();
         const slimConfig = getSlimConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
-        console.log(options);
         (options["skip-build"] === true ? Promise.resolve(0) : buildTask(environmentVariables, slimConfig, options.minify, options.aot))
             .then(() => getAvailablePort())
             .then((port) => serveTask(environmentVariables, slimConfig, options.open, port, true))
