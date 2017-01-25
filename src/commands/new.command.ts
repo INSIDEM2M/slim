@@ -6,11 +6,6 @@ import * as os from "os";
 let builder: yargs.CommandBuilder = ((): yargs.CommandBuilder => {
 
     let templates: yargs.CommandBuilder = {
-        "component": {
-            alias: "c",
-            type: "boolean",
-            description: "Create a component project."
-        },
         "portal": {
             alias: "p",
             type: "boolean",
@@ -20,13 +15,14 @@ let builder: yargs.CommandBuilder = ((): yargs.CommandBuilder => {
         "app": {
             alias: "a",
             type: "boolean",
-            description: "Create an app project."
+            description: "Create an app project.",
+            url: "https://github.com/0xE282B0/slim-app-template"
         }
     };
 
     try {
         templates = require(path.join(os.homedir(), ".slim/templates.ts")).templates;
-        logger.info(".slim/templates.ts:\n" + JSON.stringify(templates, null, 2));
+        // logger.info(".slim/templates.ts:\n" + JSON.stringify(templates, null, 2));
     } catch (error) {
         logger.info(error);
         //TODO: (0xe282b0) Print more understandable error message (IO/format)
@@ -42,7 +38,7 @@ export const newCommand: yargs.CommandModule = {
     command: "new",
     builder,
     handler: (options: Options) => {
-        logger.info(options);
+        // logger.info(options);
 
         //TODO: (0xe282b0): only if not a single option is selected
 
@@ -63,8 +59,8 @@ export const newCommand: yargs.CommandModule = {
 
             let targetPath = path.join(os.homedir(), ".slim", answers.project.type);
 
-            var simpleGit = require('simple-git')(targetPath);
             if (fs.existsSync(targetPath)) {
+                var simpleGit = require('simple-git')(targetPath);
 
                 simpleGit.pull('origin', 'master', { '--rebase': 'true' })
                     .then(() => scaffold(targetPath, process.cwd()), () => { console.log("error") })
@@ -72,6 +68,7 @@ export const newCommand: yargs.CommandModule = {
                 console.log("check if local availabe");
                 console.log("pull if availabe");
             } else {
+                var simpleGit = require('simple-git')();
                 console.log("clone if not available");
                 simpleGit.clone(
                     builder[answers.project.type].url,
@@ -91,7 +88,6 @@ const scaffold = (source, target) => {
     let templateConfig = require(path.join(source, "template.ts")).config;
 
 
-
     var inquirer = require('inquirer');
     inquirer.prompt(templateConfig.questions)
         .then((answers) => new Promise((resolve, jeject) => resolve(templateConfig.mapper(answers))))
@@ -99,6 +95,11 @@ const scaffold = (source, target) => {
 
             glob("**", { cwd: source, ignore: templateConfig.include }, function (er, files) {
                 for (let f of files) {
+                    if (fs.lstatSync(path.join(source, f)).isDirectory()) {
+                        fs.mkdirSync(path.join(target, f));
+                        continue;
+                    }
+
                     console.log(f);
                     fs.createReadStream(path.join(source, f)).pipe(fs.createWriteStream(path.join(target, f)));
                 }
@@ -106,6 +107,10 @@ const scaffold = (source, target) => {
                 glob(templateConfig.include, { cwd: source }, function (er, files) {
 
                     for (let f of files) {
+                        if (fs.lstatSync(path.join(source, f)).isDirectory()) {
+                            fs.mkdirSync(path.join(target, f));
+                            continue;
+                        }
                         console.log(f);
                         fs.writeFile(path.join(target, f),
                             _.template(fs.readFileSync(path.join(source, f), { 'encoding': 'utf8' }))(answers),
@@ -113,9 +118,6 @@ const scaffold = (source, target) => {
                                 if (err) {
                                     return console.log(err);
                                 }
-
-                                console.log("The file was saved!");
-
                             });
                     }
 
@@ -124,10 +126,10 @@ const scaffold = (source, target) => {
             });
         }))
 
-    console.log("Read template.js");
-    console.log("Check if description is complete");
-    console.log("run before scaffolding script (check deps)");
-    console.log("ask questions");
-    console.log("replace placeholders");
-    console.log("run after scaffolding script");
+    // console.log("Read template.js");
+    // console.log("Check if description is complete");
+    // console.log("run before scaffolding script (check deps)");
+    // console.log("ask questions");
+    // console.log("replace placeholders");
+    // console.log("run after scaffolding script");
 }
