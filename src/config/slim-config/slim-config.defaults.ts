@@ -19,7 +19,8 @@ export const defaultSlimConfig: SlimConfig = {
     },
     sass: {
         outputStyle: "compressed",
-        precision: 7
+        precision: 7,
+        importsIgnoredDuringTesting: ["scss/variables"]
     },
     images: {
         minify: {

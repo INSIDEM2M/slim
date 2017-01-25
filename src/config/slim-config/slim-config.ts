@@ -119,6 +119,13 @@ export declare interface SlimConfig {
          * Paths to the global styles that will be injected into the index.html.
          */
         globalStyles?: string[];
+
+        /**
+         * Add imports to sass files that will only be available when
+         * the project is consumed by another project. An example would be a 
+         * _variables.scss file.
+         */
+        importsIgnoredDuringTesting?: string[];
     };
 
     /**
