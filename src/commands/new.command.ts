@@ -2,6 +2,7 @@ import { logger } from '../logger';
 import * as yargs from "yargs";
 import * as path from "path";
 import * as os from "os";
+import * as fs from 'fs';
 
 let builder: yargs.CommandBuilder = ((): yargs.CommandBuilder => {
 
@@ -21,7 +22,12 @@ let builder: yargs.CommandBuilder = ((): yargs.CommandBuilder => {
     };
 
     try {
-        templates = require(path.join(os.homedir(), ".slim/templates.ts")).templates;
+        const conf = path.join(os.homedir(), ".slim/templates.ts")
+        if (fs.existsSync(conf)) {
+            templates = require(conf).templates;
+        } else {
+            logger.warn("No user config.");
+        }
         // logger.info(".slim/templates.ts:\n" + JSON.stringify(templates, null, 2));
     } catch (error) {
         logger.info(error);
@@ -63,13 +69,13 @@ export const newCommand: yargs.CommandModule = {
                 var simpleGit = require('simple-git')(targetPath);
 
                 simpleGit.pull('origin', 'master', { '--rebase': 'true' })
-                    .then(() => scaffold(targetPath, process.cwd()), () => { console.log("error") })
+                    .then(() => scaffold(targetPath, process.cwd()), () => { logger.error("error") })
 
-                console.log("check if local availabe");
-                console.log("pull if availabe");
+                logger.debug("check if local availabe");
+                logger.debug("pull if availabe");
             } else {
                 var simpleGit = require('simple-git')();
-                console.log("clone if not available");
+                logger.debug("clone if not available");
                 simpleGit.clone(
                     builder[answers.project.type].url,
                     targetPath)
@@ -82,7 +88,6 @@ export const newCommand: yargs.CommandModule = {
 
 const scaffold = (source, target) => {
     let _ = require('lodash');
-    let fs = require('fs');
     var glob = require("glob")
 
     let templateConfig = require(path.join(source, "template.ts")).config;
@@ -95,28 +100,36 @@ const scaffold = (source, target) => {
 
             glob("**", { cwd: source, ignore: templateConfig.include }, function (er, files) {
                 for (let f of files) {
-                    if (fs.lstatSync(path.join(source, f)).isDirectory()) {
-                        fs.mkdirSync(path.join(target, f));
+                    const sourcePath = path.join(source, f);
+                    const targetPath = path.join(target, f)
+                    if (fs.lstatSync(sourcePath).isDirectory()){
+                        if(!fs.existsSync(targetPath)) {
+                            fs.mkdirSync(targetPath);
+                        }
                         continue;
                     }
 
-                    console.log(f);
+                    logger.debug(f);
                     fs.createReadStream(path.join(source, f)).pipe(fs.createWriteStream(path.join(target, f)));
                 }
 
                 glob(templateConfig.include, { cwd: source }, function (er, files) {
 
                     for (let f of files) {
-                        if (fs.lstatSync(path.join(source, f)).isDirectory()) {
-                            fs.mkdirSync(path.join(target, f));
-                            continue;
+                    const sourcePath = path.join(source, f);
+                    const targetPath = path.join(target, f)
+                    if (fs.lstatSync(sourcePath).isDirectory()){
+                        if(!fs.existsSync(targetPath)) {
+                            fs.mkdirSync(targetPath);
                         }
-                        console.log(f);
+                        continue;
+                    }
+                        logger.debug(f);
                         fs.writeFile(path.join(target, f),
                             _.template(fs.readFileSync(path.join(source, f), { 'encoding': 'utf8' }))(answers),
                             function (err) {
                                 if (err) {
-                                    return console.log(err);
+                                    return logger.debug(err);
                                 }
                             });
                     }
@@ -126,10 +139,10 @@ const scaffold = (source, target) => {
             });
         }))
 
-    // console.log("Read template.js");
-    // console.log("Check if description is complete");
-    // console.log("run before scaffolding script (check deps)");
-    // console.log("ask questions");
-    // console.log("replace placeholders");
-    // console.log("run after scaffolding script");
+    // logger.debug("Read template.js");
+    // logger.debug("Check if description is complete");
+    // logger.debug("run before scaffolding script (check deps)");
+    // logger.debug("ask questions");
+    // logger.debug("replace placeholders");
+    // logger.debug("run after scaffolding script");
 }
