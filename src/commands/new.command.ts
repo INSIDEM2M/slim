@@ -95,7 +95,7 @@ const scaffold = (source, target) => {
 
     var inquirer = require('inquirer');
     inquirer.prompt(templateConfig.questions)
-        .then((answers) => new Promise((resolve, jeject) => resolve(templateConfig.mapper(answers))))
+        .then((answers) => new Promise((resolve, jeject) => resolve(templateConfig.transformAnswers(answers))))
         .then(answers => new Promise((resolve, reject) => {
 
             glob("**", { cwd: source, ignore: templateConfig.include }, function (er, files) {
