@@ -31,5 +31,11 @@ export const defaultSlimConfig: SlimConfig = {
     },
     extras: {
         entries: []
+    },
+    webpack: {
+        ignoreSourceMaps: [
+            "ionic-angular",
+            "ionic-native"
+        ]
     }
 };
