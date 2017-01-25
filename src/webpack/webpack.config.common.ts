@@ -66,9 +66,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 {
                     test: /\.js$/,
                     loader: "source-map-loader",
-                    exclude: [
-                        /ionic-angular/
-                    ]
+                    exclude: config.webpack.ignoreSourceMaps
                 },
                 { test: /\.html/, loader: "raw-loader", exclude: [indexPath] },
                 { test: /\.css$/, loader: "raw-loader" },

@@ -58,6 +58,17 @@ export declare interface SlimConfig {
     };
 
     /**
+     * Webpack settings
+     */
+    webpack?: {
+
+        /**
+         * Ignore these modules because they have errors in their source maps.
+         */
+        ignoreSourceMaps: string[]
+    };
+
+    /**
      * TypeScript settings.
      */
     typescript?: {
@@ -77,6 +88,11 @@ export declare interface SlimConfig {
          * in here that don't change often and that you don't want to link.
          */
         vendors?: string[];
+
+        /**
+         * Enable TypeScript type checking for building and Angular AOT.
+         */
+        typecheck?: boolean;
     };
 
     /**

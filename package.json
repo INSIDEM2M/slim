@@ -1,13 +1,17 @@
 {
   "name": "slim-cli",
   "version": "0.1.4",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/INSIDEM2M/slim"
+  },
   "scripts": {
     "prepublishOnly": "tsc"
   },
   "bin": {
     "slim": "dist/cli-entry.js"
   },
-  "license": "MIT",
   "dependencies": {
     "@angular/compiler": "^2.4.3",
     "@angular/compiler-cli": "^2.4.3",
