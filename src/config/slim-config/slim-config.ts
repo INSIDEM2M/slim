@@ -65,7 +65,7 @@ export declare interface SlimConfig {
         /**
          * Ignore these modules because they have errors in their source maps.
          */
-        ignoreSourceMaps: string[]
+        ignoreSourceMaps: RegExp[]
     };
 
     /**
