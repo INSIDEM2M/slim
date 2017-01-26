@@ -3,6 +3,8 @@ import * as path from "path";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import { SlimConfig } from "../config/slim-config/slim-config";
 
+const ProgressPlugin = (webpack as any).ProgressPlugin;
+
 export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig, stripSassImports: boolean = false) {
     let conf: any = {
         resolve: {
@@ -17,6 +19,11 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             modules: [path.resolve(__dirname, "../../", "node_modules"), path.join(__dirname, "loaders")]
         },
         module: {
+            noParse: [
+                // This is needed because otherwise all moment locales will be included in the build.
+                // Now the locales have to be imported explicitly.
+                /moment.js/
+            ],
             rules: [
                 {
                     test: /\.style\.scss$/,
@@ -81,7 +88,6 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                     loader: "source-map-loader",
                     exclude: config.webpack.ignoreSourceMaps
                 },
-                { test: /\.json$/, loader: "json-loader" },
                 { test: /\.html/, loader: "raw-loader", exclude: [indexPath] },
                 { test: /\.css$/, loader: "raw-loader" },
                 {
@@ -107,6 +113,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             ]
         },
         plugins: [
+            new ProgressPlugin(),
             // Fixes https://github.com/webpack/webpack/issues/196
             new webpack.ContextReplacementPlugin(
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
