@@ -6,7 +6,6 @@ import { testCommand } from "./commands/test.command";
 import { e2eCommand } from "./commands/e2e.command";
 import { publishCommand } from "./commands/publish.command";
 import { releaseCommand } from "./commands/release.command";
-import { changelogCommand } from "./commands/changelog.command";
 import { newCommand } from "./commands/new.command";
 import * as chalk from "chalk";
 import * as path from "path";
@@ -34,7 +33,6 @@ export function main() {
         .command(testCommand)
         .command(e2eCommand)
         .command(docCommand)
-        .command(changelogCommand)
         .command(releaseCommand)
         .command(publishCommand)
         .alias("h", "help")
