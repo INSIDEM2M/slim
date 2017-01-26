@@ -7,7 +7,8 @@
     "url": "https://github.com/INSIDEM2M/slim"
   },
   "scripts": {
-    "build": "tsc && cp src/config/postcss.config.js dist/config/ && cp src/config/protractor.conf.js dist/config/"
+    "build": "tsc && cp src/config/postcss.config.js dist/config/ && cp src/config/protractor.conf.js dist/config/",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "bin": {
     "slim": "dist/cli-entry.js"
@@ -92,6 +93,7 @@
     "@types/selenium-webdriver": "^2.53.38",
     "@types/webpack-dev-server": "^1.12.6",
     "@types/webpack-merge": "^0.0.4",
-    "@types/yargs": "^6.5.0"
+    "@types/yargs": "^6.5.0",
+    "conventional-changelog-cli": "^1.2.0"
   }
 }
