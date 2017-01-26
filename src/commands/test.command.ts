@@ -1,7 +1,7 @@
 import * as yargs from "yargs";
 import * as chalk from "chalk";
 import { getSlimConfig, getEnvironment } from "../cli-helpers";
-import { timer } from "../logger";
+import { timer } from "../utils";
 
 export const testCommand: yargs.CommandModule = {
     command: "test",

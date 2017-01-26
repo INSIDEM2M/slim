@@ -1,6 +1,6 @@
 import * as path from "path";
 import { spawn } from "child_process";
-import { logger } from "../logger";
+import { logger } from "../utils";
 import { SlimConfig } from "../config/slim-config/slim-config";
 
 module.exports = function (env: EnvironmentVariables, config: SlimConfig, port: number, skipWebDriverUpdate: boolean, specs?: string) {

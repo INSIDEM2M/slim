@@ -1,7 +1,7 @@
 import * as childProcess from "child_process";
 import * as portFinder from "portfinder";
 import * as path from "path";
-import { logger } from "./logger";
+import { logger } from "./utils";
 import * as opn from "opn";
 import { merge } from "lodash";
 import { SlimConfig, defaultSlimConfig } from "./config/slim-config";

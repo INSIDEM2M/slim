@@ -5,7 +5,7 @@ import * as rimraf from "rimraf";
 
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getBuildConfigPartial } from "../webpack/webpack.config.build";
-import { timer, logger } from "../logger";
+import { timer, logger } from "../utils";
 import { SlimConfig } from "../config/slim-config/slim-config";
 
 module.exports = function (env: EnvironmentVariables, config: SlimConfig, minify: boolean, aot: boolean) {
