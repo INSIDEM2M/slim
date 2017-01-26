@@ -3,7 +3,7 @@ import * as chalk from "chalk";
 import { argv } from "yargs";
 
 export const logger = tracer.colorConsole({
-    format: `[${chalk.grey("{{timestamp}}")}] [{{title}}] ${chalk.black("{{message}}")}`,
+    format: `[${chalk.grey("{{timestamp}}")}] [{{title}}] "{{message}}"}`,
     dateformat: "HH:MM:ss",
     level: argv["debug"] ? "debug" : argv["trace"] ? "trace" : "info"
 });
