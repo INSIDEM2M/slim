@@ -1,5 +1,5 @@
 import * as yargs from "yargs";
-import { logger } from "../logger";
+import { logger } from "../utils";
 
 export const publishCommand: yargs.CommandModule = {
     command: "publish",

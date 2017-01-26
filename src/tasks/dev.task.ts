@@ -7,7 +7,7 @@ import { Server } from "http";
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getDevConfigPartial } from "../webpack/webpack.config.dev";
 import { getAvailablePort, openBrowser } from "../cli-helpers";
-import { logger } from "../logger";
+import { logger } from "../utils";
 import * as chalk from "chalk";
 import * as readline from "readline";
 import { SlimConfig } from "../config/slim-config/slim-config";

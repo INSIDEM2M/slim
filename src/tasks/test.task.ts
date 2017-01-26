@@ -6,7 +6,7 @@ import { getAvailablePort } from "../cli-helpers";
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getTestConfigPartial } from "../webpack/webpack.config.test";
 import { getKarmaConfig } from "../config/karma.conf";
-import { logger, timer } from "../logger";
+import { logger, timer } from "../utils";
 import { SlimConfig } from "../config/slim-config/slim-config";
 
 module.exports = function (env: EnvironmentVariables, config: SlimConfig, watch: boolean, coverage: boolean, browsers: string[], xmlReport: string) {
