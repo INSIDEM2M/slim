@@ -22,11 +22,11 @@ let builder: yargs.CommandBuilder = ((): yargs.CommandBuilder => {
     };
 
     try {
-        const conf = path.join(os.homedir(), ".slim/templates.ts")
+        const conf = path.join(os.homedir(), ".slim/templates.ts");
         if (fs.existsSync(conf)) {
             templates = require(conf).templates;
         } else {
-            logger.warn("No user config.");
+            logger.debug("No user config found in " + conf);
         }
         // logger.info(".slim/templates.ts:\n" + JSON.stringify(templates, null, 2));
     } catch (error) {
