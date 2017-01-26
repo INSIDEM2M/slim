@@ -74,6 +74,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
     );
     module.rules.push({ test: /\.svg/, loader: "file-loader?name=[name].[ext]" });
     let conf = {
+        bail: true,
         plugins,
         module,
         output: {
