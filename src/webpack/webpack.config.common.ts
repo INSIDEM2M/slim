@@ -45,7 +45,8 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                         {
                             loader: "strip-sass-imports-loader",
                             options: {
-                                importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting
+                                importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting,
+                                stripSassImports: stripSassImports
                             }
                         }
                     ]
@@ -78,7 +79,8 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                         {
                             loader: "strip-sass-imports-loader",
                             options: {
-                                importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting
+                                importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting,
+                                stripSassImports: stripSassImports
                             }
                         }
                     ]
