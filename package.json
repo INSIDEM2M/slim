@@ -62,6 +62,7 @@
     "rimraf": "^2.5.4",
     "rxjs": "^5.0.2",
     "sass-loader": "^4.1.1",
+    "semver": "^5.3.0",
     "simple-git": "^1.65.0",
     "source-map": "0.5.6",
     "source-map-loader": "^0.1.6",
@@ -73,6 +74,7 @@
     "webpack": "2.2.0",
     "webpack-dev-server": "2.2.0-rc.0",
     "webpack-merge": "^2.4.0",
+    "xmldom": "^0.1.27",
     "yargs": "^6.6.0",
     "zone.js": "^0.7.6"
   },
@@ -91,8 +93,10 @@
     "@types/node": "^7.0.0",
     "@types/opn": "^3.0.28",
     "@types/selenium-webdriver": "^2.53.38",
+    "@types/semver": "^5.3.30",
     "@types/webpack-dev-server": "^1.12.6",
     "@types/webpack-merge": "^0.0.4",
+    "@types/xmldom": "^0.1.28",
     "@types/yargs": "^6.5.0",
     "conventional-changelog-cli": "^1.2.0"
   }
