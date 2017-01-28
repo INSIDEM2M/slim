@@ -22,15 +22,7 @@ export const defaultSlimConfig: SlimConfig = {
         precision: 7,
         importsIgnoredDuringTesting: ["scss/variables"]
     },
-    images: {
-        minify: {
-            optimizationLevel: 7,
-            progressive: true,
-            interlaced: false,
-        },
-        flatten: false,
-    },
-    extras: {
+    assets: {
         entries: []
     },
     webpack: {

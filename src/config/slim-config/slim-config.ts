@@ -1,3 +1,9 @@
+export interface CopyPattern {
+    from: string;
+    to: string;
+    flatten: boolean;
+}
+
 /**
  * Configuration for the slim CLI. All directory paths are relative to the
  * rootDir if not stated explicitly.
@@ -129,33 +135,9 @@ export declare interface SlimConfig {
     };
 
     /**
-     * Image settings.
+     * Asset settings.
      */
-    images?: {
-
-        /**
-         * Path to the image files that should be processed and copied to the
-         * targetDir on build.
-         */
-        entries?: string[];
-
-        /**
-         * Minification settings.
-         */
-        minify?: {
-
-            optimizationLevel?: number;
-            progressive?: boolean;
-            interlaced?: boolean;
-        };
-        flatten?: boolean;
-    };
-
-    /**
-     * Extra settings.
-     */
-    extras?: {
-        entries?: string[];
-        flatten?: boolean;
+    assets?: {
+        entries?: CopyPattern[];
     };
 }

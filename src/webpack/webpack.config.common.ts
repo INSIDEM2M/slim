@@ -122,12 +122,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 "./src"
             ),
             new webpack.DefinePlugin({ environment }),
-            new CopyWebpackPlugin(config.extras.entries.map(extra => {
-                return {
-                    from: extra,
-                    flatten: config.extras.flatten
-                };
-            }))
+            new CopyWebpackPlugin(config.assets.entries)
         ]
     };
 
