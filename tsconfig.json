@@ -9,8 +9,10 @@
         "emitDecoratorMetadata": true,
         "noEmitHelpers": true,
         "outDir": "dist",
+        "skipLibCheck": true,
         "lib": [
-            "es2015"
+            "es2015",
+            "dom"
         ]
     },
     "exclude": [

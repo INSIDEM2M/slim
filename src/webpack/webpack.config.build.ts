@@ -56,22 +56,6 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
             }
         );
     }
-    module.rules.push(
-        {
-            test: /.*\.(gif|png|jpe?g)$/i,
-            loaders: [
-                "file-loader?name=[name].[ext]",
-                {
-                    loader: "image-webpack-loader",
-                    query: {
-                        progressive: config.images.minify.progressive,
-                        optimizationLevel: config.images.minify.optimizationLevel,
-                        interlaced: config.images.minify.interlaced
-                    }
-                }
-            ]
-        }
-    );
     module.rules.push({ test: /\.svg/, loader: "file-loader?name=[name].[ext]" });
     let conf = {
         bail: true,
