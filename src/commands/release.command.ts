@@ -26,8 +26,7 @@ export const releaseCommand: yargs.CommandModule = {
     builder: {
         "patch": {
             description: "Perform a patch release.",
-            type: "boolean",
-            default: true
+            type: "boolean"
         },
         "minor": {
             description: "Perform a minor release.",
@@ -56,25 +55,33 @@ export const releaseCommand: yargs.CommandModule = {
                 nextVersion = options["use-version"];
             }
         } else {
-            nextVersion = semver.inc(version, options.patch ? "patch" : options.minor ? "minor" : "major");
+            nextVersion = semver.inc(version, options.major ? "major" : options.minor ? "minor" : "patch");
         }
 
         pkg.version = nextVersion;
         fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2), "utf-8");
         logger.info("Updated package.json");
 
+        const filesToAdd = ["package.json", "CHANGELOG.md"];
+
         const configPath = path.join(rootDir, "config.xml");
         const hasConfigXmlFile = fs.existsSync(configPath);
 
         if (hasConfigXmlFile) {
             updateConfigXml(configPath, nextVersion);
+            filesToAdd.push("config.xml");
         }
 
         return simpleGit(rootDir)
-            .add(...["package.json", "CHANGELOG.md", hasConfigXmlFile ? "config.xml" : []])
+            .add(filesToAdd)
             .commit(nextVersion)
-            .addTag(nextVersion)
-            .then(() => process.exit(0));
+            .addTag(nextVersion, (error) => {
+                if (error) {
+                    process.exit(1);
+                } else {
+                    process.exit(0);
+                }
+            });
 
     }
 };
