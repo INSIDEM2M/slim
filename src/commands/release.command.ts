@@ -7,6 +7,21 @@ import { DOMParser, XMLSerializer } from "xmldom";
 
 import * as simpleGit from "simple-git";
 
+function getNextVersion(options: Options, version: string) {
+    let nextVersion;
+    if (options["use-version"]) {
+        if (semver.valid(options["use-version"])) {
+            logger.error(options["use-version"] + " is no valid version! Aborting release...");
+            process.exit(1);
+        } else {
+            nextVersion = options["use-version"];
+        }
+    } else {
+        nextVersion = semver.inc(version, options.major ? "major" : options.minor ? "minor" : "patch");
+    }
+    return nextVersion;
+}
+
 function updateConfigXml(configPath: string, version: string) {
     const configXmlFile = fs.readFileSync(configPath, "utf-8");
     const configXmlDom = new DOMParser().parseFromString(configXmlFile, "application/xml");
@@ -46,17 +61,7 @@ export const releaseCommand: yargs.CommandModule = {
         const pkgPath = path.join(rootDir, "package.json");
         const pkg = require(pkgPath);
         const version = pkg.version;
-        let nextVersion;
-        if (options["use-version"]) {
-            if (semver.valid(options["use-version"])) {
-                logger.error(options["use-version"] + " is no valid version! Aborting release...");
-                process.exit(1);
-            } else {
-                nextVersion = options["use-version"];
-            }
-        } else {
-            nextVersion = semver.inc(version, options.major ? "major" : options.minor ? "minor" : "patch");
-        }
+        const nextVersion = getNextVersion(options, version);
 
         pkg.version = nextVersion;
         fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2), "utf-8");
