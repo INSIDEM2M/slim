@@ -11,12 +11,19 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             extensions: [".ts", ".js", ".json"],
             modules: [
                 path.resolve(process.cwd(), path.join(config.rootDir, "node_modules")),
-                path.resolve(__dirname, "..", "..", "node_modules")
+                path.resolve(__dirname, "..", "..", "node_modules"),
+                // In case slim-cli depends on a package that is globally installed,
+                // we need to look for adjacent packages to slim-cli.
+                path.resolve(__dirname, "..", "..", "..")
             ]
         },
         resolveLoader: {
             extensions: [".js", ".ts"],
-            modules: [path.resolve(__dirname, "../../", "node_modules"), path.join(__dirname, "loaders")]
+            modules: [
+                path.resolve(__dirname, "../../", "node_modules"),
+                path.resolve(__dirname, "..", "..", ".."),
+                path.join(__dirname, "loaders")
+            ]
         },
         module: {
             noParse: [
