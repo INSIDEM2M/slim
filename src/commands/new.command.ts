@@ -117,7 +117,7 @@ const scaffold = (source, target) => {
 
                     for (let f of files) {
                         const sourcePath = path.join(source, f);
-                        const targetPath = path.join(target, f);
+                        const targetPath = _.template(path.join(target, f))(answers);
                         if (fs.lstatSync(sourcePath).isDirectory()) {
                             if (!fs.existsSync(targetPath)) {
                                 fs.mkdirSync(targetPath);
@@ -125,7 +125,7 @@ const scaffold = (source, target) => {
                             continue;
                         }
                         logger.debug(f);
-                        fs.writeFile(path.join(target, f),
+                        fs.writeFile(targetPath,
                             _.template(fs.readFileSync(path.join(source, f), { "encoding": "utf8" }))(answers),
                             function (err) {
                                 if (err) {
