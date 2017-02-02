@@ -71,7 +71,13 @@ export declare interface SlimConfig {
         /**
          * Ignore these modules because they have errors in their source maps.
          */
-        ignoreSourceMaps: RegExp[]
+        ignoreSourceMaps: RegExp[];
+
+        /**
+         * Scripts in the `index.html` that should be ignored during development. An example would
+         * be the cordova.js file in Cordova projects.
+         */
+        ignoreScripts: string[];
     };
 
     /**

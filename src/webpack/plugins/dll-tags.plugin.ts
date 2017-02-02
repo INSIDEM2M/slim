@@ -1,3 +1,6 @@
+/**
+ * Plugin to add script tags for the dll libraries to the processed html file.
+ */
 export class DllTagPlugin {
 
     constructor(private dllLibs: string[] = []) {
