@@ -30,16 +30,17 @@ module.exports = function (env: EnvironmentVariables, config: SlimConfig, forceU
 
 function updateDlls(env: EnvironmentVariables, config: SlimConfig, dllDependencies: string[], pkg: any) {
     logger.info("Updating DLL cache...");
-    timer.start("DLL cache update");
-    writeDllCache(config.dllDir, DLL_CACHE_FILE_NAME, dllDependencies, pkg);
-    timer.end("DLL cache update");
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
     const buildConfig = getDllConfigPartial(path.join(config.dllDir));
     const webpackConfig = (webpackMerge as any).strategy({
         "entry": "replace"
     })(commonConfig, buildConfig);
-    return runBuild(webpackConfig);
+    return runBuild(webpackConfig).then((exitCode) => {
+        if (exitCode === 0) {
+            writeDllCache(config.dllDir, DLL_CACHE_FILE_NAME, dllDependencies, pkg);
+        }
+    });
 }
 
 function runBuild(config: webpack.Configuration) {
