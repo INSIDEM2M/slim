@@ -1,7 +1,7 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
-import { SlimConfig } from "../config/slim-config/slim-config";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;

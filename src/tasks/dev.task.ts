@@ -10,9 +10,9 @@ import { getAvailablePort, openBrowser } from "../cli-helpers";
 import { logger } from "../utils";
 import * as chalk from "chalk";
 import * as readline from "readline";
-import { SlimConfig } from "../config/slim-config/slim-config";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 
-module.exports = function (env: EnvironmentVariables, config: SlimConfig, open: boolean) {
+module.exports = function (env: Environment, config: SlimConfig, open: boolean) {
     return getAvailablePort().then(port => {
         const webpackConfig = createWebpackDevConfig(env, config, port);
         const compiler = webpack(webpackConfig);
@@ -23,7 +23,7 @@ module.exports = function (env: EnvironmentVariables, config: SlimConfig, open: 
     });
 };
 
-function createWebpackDevConfig(env: EnvironmentVariables, config: SlimConfig, port: number): webpack.Configuration {
+function createWebpackDevConfig(env: Environment, config: SlimConfig, port: number): webpack.Configuration {
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
     const devConfig = getDevConfigPartial(config, indexPath, port);

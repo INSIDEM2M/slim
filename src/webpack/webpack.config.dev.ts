@@ -4,7 +4,7 @@ import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
 import { DllTagPlugin } from "./plugins/dll-tags.plugin";
-import { SlimConfig } from "../config/slim-config/slim-config";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;

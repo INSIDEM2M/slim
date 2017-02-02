@@ -4,16 +4,16 @@ import * as path from "path";
 import { logger } from "./utils";
 import * as opn from "opn";
 import { merge } from "lodash";
-import { SlimConfig, defaultSlimConfig } from "./config/slim-config";
+import { SlimConfig, defaultSlimConfig } from "./config/slim-typings";
 import * as fs from "fs";
 
 function getCurrentCommit(): string {
     if (fs.existsSync(path.join(process.cwd(), ".git"))) {
-        return JSON.stringify(childProcess
+        return childProcess
             .execSync("git rev-parse HEAD")
-            .toString().trim());
+            .toString().trim();
     } else {
-        return JSON.stringify("");
+        return "";
     }
 }
 
@@ -33,12 +33,12 @@ export function openBrowser(host: string, port: number, baseHref: string) {
     opn(`http://${host}:${port}${baseHref}`);
 }
 
-export function getEnvironment(rootDir: string): EnvironmentVariables {
-    const environment: Environment = process.env.NODE_ENV || "development";
+export function getEnvironment(rootDir: string): Environment {
+    const environment = process.env.NODE_ENV || "development";
 
     const pkg = getPackage(rootDir);
     const version = JSON.stringify(pkg["version"] || "unknown");
-    const commit = getCurrentCommit();
+    const commit = JSON.stringify(getCurrentCommit());
     const buildDate = JSON.stringify(new Date());
 
     return Object.assign({}, pkg[environment], { version, commit, buildDate, current: JSON.stringify(environment) });

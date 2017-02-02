@@ -7,9 +7,9 @@ import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getTestConfigPartial } from "../webpack/webpack.config.test";
 import { getKarmaConfig } from "../config/karma.conf";
 import { logger, timer } from "../utils";
-import { SlimConfig } from "../config/slim-config/slim-config";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 
-module.exports = function (env: EnvironmentVariables, config: SlimConfig, watch: boolean, coverage: boolean, browsers: string[], xmlReport: string) {
+module.exports = function (env: Environment, config: SlimConfig, watch: boolean, coverage: boolean, browsers: string[], xmlReport: string) {
     return getAvailablePort().then(port => {
         const indexPath = path.join(config.sourceDir, "index.html");
         const polyfillsPattern = path.join(config.dllDir, "polyfills.dll.js");

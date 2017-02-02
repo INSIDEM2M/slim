@@ -6,9 +6,9 @@ import * as rimraf from "rimraf";
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getBuildConfigPartial } from "../webpack/webpack.config.build";
 import { timer, logger } from "../utils";
-import { SlimConfig } from "../config/slim-config/slim-config";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 
-module.exports = function (env: EnvironmentVariables, config: SlimConfig, minify: boolean, aot: boolean) {
+module.exports = function (env: Environment, config: SlimConfig, minify: boolean, aot: boolean) {
     rimraf.sync(config.targetDir);
     logger.debug("Deleted " + config.targetDir);
     const indexPath = path.join(config.sourceDir, "index.html");

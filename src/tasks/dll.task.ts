@@ -8,11 +8,11 @@ import * as fs from "fs";
 import { VENDORS } from "../webpack/webpack.vendors";
 import { POLYFILLS } from "../webpack/webpack.polyfills";
 import { logger, timer } from "../utils";
-import { SlimConfig } from "../config/slim-config/slim-config";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 
 const DLL_CACHE_FILE_NAME = "dll.cache.json";
 
-module.exports = function (env: EnvironmentVariables, config: SlimConfig, forceUpdate: boolean) {
+module.exports = function (env: Environment, config: SlimConfig, forceUpdate: boolean) {
     const pkg = JSON.parse(fs.readFileSync(path.join(config.rootDir, "package.json"), "utf-8"));
     const dllDependencies = getDllDependencies(config);
     if (forceUpdate) {
@@ -28,7 +28,7 @@ module.exports = function (env: EnvironmentVariables, config: SlimConfig, forceU
     }
 };
 
-function updateDlls(env: EnvironmentVariables, config: SlimConfig, dllDependencies: string[], pkg: any) {
+function updateDlls(env: Environment, config: SlimConfig, dllDependencies: string[], pkg: any) {
     logger.info("Updating DLL cache...");
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config);
