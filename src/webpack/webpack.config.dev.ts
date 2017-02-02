@@ -5,6 +5,7 @@ import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
 import { DllTagPlugin } from "./plugins/dll-tags.plugin";
 import { SlimConfig } from "../config/slim-config/slim-config";
+import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
@@ -93,6 +94,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?
             ]),
             new CopyWebpackPlugin(config.assets.entries),
             new NamedModulesPlugin(),
+            new RemoveScriptsPlugin(config.webpack.ignoreScripts)
         ]
     };
     return conf;

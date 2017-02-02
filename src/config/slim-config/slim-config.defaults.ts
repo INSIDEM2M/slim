@@ -29,6 +29,7 @@ export const defaultSlimConfig: SlimConfig = {
         ignoreSourceMaps: [
             /ionic-angular/,
             /ionic-native/
-        ]
+        ],
+        ignoreScripts: []
     }
 };
