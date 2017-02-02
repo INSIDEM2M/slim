@@ -20,7 +20,8 @@ export const defaultSlimConfig: SlimConfig = {
     sass: {
         outputStyle: "compressed",
         precision: 7,
-        importsIgnoredDuringTesting: ["scss/variables"]
+        importsIgnoredDuringTesting: ["scss/variables"],
+        includePaths: []
     },
     assets: {
         entries: []
