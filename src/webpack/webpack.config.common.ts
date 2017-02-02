@@ -1,6 +1,5 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import { SlimConfig } from "../config/slim-config/slim-config";
 
 const ProgressPlugin = (webpack as any).ProgressPlugin;
@@ -121,8 +120,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
                 "./src"
             ),
-            new webpack.DefinePlugin({ environment }),
-            new CopyWebpackPlugin(config.assets.entries)
+            new webpack.DefinePlugin({ environment })
         ]
     };
 

@@ -91,6 +91,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?
                     flatten: true
                 }
             ]),
+            new CopyWebpackPlugin(config.assets.entries),
             new NamedModulesPlugin(),
         ]
     };
