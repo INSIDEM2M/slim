@@ -1,3 +1,25 @@
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/INSIDEM2M/slim/compare/0.2.2...v0.3.0) (2017-02-02)
+
+
+### Bug Fixes
+
+* **cli:** remove reference to deleted changelog command ([cc0b19d](https://github.com/INSIDEM2M/slim/commit/cc0b19d))
+* **package:** update compodoc to version 0.0.38 ([62d51a5](https://github.com/INSIDEM2M/slim/commit/62d51a5))
+* **package:** update file-loader to version 0.10.0 ([6d5d0bd](https://github.com/INSIDEM2M/slim/commit/6d5d0bd))
+* **package:** update webpack-dev-server to version 2.2.1 ([d48ba78](https://github.com/INSIDEM2M/slim/commit/d48ba78))
+* **release:** fix several problems with the release command ([f992768](https://github.com/INSIDEM2M/slim/commit/f992768))
+* **slim-config:** treat images as normal assets ([ab9fc6a](https://github.com/INSIDEM2M/slim/commit/ab9fc6a))
+
+
+### Features
+
+* **newCommand:** add replace in filenames. ([ee596e2](https://github.com/INSIDEM2M/slim/commit/ee596e2))
+* **publish:** add initial publish command implementation ([ceb6710](https://github.com/INSIDEM2M/slim/commit/ceb6710))
+* **release:** add release command ([77ea1f9](https://github.com/INSIDEM2M/slim/commit/77ea1f9))
+
+
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/INSIDEM2M/slim/compare/0.2.1...0.2.2) (2017-01-26)
 
