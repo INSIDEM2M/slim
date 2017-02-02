@@ -66,6 +66,11 @@ function normalizeConfig(config: SlimConfig): SlimConfig {
     config.angular.aotTsConfig = path.join(config.rootDir, config.angular.aotTsConfig);
     config.angular.appModule = path.join(config.rootDir, config.angular.appModule);
     config.sass.includePaths.push(config.sourceDir);
+    for (let asset of config.assets.entries) {
+        if (!path.isAbsolute(asset.from)) {
+            asset.from = path.join(config.rootDir, asset.from);
+        }
+    }
     return config;
 }
 
