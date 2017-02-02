@@ -65,6 +65,7 @@ function normalizeConfig(config: SlimConfig): SlimConfig {
     config.typescript.entry = path.join(config.sourceDir, config.typescript.entry);
     config.angular.aotTsConfig = path.join(config.rootDir, config.angular.aotTsConfig);
     config.angular.appModule = path.join(config.rootDir, config.angular.appModule);
+    config.sass.includePaths.push(config.sourceDir);
     return config;
 }
 
