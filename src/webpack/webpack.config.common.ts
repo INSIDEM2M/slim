@@ -1,6 +1,6 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import { SlimConfig } from "../config/slim-config/slim-config";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 
 const ProgressPlugin = (webpack as any).ProgressPlugin;
 
