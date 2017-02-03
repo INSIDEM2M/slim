@@ -1,3 +1,22 @@
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/INSIDEM2M/slim/compare/0.3.0...v0.3.1) (2017-02-03)
+
+
+### Bug Fixes
+
+* **dll:** only write dll cache if dll build successfull ([c589fa8](https://github.com/INSIDEM2M/slim/commit/c589fa8))
+* **slim-config:** initialize sass.includePaths ([2845eb4](https://github.com/INSIDEM2M/slim/commit/2845eb4))
+* **utils:** remove style "}" character in logger ([3ac9a78](https://github.com/INSIDEM2M/slim/commit/3ac9a78))
+
+
+### Features
+
+* **dev:** add option to ignore srcipts in dev mode ([40d29ab](https://github.com/INSIDEM2M/slim/commit/40d29ab))
+* **slim-config:** make relative assets relative to rootDir ([6308f54](https://github.com/INSIDEM2M/slim/commit/6308f54))
+* **slim-typings:** add environment typings ([e2719bd](https://github.com/INSIDEM2M/slim/commit/e2719bd))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/INSIDEM2M/slim/compare/0.2.2...v0.3.0) (2017-02-02)
 
