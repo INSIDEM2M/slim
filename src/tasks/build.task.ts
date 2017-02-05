@@ -24,6 +24,7 @@ function runBuild(config: webpack.Configuration) {
     return new Promise((resolve, reject) => {
         webpack(config, (error, stats) => {
             if (!stats || stats.hasErrors()) {
+                logger.error(error);
                 return reject(stats ? stats.toJson().errors[0] : 1);
             }
             timer.end("Application build");

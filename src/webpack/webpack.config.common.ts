@@ -92,24 +92,47 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 { test: /\.html/, loader: "raw-loader", exclude: [indexPath] },
                 { test: /\.css$/, loader: "raw-loader" },
                 {
-                    test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]"
-                },
-                {
-                    test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]"
+                    test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                    loader: "url-loader",
+                    options: {
+                        limit: 10000,
+                        mimetype: "application/font-woff",
+                        name: "[name].[ext]"
+                    }
                 },
                 {
                     test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: "url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]"
+                    loader: "url-loader",
+                    options: {
+                        limit: 10000,
+                        mimetype: "application/octet-stream",
+                        name: "[name].[ext]"
+                    }
                 },
                 {
                     test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: "file-loader?name=[name].[ext]"
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[ext]"
+                    }
                 },
                 {
-                    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                    loader: "url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]"
+                    test: /\.(png|jpg|jpeg)$/,
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[ext]"
+                    }
+                },
+                {
+                    test: /\.svg$/,
+                    use: [
+                        {
+                            loader: "svg-url-loader",
+                            options: {
+                                limit: 10000
+                            }
+                        }
+                    ]
                 }
             ]
         },
