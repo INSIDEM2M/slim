@@ -1,6 +1,7 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import { SlimConfig } from "../config/slim-typings/slim-config";
+import * as ExtractTextPlugin from "extract-text-webpack-plugin";
 
 const ProgressPlugin = (webpack as any).ProgressPlugin;
 
@@ -37,8 +38,9 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                         {
                             loader: "sass-loader",
                             options: {
-                                sourceMap: true,
-                                includePaths: config.sass.includePaths
+                                sourceMap: false,
+                                includePaths: config.sass.includePaths,
+                                outputStyle: config.sass.outputStyle
                             }
                         },
                         {
@@ -53,36 +55,38 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 {
                     test: /\.scss$/,
                     exclude: /\.style\.scss$/,
-                    use: [
-                        "style-loader",
-                        {
-                            loader: "css-loader",
-                            options: {
-                                importLoaders: 1,
-                                localIdentName: "[name]"
+                    use: ExtractTextPlugin.extract({
+                        use: [
+                            {
+                                loader: "css-loader",
+                                options: {
+                                    importLoaders: 1,
+                                    localIdentName: "[name]"
+                                }
+                            },
+                            {
+                                loader: "postcss-loader",
+                                options: {
+                                    config: path.resolve(__dirname, "..", "config")
+                                }
+                            },
+                            {
+                                loader: "sass-loader",
+                                options: {
+                                    sourceMap: false,
+                                    includePaths: config.sass.includePaths,
+                                    outputStyle: config.sass.outputStyle
+                                }
+                            },
+                            {
+                                loader: "strip-sass-imports-loader",
+                                options: {
+                                    importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting,
+                                    stripSassImports: stripSassImports
+                                }
                             }
-                        },
-                        {
-                            loader: "postcss-loader",
-                            options: {
-                                config: path.resolve(__dirname, "..", "config")
-                            }
-                        },
-                        {
-                            loader: "sass-loader",
-                            options: {
-                                sourceMap: true,
-                                includePaths: config.sass.includePaths
-                            }
-                        },
-                        {
-                            loader: "strip-sass-imports-loader",
-                            options: {
-                                importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting,
-                                stripSassImports: stripSassImports
-                            }
-                        }
-                    ]
+                        ]
+                    })
                 },
                 {
                     test: /\.js$/,
@@ -129,7 +133,8 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                         {
                             loader: "svg-url-loader",
                             options: {
-                                limit: 10000
+                                limit: 10000,
+                                name: "[name].[ext]"
                             }
                         }
                     ]
@@ -143,7 +148,8 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
                 "./src"
             ),
-            new webpack.DefinePlugin({ environment })
+            new webpack.DefinePlugin({ environment }),
+            new ExtractTextPlugin("styles.css")
         ]
     };
 

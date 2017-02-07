@@ -29,6 +29,7 @@
     "compodoc": "^0.0.38",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "2.0.0-rc.3",
     "file-loader": "^0.10.0",
     "glob": "^7.1.1",
     "html-webpack-plugin": "^2.26.0",
