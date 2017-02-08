@@ -1,3 +1,13 @@
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/INSIDEM2M/slim/compare/0.4.0...v0.4.1) (2017-02-08)
+
+
+### Bug Fixes
+
+* **cli-helpers:** correctly parse the environment buildProperties ([6340e86](https://github.com/INSIDEM2M/slim/commit/6340e86))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/INSIDEM2M/slim/compare/0.3.1...v0.4.0) (2017-02-08)
 
