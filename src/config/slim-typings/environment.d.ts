@@ -1,4 +1,4 @@
-declare interface Environment {
+export declare interface Environment {
 
     /**
      * The Git commit of the project.
@@ -19,7 +19,7 @@ declare interface Environment {
      * The date of the build.
      */
     buildDate: string;
-};
+}
 
 /**
  * The environment that was injected during the build.

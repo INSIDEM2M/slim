@@ -6,6 +6,7 @@ import * as opn from "opn";
 import { merge } from "lodash";
 import { SlimConfig, defaultSlimConfig } from "./config/slim-typings";
 import * as fs from "fs";
+import { argv } from "yargs";
 
 function getCurrentCommit(): string {
     if (fs.existsSync(path.join(process.cwd(), ".git"))) {
@@ -41,7 +42,11 @@ export function getEnvironment(rootDir: string): Environment {
     const commit = JSON.stringify(getCurrentCommit());
     const buildDate = JSON.stringify(new Date());
 
-    return Object.assign({}, pkg[environment], { version, commit, buildDate, current: JSON.stringify(environment) });
+    const properties = pkg["buildProperties"] ? pkg.buildProperties[argv["env"] ? argv["env"] : environment] : {};
+
+    Object.keys(properties).forEach(prop => properties[prop] = JSON.stringify(properties[prop]));
+
+    return Object.assign({}, properties, { version, commit, buildDate, current: JSON.stringify(environment) });
 }
 
 export function getSlimConfig(rootDir: string): SlimConfig {
@@ -66,6 +71,7 @@ function normalizeConfig(config: SlimConfig): SlimConfig {
     config.angular.aotTsConfig = path.join(config.rootDir, config.angular.aotTsConfig);
     config.angular.appModule = path.join(config.rootDir, config.angular.appModule);
     config.sass.includePaths.push(config.sourceDir);
+    config.sass.globalStyles = config.sass.globalStyles.map(style => path.isAbsolute(style) ? style : path.join(config.rootDir, style));
     for (let asset of config.assets.entries) {
         if (!path.isAbsolute(asset.from)) {
             asset.from = path.join(config.rootDir, asset.from);

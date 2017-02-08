@@ -1,7 +1,7 @@
 export interface CopyPattern {
     from: string;
-    to: string;
-    flatten: boolean;
+    to?: string;
+    flatten?: boolean;
 }
 
 /**

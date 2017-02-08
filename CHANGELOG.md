@@ -1,3 +1,31 @@
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/INSIDEM2M/slim/compare/0.4.0...v0.4.1) (2017-02-08)
+
+
+### Bug Fixes
+
+* **cli-helpers:** correctly parse the environment buildProperties ([6340e86](https://github.com/INSIDEM2M/slim/commit/6340e86))
+
+
+
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/INSIDEM2M/slim/compare/0.3.1...v0.4.0) (2017-02-08)
+
+
+### Bug Fixes
+
+* **angular2-template-loader:** fix version to 0.6.0 ([dc68d5f](https://github.com/INSIDEM2M/slim/commit/dc68d5f))
+* **common:** do not encode inlined svg files ([a9f98b0](https://github.com/INSIDEM2M/slim/commit/a9f98b0))
+* **package:** update webpack-dev-server to version 2.3.0 ([03f23f4](https://github.com/INSIDEM2M/slim/commit/03f23f4))
+
+
+### Features
+
+* **build:** add angular-router-loader ([2bfabf5](https://github.com/INSIDEM2M/slim/commit/2bfabf5))
+* **build:** add extract-text-plugin to extract css from the build ([70fbd5a](https://github.com/INSIDEM2M/slim/commit/70fbd5a))
+
+
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/INSIDEM2M/slim/compare/0.3.0...v0.3.1) (2017-02-03)
 
