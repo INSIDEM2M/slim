@@ -64,10 +64,6 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?
                         "angular2-template-loader?keepUrl=true"
                     ],
                     exclude: [/\.(spec|e2e|d)\.ts$/]
-                },
-                {
-                    test: /.*\.(gif|png|jpe?g|svg)$/i,
-                    loader: "file-loader?name=[name].[ext]"
                 }
             ]
         },

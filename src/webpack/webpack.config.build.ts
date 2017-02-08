@@ -34,7 +34,15 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
         module.rules.push(
             {
                 test: /\.ts$/,
-                loader: "@ngtools/webpack",
+                loaders: [
+                    "@ngtools/webpack",
+                    {
+                        loader: "angular-router-loader",
+                        options: {
+                            aot: true
+                        }
+                    }
+                ],
                 exclude: [/\.(spec|e2e|d)\.ts$/]
             }
         );
@@ -50,13 +58,13 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
                             useTranspileModule: !config.typescript.typecheck
                         }
                     },
-                    "angular2-template-loader?keepUrl=true"
+                    "angular2-template-loader?keepUrl=true",
+                    "angular-router-loader"
                 ],
                 exclude: [/\.(spec|e2e|d)\.ts$/]
             }
         );
     }
-    module.rules.push({ test: /\.svg/, loader: "file-loader?name=[name].[ext]" });
     let conf = {
         bail: true,
         plugins,
