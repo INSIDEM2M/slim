@@ -9,6 +9,7 @@ const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
 export function getTestConfigPartial(config: SlimConfig): webpack.Configuration {
     return {
         devtool: "inline-source-map",
+        stats: "minimal",
         module: {
             rules: [
                 {
