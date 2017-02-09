@@ -35,7 +35,7 @@
     "html-webpack-plugin": "^2.26.0",
     "inquirer": "^3.0.1",
     "istanbul": "^0.4.5",
-    "istanbul-instrumenter-loader": "1.2.0",
+    "istanbul-instrumenter-loader": "2.0.0",
     "jasmine-core": "^2.5.2",
     "jasmine-spec-reporter": "^3.2.0",
     "karma": "^1.4.0",
