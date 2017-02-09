@@ -1,4 +1,4 @@
-export declare interface Environment {
+declare interface Environment {
 
     /**
      * The Git commit of the project.

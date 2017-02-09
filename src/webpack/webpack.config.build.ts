@@ -35,13 +35,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
             {
                 test: /\.ts$/,
                 loaders: [
-                    "@ngtools/webpack",
-                    {
-                        loader: "angular-router-loader",
-                        options: {
-                            aot: true
-                        }
-                    }
+                    "@ngtools/webpack"
                 ],
                 exclude: [/\.(spec|e2e|d)\.ts$/]
             }
