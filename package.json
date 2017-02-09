@@ -7,7 +7,7 @@
     "url": "https://github.com/INSIDEM2M/slim"
   },
   "scripts": {
-    "build": "tsc && cp src/config/postcss.config.js dist/config/ && cp src/config/protractor.conf.js dist/config/",
+    "build": "cp src/config/*.js dist/config/ && tsc",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "bin": {
@@ -66,6 +66,7 @@
     "simple-git": "^1.65.0",
     "source-map": "0.5.6",
     "source-map-loader": "^0.1.6",
+    "string-replace-loader": "^1.0.5",
     "style-loader": "^0.13.1",
     "svg-url-loader": "^2.0.1",
     "tracer": "^0.8.7",

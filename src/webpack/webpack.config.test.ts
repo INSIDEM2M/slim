@@ -15,7 +15,9 @@ export function getTestConfigPartial(config: SlimConfig): webpack.Configuration 
                 {
                     test: /\.js$/,
                     enforce: "pre",
-                    loader: "source-map-loader",
+                    use: [
+                        "source-map-loader"
+                    ]
                 },
                 {
                     test: /\.(js|ts)$/, loader: "istanbul-instrumenter-loader",
@@ -28,6 +30,19 @@ export function getTestConfigPartial(config: SlimConfig): webpack.Configuration 
                     options: {
                         esModules: true
                     }
+                },
+                {
+                    test: /test-bundle\.js$/,
+                    use: [
+                        {
+                            loader: "string-replace-loader",
+                            query: {
+                                search: "SOURCE_DIR",
+                                replace: config.sourceDir,
+                                flags: "g"
+                            }
+                        }
+                    ]
                 },
                 {
                     test: /\.ts$/,

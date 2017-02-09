@@ -10,6 +10,8 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
         frameworks: ["jasmine"],
         exclude: [],
         preprocessors: {},
+        logLevel: "INFO",
+        captureConsole: true,
         webpack: webpackConfig,
         webpackMiddleware: argv["debug"] ? {} : {
             stats: "errors-only",
@@ -37,6 +39,7 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
             json: path.join(coverageDir, "coverage.json"),
             html: path.join(coverageDir, "html")
         },
+        processKillTimeout: 5000,
         junitReporter: {
             outputFile: xmlReport,
         },
@@ -48,7 +51,7 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
         autoWatch: watch,
         browsers: browsers,
         singleRun: !watch
-    }
+    };
     config.preprocessors[testFilePattern] = [
         "coverage",
         "webpack",

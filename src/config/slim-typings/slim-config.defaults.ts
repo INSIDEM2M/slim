@@ -21,7 +21,8 @@ export const defaultSlimConfig: SlimConfig = {
         outputStyle: "compressed",
         precision: 7,
         importsIgnoredDuringTesting: ["scss/variables"],
-        includePaths: []
+        includePaths: [],
+        globalStyles: []
     },
     assets: {
         entries: []
