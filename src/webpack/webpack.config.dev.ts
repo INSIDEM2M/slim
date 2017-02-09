@@ -61,7 +61,8 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?
                                 useCache: true
                             }
                         },
-                        "angular2-template-loader?keepUrl=true"
+                        "angular2-template-loader?keepUrl=true",
+                        "angular-router-loader"
                     ],
                     exclude: [/\.(spec|e2e|d)\.ts$/]
                 }
