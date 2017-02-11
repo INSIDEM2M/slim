@@ -4,6 +4,7 @@ import * as path from "path";
 import * as semver from "semver";
 import * as fs from "fs";
 import { DOMParser, XMLSerializer } from "xmldom";
+import * as conventionalChangelog from "conventional-changelog";
 
 import * as simpleGit from "simple-git";
 
@@ -32,7 +33,26 @@ function updateConfigXml(configPath: string, version: string) {
     }
     const serializedConfigXml = new XMLSerializer().serializeToString(configXmlDom);
     fs.writeFileSync(configPath, serializedConfigXml, "utf-8");
-    logger.info("Updated config.xml file");
+    logger.info("Updated config.xml file.");
+}
+
+function updateChangelog(rootDir, changelogFileName) {
+    const changelogPath = path.join(rootDir, changelogFileName);
+    if (!fs.existsSync(changelogPath)) {
+        fs.writeFileSync(changelogPath, "", {
+            encoding: "utf-8"
+        });
+    }
+    return new Promise((resolve) => {
+        const writeStream = fs.createWriteStream(changelogPath, { encoding: "utf-8", autoClose: true });
+        conventionalChangelog({
+            preset: "angular"
+        }).pipe(writeStream);
+        writeStream.on("close", () => {
+            logger.info(`Updated ${changelogFileName} file.`);
+            resolve(0);
+        });
+    });
 }
 
 export const releaseCommand: yargs.CommandModule = {
@@ -65,28 +85,31 @@ export const releaseCommand: yargs.CommandModule = {
 
         pkg.version = nextVersion;
         fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2), "utf-8");
-        logger.info("Updated package.json");
+        logger.info("Updated package.json.");
 
-        const filesToAdd = ["package.json", "CHANGELOG.md"];
+        const changelogFileName = "CHANGELOG.md";
 
-        const configPath = path.join(rootDir, "config.xml");
-        const hasConfigXmlFile = fs.existsSync(configPath);
+        updateChangelog(rootDir, changelogFileName).then(() => {
+            const filesToAdd = ["package.json", changelogFileName];
 
-        if (hasConfigXmlFile) {
-            updateConfigXml(configPath, nextVersion);
-            filesToAdd.push("config.xml");
-        }
+            const configPath = path.join(rootDir, "config.xml");
+            const hasConfigXmlFile = fs.existsSync(configPath);
 
-        return simpleGit(rootDir)
-            .add(filesToAdd)
-            .commit(nextVersion)
-            .addTag(nextVersion, (error) => {
-                if (error) {
-                    process.exit(1);
-                } else {
-                    process.exit(0);
-                }
-            });
+            if (hasConfigXmlFile) {
+                updateConfigXml(configPath, nextVersion);
+                filesToAdd.push("config.xml");
+            }
 
+            return simpleGit(rootDir)
+                .add(filesToAdd)
+                .commit(nextVersion)
+                .addTag(nextVersion, (error) => {
+                    if (error) {
+                        process.exit(1);
+                    } else {
+                        process.exit(0);
+                    }
+                });
+        });
     }
 };
