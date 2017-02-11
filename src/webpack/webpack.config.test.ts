@@ -2,13 +2,14 @@ import * as webpack from "webpack";
 import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
 import { SlimConfig } from "../config/slim-typings/slim-config";
+import { argv } from "yargs";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
 
-export function getTestConfigPartial(config: SlimConfig): webpack.Configuration {
-    return {
-        devtool: "inline-source-map",
+export function getTestConfigPartial(config: SlimConfig) {
+    let conf = {
+        devtool: argv["ci"] ? "eval" : "inline-source-map",
         stats: "minimal",
         module: {
             rules: [
@@ -17,6 +18,9 @@ export function getTestConfigPartial(config: SlimConfig): webpack.Configuration 
                     enforce: "pre",
                     use: [
                         "source-map-loader"
+                    ],
+                    exclude: [
+                        "node_modules"
                     ]
                 },
                 {
@@ -62,16 +66,22 @@ export function getTestConfigPartial(config: SlimConfig): webpack.Configuration 
             ]
         },
         plugins: [
-            new DllReferencePlugin({
-                context: ".",
-                manifest: require(path.join(config.dllDir, "polyfills.dll.json"))
-            }),
-            new DllReferencePlugin({
-                context: ".",
-                manifest: require(path.join(config.dllDir, "vendors.dll.json"))
-            }),
             new NamedModulesPlugin(),
             new CheckerPlugin()
         ]
     };
+
+    if (!argv["ci"]) {
+        conf.plugins.push(new DllReferencePlugin({
+            context: ".",
+            manifest: require(path.join(config.dllDir, "polyfills.dll.json"))
+        }),
+            new DllReferencePlugin({
+                context: ".",
+                manifest: require(path.join(config.dllDir, "vendors.dll.json"))
+            })
+        );
+    }
+
+    return conf;
 }

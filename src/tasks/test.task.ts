@@ -17,7 +17,7 @@ module.exports = function (env: Environment, config: SlimConfig, watch: boolean,
         const testSetupPattern = path.resolve(__dirname, "..", "config", "test-bundle.js");
 
         const commonConfig = getCommonConfigPartial(indexPath, env, config, true, false);
-        const testConfig = getTestConfigPartial(config);
+        const testConfig: any = getTestConfigPartial(config);
         const webpackConfig = webpackMerge(commonConfig, testConfig);
         delete webpackConfig.entry;
         const karmaConfig = getKarmaConfig(testSetupPattern, vendorsPattern, polyfillsPattern, port, watch, coverage, config.coverageDir, webpackConfig, browsers, typeof xmlReport === "string" ? path.join(config.rootDir, xmlReport) : null);
