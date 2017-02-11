@@ -30,8 +30,8 @@ export function getAvailablePort(): Promise<number> {
     });
 }
 
-export function openBrowser(host: string, port: number, baseHref: string) {
-    opn(`http://${host}:${port}${baseHref}`);
+export function openBrowser(host: string, port: number, baseHref: string = "/") {
+    return opn(`http://${host}:${port}${baseHref}`);
 }
 
 export function getEnvironment(rootDir: string): Environment {
