@@ -2,14 +2,20 @@ import * as webpack from "webpack";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import { AotPlugin } from "@ngtools/webpack";
+import SuppressChunksPlugin from "suppress-chunks-webpack-plugin";
 import { SlimConfig } from "../config/slim-typings/slim-config";
+import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
 
 export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: boolean, indexPath: string): webpack.Configuration {
     let plugins = [
         new HtmlWebpackPlugin({
             template: indexPath
         }),
-        new CopyWebpackPlugin(config.assets.entries)
+        new CopyWebpackPlugin(config.assets.entries),
+        new SuppressChunksPlugin([
+            { name: "styles", match: /\.js/ }
+        ]),
+        new RemoveScriptsPlugin(["styles.js"])
     ];
     let module = {
         rules: []
