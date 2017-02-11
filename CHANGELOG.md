@@ -1,3 +1,29 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/INSIDEM2M/slim/compare/0.4.1...v0.5.0) (2017-02-11)
+
+
+### Bug Fixes
+
+* **build:** remove empty styles.js file from output ([ff85b92](https://github.com/INSIDEM2M/slim/commit/ff85b92))
+* **cli-helpers:** add default value for baseHref ([ecab536](https://github.com/INSIDEM2M/slim/commit/ecab536))
+* **package:** update compodoc to version 0.0.40 ([62647c2](https://github.com/INSIDEM2M/slim/commit/62647c2))
+* **package:** update compodoc to version 0.0.41 ([2912868](https://github.com/INSIDEM2M/slim/commit/2912868))
+* **package:** update istanbul-instrumenter-loader to version 2.0.0 ([#143](https://github.com/INSIDEM2M/slim/issues/143)) ([ff91132](https://github.com/INSIDEM2M/slim/commit/ff91132))
+* **package:** update sass-loader to version 5.0.1 ([9a820ef](https://github.com/INSIDEM2M/slim/commit/9a820ef))
+* **webpack:** remove unneeded loaders ([e5db700](https://github.com/INSIDEM2M/slim/commit/e5db700))
+
+
+### Features
+
+* enable aot flag also for the dev command ([8a2978d](https://github.com/INSIDEM2M/slim/commit/8a2978d))
+* **ci:** add ci option ([cb95c80](https://github.com/INSIDEM2M/slim/commit/cb95c80))
+* **release:** update changelog during release ([08b44f8](https://github.com/INSIDEM2M/slim/commit/08b44f8))
+* **test:** add launcher for IE ([003f305](https://github.com/INSIDEM2M/slim/commit/003f305))
+* **test:** automatically detect browsers in ci environment ([ac4708a](https://github.com/INSIDEM2M/slim/commit/ac4708a))
+* **test:** remove need for test-bundle.js in every project ([3db60a8](https://github.com/INSIDEM2M/slim/commit/3db60a8))
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://github.com/INSIDEM2M/slim/compare/0.4.0...v0.4.1) (2017-02-08)
 
