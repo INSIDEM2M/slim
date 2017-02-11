@@ -28,7 +28,7 @@ function createWebpackDevConfig(env: Environment, config: SlimConfig, port: numb
     const commonConfig = getCommonConfigPartial(indexPath, env, config, false, aot);
     const devConfig = getDevConfigPartial(config, indexPath, aot, port);
     const webpackConfig = webpackMerge.smart(commonConfig, devConfig);
-    logger.trace("Created webpack development config.", prettyPrintConfig(webpackConfig));
+    logger.debug("Created webpack development config.", prettyPrintConfig(webpackConfig));
     return webpackConfig;
 }
 

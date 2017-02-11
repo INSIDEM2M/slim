@@ -38,7 +38,7 @@ export const testCommand: yargs.CommandModule = {
             timer.start("Running the unit tests");
         }
         return dllTask(environmentVariables, slimConfig, options["update-dlls"])
-            .then(() => testTask(environmentVariables, slimConfig, options.watch, options.coverage, browsers, options["xml-report"]))
+            .then(() => testTask(environmentVariables, slimConfig, options.watch, options.ci ? true : options.coverage, browsers, options.ci ? "test-results.xml" : options["xml-report"]))
             .then((exitCode: number) => process.exit(exitCode));
     }
 };

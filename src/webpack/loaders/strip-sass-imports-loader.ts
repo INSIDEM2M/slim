@@ -1,4 +1,5 @@
 import * as loaderUtils from "loader-utils";
+import { logger } from "../../utils";
 
 export interface StripSassImportsLoaderQuery {
     importsIgnoredDuringTesting: string[];
@@ -16,7 +17,10 @@ module.exports = function (content: Buffer) {
             let sassContent = content.toString();
             for (let ignoredImport of query.importsIgnoredDuringTesting) {
                 const regex = new RegExp(`@import\\s['|"].*${ignoredImport}.*['|"];`);
-                sassContent = sassContent.replace(regex, "");
+                if (regex.test(sassContent)) {
+                    sassContent = sassContent.replace(regex, "");
+                    logger.debug(`[strip-sass-imports-loader] Ignored import of ${ignoredImport}.`);
+                }
             }
             return sassContent;
         }

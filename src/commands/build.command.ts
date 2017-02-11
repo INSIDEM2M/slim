@@ -3,7 +3,7 @@ import { getSlimConfig, getEnvironment } from "../cli-helpers";
 
 export const buildCommand: yargs.CommandModule = {
     command: "build",
-    describe: "Bundle the application using webpack.",
+    describe: "Bundle the application using webpack and put the result in the targetDir (default: www) of the project.",
     builder: {
         "minify": {
             alias: "m",

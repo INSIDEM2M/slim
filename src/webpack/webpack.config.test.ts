@@ -21,7 +21,6 @@ export function getTestConfigPartial(config: SlimConfig): webpack.Configuration 
                 },
                 {
                     test: /\.(js|ts)$/, loader: "istanbul-instrumenter-loader",
-                    enforce: "post",
                     include: config.sourceDir,
                     exclude: [
                         /\.(e2e|spec)\.ts$/,

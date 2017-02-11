@@ -1,3 +1,4 @@
+import { logger } from "../../utils";
 /**
  * Plugin to remove script tags with specific `src` attributes
  * from the processed html files.
@@ -17,7 +18,10 @@ export class RemoveScriptsPlugin {
             compilation.plugin("html-webpack-plugin-before-html-processing", (htmlPluginData, callback) => {
                 for (let script of this.scripts) {
                     const regex = new RegExp("<script.+src=\"" + script + "\".*?<\/script>");
-                    htmlPluginData.html = htmlPluginData.html.replace(regex, "");
+                    if (regex.test(htmlPluginData.html)) {
+                        htmlPluginData.html = htmlPluginData.html.replace(regex, "");
+                        logger.debug(`Removed ${script} from index.html.`);
+                    }
                 }
                 callback(null, htmlPluginData);
             });
@@ -29,6 +33,7 @@ export class RemoveScriptsPlugin {
                             const regex = new RegExp(script);
                             if (asset.attributes && typeof asset.attributes.src === "string") {
                                 if (regex.test(asset.attributes.src)) {
+                                    logger.debug(`Removed ${script} from index.html.`);
                                     return false;
                                 }
                             }
