@@ -4,6 +4,7 @@ import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import SuppressChunksPlugin from "suppress-chunks-webpack-plugin";
 import { SlimConfig } from "../config/slim-typings/slim-config";
 import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
+import { argv } from "yargs";
 
 export function getBuildConfigPartial(config: SlimConfig, minify: boolean, indexPath: string): webpack.Configuration {
     let plugins = [
@@ -27,6 +28,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
     }
     let conf = {
         bail: true,
+        stats: argv["ci"] ? "errors-only" : "minimal",
         plugins,
         output: {
             path: config.targetDir,

@@ -17,6 +17,7 @@ declare interface Options {
     patch?: boolean;
     minor?: boolean;
     major?: boolean;
+    ci: boolean;
     "skip-update"?: boolean;
     "skip-build"?: boolean;
     "xml-report"?: string;

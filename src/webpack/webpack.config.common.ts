@@ -3,6 +3,7 @@ import * as path from "path";
 import { SlimConfig } from "../config/slim-typings/slim-config";
 import * as ExtractTextPlugin from "extract-text-webpack-plugin";
 import { AotPlugin } from "@ngtools/webpack";
+import { argv } from "yargs";
 
 const ProgressPlugin = (webpack as any).ProgressPlugin;
 
@@ -143,7 +144,6 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             ]
         },
         plugins: [
-            new ProgressPlugin(),
             // Fixes https://github.com/webpack/webpack/issues/196
             new webpack.ContextReplacementPlugin(
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
@@ -153,6 +153,10 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             new ExtractTextPlugin("styles.css")
         ]
     };
+
+    if (!argv["ci"]) {
+        conf.plugins.push(new ProgressPlugin());
+    }
 
     if (aot) {
         conf.plugins.push(
