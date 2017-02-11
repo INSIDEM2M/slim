@@ -2,10 +2,11 @@ import * as webpack from "webpack";
 import * as path from "path";
 import { SlimConfig } from "../config/slim-typings/slim-config";
 import * as ExtractTextPlugin from "extract-text-webpack-plugin";
+import { AotPlugin } from "@ngtools/webpack";
 
 const ProgressPlugin = (webpack as any).ProgressPlugin;
 
-export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig, stripSassImports: boolean = false) {
+export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig, stripSassImports: boolean = false, aot: boolean) {
     let conf: any = {
         resolve: {
             extensions: [".ts", ".js", ".json"],
@@ -152,6 +153,41 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             new ExtractTextPlugin("styles.css")
         ]
     };
+
+    if (aot) {
+        conf.plugins.push(
+            new AotPlugin({
+                tsConfigPath: config.angular.aotTsConfig,
+                entryModule: config.angular.appModule,
+                typeChecking: config.typescript.typecheck
+            })
+        );
+        conf.module.rules.push(
+            {
+                test: /\.ts$/,
+                loader: "@ngtools/webpack",
+                exclude: [/\.(spec|e2e|d)\.ts$/]
+            }
+        );
+    } else {
+        conf.module.rules.push(
+            {
+                test: /\.ts$/,
+                use: [
+                    {
+                        loader: "awesome-typescript-loader",
+                        options: {
+                            transpileOnly: !config.typescript.typecheck,
+                            useTranspileModule: !config.typescript.typecheck
+                        }
+                    },
+                    "angular2-template-loader?keepUrl=true",
+                    "angular-router-loader"
+                ],
+                exclude: [/\.(spec|e2e|d)\.ts$/]
+            }
+        );
+    }
 
     if (Array.isArray(config.sass.globalStyles) && config.sass.globalStyles.length > 0) {
         conf.entry = {

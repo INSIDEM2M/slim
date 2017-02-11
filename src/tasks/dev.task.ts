@@ -12,9 +12,9 @@ import * as chalk from "chalk";
 import * as readline from "readline";
 import { SlimConfig } from "../config/slim-typings/slim-config";
 
-module.exports = function (env: Environment, config: SlimConfig, open: boolean) {
+module.exports = function (env: Environment, config: SlimConfig, open: boolean, aot: boolean) {
     return getAvailablePort().then(port => {
-        const webpackConfig = createWebpackDevConfig(env, config, port);
+        const webpackConfig = createWebpackDevConfig(env, config, port, aot);
         const compiler = webpack(webpackConfig);
         logger.info(`Started webpack development server at port ${port}.`);
         logger.info("Go to " + chalk.underline("http://localhost:" + port) + " to view the application.");
@@ -23,11 +23,11 @@ module.exports = function (env: Environment, config: SlimConfig, open: boolean) 
     });
 };
 
-function createWebpackDevConfig(env: Environment, config: SlimConfig, port: number): webpack.Configuration {
+function createWebpackDevConfig(env: Environment, config: SlimConfig, port: number, aot: boolean): webpack.Configuration {
     const indexPath = path.join(config.sourceDir, "index.html");
-    const commonConfig = getCommonConfigPartial(indexPath, env, config);
-    const devConfig = getDevConfigPartial(config, indexPath, port);
-    const webpackConfig = webpackMerge(commonConfig, devConfig);
+    const commonConfig = getCommonConfigPartial(indexPath, env, config, false, aot);
+    const devConfig = getDevConfigPartial(config, indexPath, aot, port);
+    const webpackConfig = webpackMerge.smart(commonConfig, devConfig);
     logger.trace("Created webpack development config.", prettyPrintConfig(webpackConfig));
     return webpackConfig;
 }

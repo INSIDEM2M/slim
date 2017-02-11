@@ -10,7 +10,7 @@ import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
 
-export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?: number): webpack.Configuration {
+export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: boolean, port?: number): webpack.Configuration {
     const conf: any = {
         output: {
             path: config.targetDir,
@@ -19,7 +19,6 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?
         entry: {
             app: [
                 `webpack-dev-server/client?http://localhost:${port}/`,
-                "webpack/hot/only-dev-server",
                 config.typescript.entry
             ]
         },
@@ -38,35 +37,11 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?
             watchOptions: {
                 aggregateTimeout: 300
             },
-            hot: true,
+            hot: !aot,
             clientLogLevel: "warning"
         },
         module: {
-            rules: [
-                {
-                    test: /\.ts$/,
-                    use: [
-                        {
-                            loader: "@angularclass/hmr-loader",
-                            query: {
-                                pretty: true,
-                                prod: false
-                            }
-                        },
-                        {
-                            loader: "awesome-typescript-loader",
-                            options: {
-                                useTranspileModule: !config.typescript.typecheck,
-                                transpileOnly: !config.typescript.typecheck,
-                                useCache: true
-                            }
-                        },
-                        "angular2-template-loader?keepUrl=true",
-                        "angular-router-loader"
-                    ],
-                    exclude: [/\.(spec|e2e|d)\.ts$/]
-                }
-            ]
+            rules: []
         },
         plugins: [
             new HtmlWebpackPlugin({
@@ -80,7 +55,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?
                 context: ".",
                 manifest: require(path.join(config.dllDir, "vendors.dll.json"))
             }),
-            new DllTagPlugin(["vendors", "polyfills"]),
+            new DllTagPlugin(["polyfills", "vendors"]),
             new CheckerPlugin(),
             new webpack.HotModuleReplacementPlugin(),
             new CopyWebpackPlugin([
@@ -94,5 +69,33 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, port?
             new RemoveScriptsPlugin(config.webpack.ignoreScripts)
         ]
     };
+
+    if (!aot) {
+        conf.entry.app.unshift("webpack/hot/only-dev-server");
+        conf.module.rules.push({
+            test: /\.ts$/,
+            use: [
+                {
+                    loader: "@angularclass/hmr-loader",
+                    query: {
+                        pretty: true,
+                        prod: false
+                    }
+                },
+                {
+                    loader: "awesome-typescript-loader",
+                    options: {
+                        useTranspileModule: !config.typescript.typecheck,
+                        transpileOnly: !config.typescript.typecheck,
+                        useCache: true
+                    }
+                },
+                "angular2-template-loader?keepUrl=true",
+                "angular-router-loader"
+            ],
+            exclude: [/\.(spec|e2e|d)\.ts$/]
+        });
+    }
+
     return conf;
 }

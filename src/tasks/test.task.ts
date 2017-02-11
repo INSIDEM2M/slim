@@ -16,7 +16,7 @@ module.exports = function (env: Environment, config: SlimConfig, watch: boolean,
         const vendorsPattern = path.join(config.dllDir, "vendors.dll.js");
         const testSetupPattern = path.resolve(__dirname, "..", "config", "test-bundle.js");
 
-        const commonConfig = getCommonConfigPartial(indexPath, env, config, true);
+        const commonConfig = getCommonConfigPartial(indexPath, env, config, true, false);
         const testConfig = getTestConfigPartial(config);
         const webpackConfig = webpackMerge(commonConfig, testConfig);
         delete webpackConfig.entry;

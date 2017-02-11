@@ -14,6 +14,10 @@ export const devCommand: yargs.CommandModule = {
             alias: "u",
             type: "boolean",
             description: "Create dynamically linked libraries for vendors (@angular/core, etc.) and polyfills. This has to be run after the dependencies have been updated."
+        },
+        "aot": {
+            type: "boolean",
+            description: "Use the Angular AOT compiler."
         }
     },
     handler: (options: Options) => {
@@ -22,6 +26,6 @@ export const devCommand: yargs.CommandModule = {
         const rootDir = process.cwd();
         const slimConfig = getSlimConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
-        return dllTask(environmentVariables, slimConfig, options["update-dlls"]).then(() => devTask(environmentVariables, slimConfig, options.open));
+        return dllTask(environmentVariables, slimConfig, options["update-dlls"]).then(() => devTask(environmentVariables, slimConfig, options.open, options.aot));
     }
 };

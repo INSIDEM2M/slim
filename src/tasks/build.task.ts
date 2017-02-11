@@ -12,8 +12,8 @@ module.exports = function (env: Environment, config: SlimConfig, minify: boolean
     rimraf.sync(config.targetDir);
     logger.debug("Deleted " + config.targetDir);
     const indexPath = path.join(config.sourceDir, "index.html");
-    const commonConfig = getCommonConfigPartial(indexPath, env, config);
-    const buildConfig = getBuildConfigPartial(config, minify, aot, indexPath);
+    const commonConfig = getCommonConfigPartial(indexPath, env, config, false, aot);
+    const buildConfig = getBuildConfigPartial(config, minify, indexPath);
     const webpackConfig = webpackMerge(commonConfig, buildConfig);
     logger.info(`Building ${minify ? "minified " : ""}application${aot ? " using the Angular AOT compiler" : ""}...`);
     return runBuild(webpackConfig);

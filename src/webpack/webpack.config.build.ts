@@ -1,12 +1,11 @@
 import * as webpack from "webpack";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
-import { AotPlugin } from "@ngtools/webpack";
 import SuppressChunksPlugin from "suppress-chunks-webpack-plugin";
 import { SlimConfig } from "../config/slim-typings/slim-config";
 import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
 
-export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: boolean, indexPath: string): webpack.Configuration {
+export function getBuildConfigPartial(config: SlimConfig, minify: boolean, indexPath: string): webpack.Configuration {
     let plugins = [
         new HtmlWebpackPlugin({
             template: indexPath
@@ -17,9 +16,6 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
         ]),
         new RemoveScriptsPlugin(["styles.js"])
     ];
-    let module = {
-        rules: []
-    };
     if (minify) {
         plugins.push(new webpack.optimize.UglifyJsPlugin((<any>{
             beautify: false,
@@ -29,46 +25,9 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, aot: 
             sourceMap: true
         })));
     }
-    if (aot) {
-        plugins.push(
-            new AotPlugin({
-                tsConfigPath: config.angular.aotTsConfig,
-                entryModule: config.angular.appModule,
-                typeChecking: config.typescript.typecheck
-            })
-        );
-        module.rules.push(
-            {
-                test: /\.ts$/,
-                loaders: [
-                    "@ngtools/webpack"
-                ],
-                exclude: [/\.(spec|e2e|d)\.ts$/]
-            }
-        );
-    } else {
-        module.rules.push(
-            {
-                test: /\.ts$/,
-                loaders: [
-                    {
-                        loader: "awesome-typescript-loader",
-                        options: {
-                            transpileOnly: !config.typescript.typecheck,
-                            useTranspileModule: !config.typescript.typecheck
-                        }
-                    },
-                    "angular2-template-loader?keepUrl=true",
-                    "angular-router-loader"
-                ],
-                exclude: [/\.(spec|e2e|d)\.ts$/]
-            }
-        );
-    }
     let conf = {
         bail: true,
         plugins,
-        module,
         output: {
             path: config.targetDir,
             filename: "[name].js"

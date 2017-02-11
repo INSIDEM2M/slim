@@ -31,7 +31,7 @@ module.exports = function (env: Environment, config: SlimConfig, forceUpdate: bo
 function updateDlls(env: Environment, config: SlimConfig, dllDependencies: string[], pkg: any) {
     logger.info("Updating DLL cache...");
     const indexPath = path.join(config.sourceDir, "index.html");
-    const commonConfig = getCommonConfigPartial(indexPath, env, config);
+    const commonConfig = getCommonConfigPartial(indexPath, env, config, false, false);
     const buildConfig = getDllConfigPartial(path.join(config.dllDir));
     const webpackConfig = (webpackMerge as any).strategy({
         "entry": "replace"
