@@ -35,7 +35,6 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
             type: "in-memory"
         },
         remapCoverageReporter: {
-            "text-summary": null,
             json: path.join(coverageDir, "coverage.json"),
             html: path.join(coverageDir, "html")
         },
@@ -49,14 +48,23 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
         port: port,
         colors: true,
         autoWatch: watch,
-        browsers: browsers,
-        singleRun: !watch
+        browsers: argv["ci"] ? ["karma-detect-browsers"] : browsers,
+        singleRun: !watch,
+        mochaReporter: {
+            output: "autowatch"
+        },
+        detectBrowsers: {
+            usePhantomJS: false
+        }
     };
     config.preprocessors[testFilePattern] = [
         "coverage",
         "webpack",
         "sourcemap"
     ];
+    if (argv["ci"]) {
+        config.frameworks.unshift("detectBrowsers");
+    }
     if (xmlReport) {
         config.reporters.push("junit");
     }
