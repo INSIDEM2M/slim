@@ -44,11 +44,15 @@ function updateChangelog(rootDir, changelogFileName) {
         });
     }
     return new Promise((resolve) => {
-        const writeStream = fs.createWriteStream(changelogPath, { encoding: "utf-8", autoClose: true });
+        let changelogEntry = "";
         conventionalChangelog({
             preset: "angular"
-        }).pipe(writeStream);
-        writeStream.on("close", () => {
+        }).on("data", (data) => {
+            changelogEntry += data.toString();
+        }).on("end", () => {
+            const existingChangelog = fs.readFileSync(changelogPath);
+            const changelog = changelogEntry + existingChangelog;
+            fs.writeFileSync(changelogPath, changelog, { encoding: "utf-8" });
             logger.info(`Updated ${changelogFileName} file.`);
             resolve(0);
         });
