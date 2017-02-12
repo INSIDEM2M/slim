@@ -19,14 +19,6 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
         },
         files: [
             {
-                pattern: polyfillsPattern,
-                watched: false
-            },
-            {
-                pattern: vendorsPattern,
-                watched: false
-            },
-            {
                 pattern: testFilePattern,
                 watched: false,
             }
@@ -64,6 +56,14 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
     ];
     if (argv["ci"]) {
         config.frameworks.unshift("detectBrowsers");
+    } else {
+        config.files.unshift({
+            pattern: polyfillsPattern,
+            watched: false
+        }, {
+                pattern: vendorsPattern,
+                watched: false
+            });
     }
     if (xmlReport) {
         config.reporters.push("junit");
