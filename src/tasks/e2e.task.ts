@@ -45,7 +45,7 @@ function runProtractor(port: number, specs: string) {
     return new Promise((resolve) => {
         const configPath = path.resolve("/", path.join(__dirname, "..", "config", "protractor.conf.js"));
         logger.debug(`Running the following command: protractor ${configPath} --specs ${specs}`);
-        const protractorProcess = spawn(getProtractorBinaryPath("protractor"), [configPath, "--specs", specs], { stdio: "inherit" });
+        const protractorProcess = spawn(getProtractorBinaryPath("protractor"), [configPath, "--specs", specs, "--baseUrl", `http://localhost:${port}`], { stdio: "inherit" });
         protractorProcess.on("close", (exitCode) => {
             resolve(exitCode);
         });

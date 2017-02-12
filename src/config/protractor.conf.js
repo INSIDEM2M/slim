@@ -1,8 +1,3 @@
-require("ts-node").register({
-    fast: true,
-    disableWarnings: true
-});
-
 var SpecReporter = require("jasmine-spec-reporter").SpecReporter;
 
 exports.config = {
@@ -11,14 +6,22 @@ exports.config = {
 
     framework: "jasmine",
 
+    allScriptsTimeout: 11000,
+
     jasmineNodeOpts: {
         showTiming: true,
         showColors: true,
         isVerbose: false,
+        defaultTimeoutInterval: 30000,
         includeStackTrace: false
     },
 
     onPrepare: () => {
+        require("ts-node").register({
+            fast: true,
+            disableWarnings: true
+        });
+
         jasmine.getEnv().addReporter(new SpecReporter({
             displayStacktrace: true
         }));
@@ -32,5 +35,6 @@ exports.config = {
             args: ["--no-sandbox"]
         }
     },
-    directConnect: true
+    directConnect: true,
+    useAllAngular2AppRoots: true
 };
