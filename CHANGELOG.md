@@ -1,3 +1,14 @@
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/INSIDEM2M/slim/compare/0.5.0...v0.5.1) (2017-02-12)
+
+
+### Bug Fixes
+
+* **release:** append changelog ([cf409a6](https://github.com/INSIDEM2M/slim/commit/cf409a6))
+* **test:** some fixes nessecary for CI on linux ([7362d81](https://github.com/INSIDEM2M/slim/commit/7362d81))
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/INSIDEM2M/slim/compare/0.4.1...v0.5.0) (2017-02-11)
 
