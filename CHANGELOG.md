@@ -1,3 +1,13 @@
+<a name="0.5.5"></a>
+## [0.5.5](https://github.com/INSIDEM2M/slim/compare/0.5.4...v0.5.5) (2017-02-15)
+
+
+### Bug Fixes
+
+* **cli-helpers:** use port below 65335 ([484cf21670b58654ba5a076f686da938a2bdc039](https://github.com/INSIDEM2M/slim/commit/484cf21670b58654ba5a076f686da938a2bdc039))
+
+
+
 <a name="0.5.4"></a>
 ## [0.5.4](https://github.com/INSIDEM2M/slim/compare/0.5.3...v0.5.4) (2017-02-15)
 
