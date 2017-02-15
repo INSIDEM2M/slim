@@ -1,3 +1,13 @@
+<a name="0.5.4"></a>
+## [0.5.4](https://github.com/INSIDEM2M/slim/compare/0.5.3...v0.5.4) (2017-02-15)
+
+
+### Bug Fixes
+
+* **utils:** use random port in ci environment ([69edb5d6bce1517499134c06e1f97a4c4a469705](https://github.com/INSIDEM2M/slim/commit/69edb5d6bce1517499134c06e1f97a4c4a469705))
+
+
+
 <a name="0.5.3"></a>
 ## [0.5.3](https://github.com/INSIDEM2M/slim/compare/0.5.2...v0.5.3) (2017-02-15)
 
