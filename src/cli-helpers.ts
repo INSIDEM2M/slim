@@ -25,7 +25,7 @@ export function getAvailablePort(): Promise<number> {
         return Promise.resolve(randomPort);
     } else {
         if (argv["ci"]) {
-            randomPort = 8000 + Math.round(Math.random() * 60000);
+            randomPort = 2048 + Math.round(Math.random() * 60000);
             return Promise.resolve(randomPort);
         } else {
             return portFinder.getPortPromise();
