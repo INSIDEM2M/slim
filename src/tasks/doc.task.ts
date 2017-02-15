@@ -2,10 +2,15 @@ import { spawn } from "child_process";
 import * as path from "path";
 import { logger } from "../utils";
 import { SlimConfig } from "../config/slim-typings/slim-config";
+import { argv } from "yargs";
 
 module.exports = function (env: Environment, config: SlimConfig) {
     logger.info("Creating documentation...");
-    const docProcess = spawn(getCompodocBinaryPath(), ["--tsconfig", "tsconfig.json", "--theme", "vagrant", "--hideGenerator", "--disableGraph", "--output", "docs"], {
+    let args = ["--tsconfig", "tsconfig.json", "--theme", "vagrant", "--hideGenerator", "--disableGraph", "--output", "docs"];
+    if (!argv["debug"]) {
+        args.push("--silent");
+    }
+    const docProcess = spawn(getCompodocBinaryPath(), args, {
         cwd: config.rootDir,
         stdio: "inherit"
     });
