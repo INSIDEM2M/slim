@@ -1,3 +1,19 @@
+<a name="0.5.3"></a>
+## [0.5.3](https://github.com/INSIDEM2M/slim/compare/0.5.2...v0.5.3) (2017-02-15)
+
+
+### Bug Fixes
+
+* only extract CSS for build command ([efc3ace85648a22c04a3d51f25f74d56fafadc62](https://github.com/INSIDEM2M/slim/commit/efc3ace85648a22c04a3d51f25f74d56fafadc62))
+
+
+### Features
+
+* check daily for update and notify user if one is available ([165e0c6b4e057bbe4e07fd9ebdf846c836dfc200](https://github.com/INSIDEM2M/slim/commit/165e0c6b4e057bbe4e07fd9ebdf846c836dfc200))
+* **test,e2e:** add more reporters ([22ecbf9713b07c3a7b339f3f9162af51b74e1408](https://github.com/INSIDEM2M/slim/commit/22ecbf9713b07c3a7b339f3f9162af51b74e1408))
+
+
+
 <a name="0.5.2"></a>
 ## [0.5.2](https://github.com/INSIDEM2M/slim/compare/0.5.1...v0.5.2) (2017-02-12)
 
