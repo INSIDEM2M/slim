@@ -4,7 +4,7 @@ import * as karma from "karma";
 
 import { argv } from "yargs";
 
-export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, polyfillsPattern: string, port: number, watch: boolean, coverage: boolean, coverageDir: string, webpackConfig: webpack.Configuration, browsers: string[], xmlReport: string): karma.ConfigOptions {
+export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, polyfillsPattern: string, port: number, watch: boolean, coverage: boolean, coverageDir: string, webpackConfig: webpack.Configuration, browsers: string[], xmlReport: string, stylePatterns: string[]): karma.ConfigOptions {
     const config: any = {
         basePath: "",
         frameworks: ["jasmine"],
@@ -68,6 +68,15 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
                 pattern: vendorsPattern,
                 watched: false
             });
+    }
+    if (Array.isArray(stylePatterns) && stylePatterns.length > 0) {
+        stylePatterns.forEach(pattern => {
+            config.files.push({
+                pattern: pattern,
+                watched: false
+            });
+            config.preprocessors[pattern] = ["webpack"];
+        });
     }
     if (xmlReport) {
         config.reporters.push("junit");

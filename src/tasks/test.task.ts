@@ -19,8 +19,7 @@ module.exports = function (env: Environment, config: SlimConfig, watch: boolean,
         const commonConfig = getCommonConfigPartial(indexPath, env, config, true, false);
         const testConfig: any = getTestConfigPartial(config);
         const webpackConfig = webpackMerge(commonConfig, testConfig);
-        delete webpackConfig.entry;
-        const karmaConfig = getKarmaConfig(testSetupPattern, vendorsPattern, polyfillsPattern, port, watch, coverage, config.coverageDir, webpackConfig, browsers, typeof xmlReport === "string" ? path.join(config.rootDir, xmlReport) : null);
+        const karmaConfig = getKarmaConfig(testSetupPattern, vendorsPattern, polyfillsPattern, port, watch, coverage, config.coverageDir, webpackConfig, browsers, typeof xmlReport === "string" ? path.join(config.rootDir, xmlReport) : null, config.sass.globalStyles);
         logger.info("Building test bundle...");
         return new Promise((resolve) => {
             const server = new karma.Server(karmaConfig, (exitCode) => {

@@ -51,6 +51,7 @@ export function getTestConfigPartial(config: SlimConfig) {
                     test: /\.scss$/,
                     exclude: /\.style\.scss$/,
                     use: [
+                        "style-loader",
                         {
                             loader: "css-loader",
                             options: {

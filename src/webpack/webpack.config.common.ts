@@ -129,7 +129,6 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 typeChecking: config.typescript.typecheck
             })
         );
-        console.log(config.angular.appModule);
         conf.module.rules.push(
             {
                 test: /\.ts$/,
