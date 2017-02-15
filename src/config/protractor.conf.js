@@ -6,7 +6,7 @@ var path = require("path");
 
 var reporter = new HtmlScreenshotReporter({
     dest: 'test-reports/e2e',
-    filename: 'e2e-report.html',
+    filename: 'index.html',
     cleanDestination: true,
     showQuickLinks: true
 });

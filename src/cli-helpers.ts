@@ -19,16 +19,18 @@ function getCurrentCommit(): string {
     }
 }
 
+let randomPort;
 export function getAvailablePort(): Promise<number> {
-    return new Promise((resolve, reject) => {
-        portFinder.getPort((error: any, port: number) => {
-            if (error !== null) {
-                return reject(error);
-            } else {
-                resolve(port);
-            }
-        });
-    });
+    if (randomPort) {
+        return Promise.resolve(randomPort);
+    } else {
+        if (argv["ci"]) {
+            randomPort = 8000 + Math.round(Math.random() * 60000);
+            return Promise.resolve(randomPort);
+        } else {
+            return portFinder.getPortPromise();
+        }
+    }
 }
 
 export function openBrowser(host: string, port: number, baseHref: string = "/") {
