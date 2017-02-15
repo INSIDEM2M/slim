@@ -10,8 +10,14 @@ import { newCommand } from "./commands/new.command";
 import * as chalk from "chalk";
 import * as path from "path";
 import { docCommand } from "./commands/doc.command";
+import * as fs from "fs";
+import * as os from "os";
+import { spawn } from "child_process";
+import { logger } from "./utils";
 
 export function main() {
+
+    const pkg = require(path.join(__dirname, "..", "package.json"));
 
     const rl = readline.createInterface({
         input: process.stdin,
@@ -22,10 +28,28 @@ export function main() {
         process.exit(0);
     });
 
+    const slimPath = path.join(os.homedir(), ".slim");
+    const metadataPath = path.join(slimPath, ".metadata.json");
+    let slimMetadata;
+
+    if (!fs.existsSync(slimPath)) {
+        fs.mkdirSync(slimPath);
+        slimMetadata = {};
+    } else {
+        if (fs.existsSync(metadataPath)) {
+            slimMetadata = require(metadataPath);
+        } else {
+            slimMetadata = {};
+        }
+    }
+
+    if (!slimMetadata.lastVersionUpdateCheck || new Date().getTime() - new Date(slimMetadata.lastVersionUpdateCheck).getTime() > 1000 * 60 * 60 * 24) {
+        checkForUpdate(pkg, metadataPath, slimMetadata);
+    }
 
     yargs
         .locale("en")
-        .version(require(path.join(__dirname, "..", "package.json")).version)
+        .version(pkg.version)
         .usage("Usage: $0 <command> [options]")
         .command(newCommand)
         .command(devCommand)
@@ -47,5 +71,28 @@ export function main() {
         .demand(1)
         .epilog(`Run ${chalk.bold("$0 <command> --help")} for more information on the specific command.`)
         .help().argv;
+}
 
+function checkForUpdate(pkg: any, metadataPath: string, slimMetadata: any) {
+    logger.debug("Checking for newer slim version...");
+    return getLatestSlimVersion(pkg).then(version => {
+        if (pkg.version !== version) {
+            console.log("\n");
+            logger.info("---------------- UPDATE AVAILABLE! ----------------");
+            logger.info(`There is a new version of slim available! Current version: ${pkg.version}. Latest version: ${version}.`);
+            logger.info(`Run ${chalk.bold("npm i -g slim-cli")} to update.`);
+            console.log("\n");
+        }
+        slimMetadata.lastVersionUpdateCheck = new Date();
+        fs.writeFileSync(metadataPath, JSON.stringify(slimMetadata, null, 4));
+    });
+}
+
+function getLatestSlimVersion(pkg: any): Promise<string> {
+    return new Promise(resolve => {
+        const npmCommand = spawn("npm", ["show", pkg.name, "version"]);
+        npmCommand.stdout.on("data", (version) => {
+            resolve(version.toString().trim());
+        });
+    });
 }

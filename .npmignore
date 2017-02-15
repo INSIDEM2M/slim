@@ -13,3 +13,4 @@ e2e
 spec
 src
 project-typings
+test-reports/
