@@ -1,7 +1,6 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import { SlimConfig } from "../config/slim-typings/slim-config";
-import * as ExtractTextPlugin from "extract-text-webpack-plugin";
 import { AotPlugin } from "@ngtools/webpack";
 import { argv } from "yargs";
 
@@ -51,44 +50,9 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                                 importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting,
                                 stripSassImports: stripSassImports
                             }
-                        }
+                        },
+                        "empty-sass-shim-loader"
                     ]
-                },
-                {
-                    test: /\.scss$/,
-                    exclude: /\.style\.scss$/,
-                    use: ExtractTextPlugin.extract({
-                        use: [
-                            {
-                                loader: "css-loader",
-                                options: {
-                                    importLoaders: 1,
-                                    localIdentName: "[name]"
-                                }
-                            },
-                            {
-                                loader: "postcss-loader",
-                                options: {
-                                    config: path.resolve(__dirname, "..", "config")
-                                }
-                            },
-                            {
-                                loader: "sass-loader",
-                                options: {
-                                    sourceMap: false,
-                                    includePaths: config.sass.includePaths,
-                                    outputStyle: config.sass.outputStyle
-                                }
-                            },
-                            {
-                                loader: "strip-sass-imports-loader",
-                                options: {
-                                    importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting,
-                                    stripSassImports: stripSassImports
-                                }
-                            }
-                        ]
-                    })
                 },
                 {
                     test: /\.js$/,
@@ -149,8 +113,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
                 "./src"
             ),
-            new webpack.DefinePlugin({ environment }),
-            new ExtractTextPlugin("styles.css")
+            new webpack.DefinePlugin({ environment })
         ]
     };
 
@@ -166,6 +129,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 typeChecking: config.typescript.typecheck
             })
         );
+        console.log(config.angular.appModule);
         conf.module.rules.push(
             {
                 test: /\.ts$/,
@@ -192,7 +156,6 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             }
         );
     }
-
     if (Array.isArray(config.sass.globalStyles) && config.sass.globalStyles.length > 0) {
         conf.entry = {
             styles: config.sass.globalStyles

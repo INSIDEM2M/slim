@@ -2,6 +2,7 @@ import * as yargs from "yargs";
 import * as chalk from "chalk";
 import { getSlimConfig, getEnvironment } from "../cli-helpers";
 import { timer } from "../utils";
+import * as path from "path";
 
 export const testCommand: yargs.CommandModule = {
     command: "test",
@@ -38,8 +39,13 @@ export const testCommand: yargs.CommandModule = {
             timer.start("Running the unit tests");
         }
         return (options.ci ? Promise.resolve(0) : dllTask(environmentVariables, slimConfig, options["update-dlls"]))
-            .then(() => testTask(environmentVariables, slimConfig, options.watch, options.coverage, browsers, options.ci ? "test-results.xml" : options["xml-report"]))
-            .then((exitCode: number) => process.exit(exitCode));
+            .then(() => testTask(environmentVariables, slimConfig, options.watch, options.coverage, browsers, options.ci ? path.join("test-reports", "unit-test-results.xml") : options["xml-report"]))
+            .then(code => {
+                process.exit(code);
+            })
+            .catch((code) => {
+                process.exit(code);
+            });
     }
 };
 

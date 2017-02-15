@@ -7,6 +7,7 @@ import { merge } from "lodash";
 import { SlimConfig, defaultSlimConfig } from "./config/slim-typings";
 import * as fs from "fs";
 import { argv } from "yargs";
+import * as webpack from "webpack";
 
 function getCurrentCommit(): string {
     if (fs.existsSync(path.join(process.cwd(), ".git"))) {
@@ -60,6 +61,17 @@ export function getSlimConfig(rootDir: string): SlimConfig {
     }
     logger.debug("slim.config.ts:\n" + JSON.stringify(config, null, 2));
     return normalizeConfig(config);
+}
+
+export function prettyPrintConfig(webpackConfig: webpack.Configuration): string {
+    const replacerFn = (key: string, value: any) => {
+        // Filter webpack.DllReferencePlugin manifest entries
+        if (value && value["options"] !== undefined && value["options"]["context"] !== undefined) {
+            return undefined;
+        }
+        return value;
+    };
+    return JSON.stringify(webpackConfig, replacerFn, 2);
 }
 
 function normalizeConfig(config: SlimConfig): SlimConfig {

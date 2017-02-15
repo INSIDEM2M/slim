@@ -6,7 +6,7 @@ import { Server } from "http";
 
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getDevConfigPartial } from "../webpack/webpack.config.dev";
-import { getAvailablePort, openBrowser } from "../cli-helpers";
+import { getAvailablePort, openBrowser, prettyPrintConfig } from "../cli-helpers";
 import { logger } from "../utils";
 import * as chalk from "chalk";
 import * as readline from "readline";
@@ -30,17 +30,6 @@ function createWebpackDevConfig(env: Environment, config: SlimConfig, port: numb
     const webpackConfig = webpackMerge.smart(commonConfig, devConfig);
     logger.debug("Created webpack development config.", prettyPrintConfig(webpackConfig));
     return webpackConfig;
-}
-
-function prettyPrintConfig(webpackConfig: webpack.Configuration): string {
-    const replacerFn = (key: string, value: any) => {
-        // Filter webpack.DllReferencePlugin manifest entries
-        if (value && value["options"] !== undefined && value["options"]["context"] !== undefined) {
-            return undefined;
-        }
-        return value;
-    };
-    return JSON.stringify(webpackConfig, replacerFn, 2);
 }
 
 function startServer(server: Server | any, port: number, open: boolean, baseHref: string) {

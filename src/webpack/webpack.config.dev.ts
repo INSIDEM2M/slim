@@ -41,7 +41,37 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
             clientLogLevel: "warning"
         },
         module: {
-            rules: []
+            rules: [
+                {
+                    test: /\.scss$/,
+                    exclude: /\.style\.scss$/,
+                    use: [
+                        "style-loader",
+                        {
+                            loader: "css-loader",
+                            options: {
+                                importLoaders: 1,
+                                localIdentName: "[name]"
+                            }
+                        },
+                        {
+                            loader: "postcss-loader",
+                            options: {
+                                config: path.resolve(__dirname, "..", "config")
+                            }
+                        },
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: false,
+                                includePaths: config.sass.includePaths,
+                                outputStyle: config.sass.outputStyle
+                            }
+                        },
+                        "empty-sass-shim-loader"
+                    ]
+                }
+            ]
         },
         plugins: [
             new HtmlWebpackPlugin({

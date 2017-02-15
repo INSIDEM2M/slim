@@ -29,8 +29,11 @@ export const e2eCommand: yargs.CommandModule = {
             .then(() => getAvailablePort())
             .then((port) => serveTask(environmentVariables, slimConfig, options.open, port, true))
             .then((port) => e2eTask(environmentVariables, slimConfig, port, options["skip-update"], options.specs))
-            .then((exitCode: number) => {
-                process.exit(exitCode);
+            .then(code => {
+                process.exit(code);
+            })
+            .catch((code) => {
+                process.exit(code);
             });
     }
 };

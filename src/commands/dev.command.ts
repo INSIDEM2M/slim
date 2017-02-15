@@ -26,6 +26,13 @@ export const devCommand: yargs.CommandModule = {
         const rootDir = process.cwd();
         const slimConfig = getSlimConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
-        return dllTask(environmentVariables, slimConfig, options["update-dlls"]).then(() => devTask(environmentVariables, slimConfig, options.open, options.aot));
+        return dllTask(environmentVariables, slimConfig, options["update-dlls"])
+            .then(() => devTask(environmentVariables, slimConfig, options.open, options.aot))
+            .then(code => {
+                process.exit(code);
+            })
+            .catch((code) => {
+                process.exit(code);
+            });
     }
 };

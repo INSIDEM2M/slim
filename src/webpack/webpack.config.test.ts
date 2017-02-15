@@ -48,6 +48,41 @@ export function getTestConfigPartial(config: SlimConfig) {
                     ]
                 },
                 {
+                    test: /\.scss$/,
+                    exclude: /\.style\.scss$/,
+                    use: [
+                        {
+                            loader: "css-loader",
+                            options: {
+                                importLoaders: 1,
+                                localIdentName: "[name]"
+                            }
+                        },
+                        {
+                            loader: "postcss-loader",
+                            options: {
+                                config: path.resolve(__dirname, "..", "config")
+                            }
+                        },
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: false,
+                                includePaths: config.sass.includePaths,
+                                outputStyle: config.sass.outputStyle
+                            }
+                        },
+                        {
+                            loader: "strip-sass-imports-loader",
+                            options: {
+                                importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting,
+                                stripSassImports: true
+                            }
+                        },
+                        "empty-sass-shim-loader"
+                    ]
+                },
+                {
                     test: /\.ts$/,
                     exclude: [/\.e2e\.ts$/],
                     use: [

@@ -32,8 +32,12 @@ export const buildCommand: yargs.CommandModule = {
         } else {
             exitCode = buildTask(environmentVariables, slimConfig, options.minify, options.aot);
         }
-        exitCode.then(code => {
-            process.exit(code);
-        });
+        exitCode
+            .then(code => {
+                process.exit(code);
+            })
+            .catch((code) => {
+                process.exit(code);
+            });
     }
 };

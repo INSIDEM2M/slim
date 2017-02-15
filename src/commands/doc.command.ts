@@ -9,6 +9,12 @@ export const docCommand: yargs.CommandModule = {
         const slimConfig = getSlimConfig(rootDir);
         const environmentVariables = getEnvironment(rootDir);
         const docTask = require("../tasks/doc.task");
-        return docTask(environmentVariables, slimConfig).then(code => process.exit(code));
+        return docTask(environmentVariables, slimConfig)
+            .then(code => {
+                process.exit(code);
+            })
+            .catch((code) => {
+                process.exit(code);
+            });
     }
 };
