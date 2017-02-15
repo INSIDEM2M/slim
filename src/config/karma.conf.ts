@@ -35,8 +35,12 @@ export function getKarmaConfig(testFilePattern: string, vendorsPattern: string, 
             outputFile: xmlReport,
         },
         reporters: [
-            "mocha"
+            "mocha",
+            "kjhtml"
         ],
+        client: {
+            clearContext: false
+        },
         port: port,
         colors: true,
         autoWatch: watch,

@@ -39,16 +39,22 @@ powerful template definition. This is for example needed to generate Redux Actio
 Our old workflow was based on [Slush](https://slushjs.github.io/) and the generator package was called `slush-im2m`. So all our commands had the form
 `slush im2m:<command> [options]`. And because it is easier to write one word than to write two, this was reduced to `slim`.
 
-## Development
+## Continuous Integration (CI)
 
-It is recommended to use [yarn](https://yarnpkg.com/) instead of `npm`, as it produces more
-stable builds and is much faster.
-Perform the following steps to use the version of `slim` that is currently in develop.
+Slim can be used in CI systems. To run Unit-Tests and E2E-Tests on Debian on a Server, perform the following steps:
 
 ```bash
-git clone https://github.com/INSIDEM2M/slim
-cd slim
-yarn link
+echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee -a /etc/apt/sources.list
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+apt-get update
+apt-get install libxpm4 libxrender1 libgtk2.0-0 libnss3 libgconf-2-4
+apt-get install google-chrome-stable
+apt-get install xvfb gtk2-engines-pixbuf
+apt-get install xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
+apt-get install imagemagick x11-apps
+Xvfb -ac :99 -screen 0 1280x1024x16 &
+disown $1
+export DISPLAY=:99
 ```
 
 ## License

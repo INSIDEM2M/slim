@@ -1,4 +1,15 @@
 var SpecReporter = require("jasmine-spec-reporter").SpecReporter;
+var jasmineReporters = require("jasmine-reporters");
+var HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+var fs = require("fs");
+var path = require("path");
+
+var reporter = new HtmlScreenshotReporter({
+    dest: 'test-reports/e2e',
+    filename: 'e2e-report.html',
+    cleanDestination: true,
+    showQuickLinks: true
+});
 
 exports.config = {
 
@@ -16,6 +27,12 @@ exports.config = {
         includeStackTrace: false
     },
 
+    beforeLaunch: function () {
+        return new Promise(function (resolve) {
+            reporter.beforeLaunch(resolve);
+        });
+    },
+
     onPrepare: () => {
         require("ts-node").register({
             fast: true,
@@ -26,7 +43,21 @@ exports.config = {
             displayStacktrace: true
         }));
 
+        jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
+            consolidateAll: true,
+            savePath: path.join("test-reports", "e2e"),
+            filePrefix: "e2e-test-results"
+        }));
+
+        jasmine.getEnv().addReporter(reporter);
+
         browser.ignoreSynchronization = false;
+    },
+
+    afterLaunch: function (exitCode) {
+        return new Promise(function (resolve) {
+            reporter.afterLaunch(resolve.bind(this, exitCode));
+        });
     },
 
     capabilities: {
