@@ -18,21 +18,40 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
             { name: "styles", match: /\.js/ }
         ]),
         new RemoveScriptsPlugin(["styles.js"]),
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin("styles.css"),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor",
+            chunks: ["app"],
+            minChunks: (module: any) => module.resource && module.resource.startsWith(path.join(config.rootDir, "node_modules"))
+        })
     ];
     if (minify) {
         plugins.push(new webpack.optimize.UglifyJsPlugin((<any>{
             beautify: false,
             comments: false,
             mangle: { screw_ie8: true },
-            compress: { screw_ie8: true, warnings: false },
+            compress: {
+                screw_ie8: true,
+                warnings: argv["debug"],
+                sequences: true,
+                dead_code: true,
+                conditionals: true,
+                comparisons: true,
+                drop_debugger: true,
+                evaluate: true,
+                loops: true,
+                booleans: true,
+                unused: true,
+                if_return: true,
+                join_vars: true
+            },
             sourceMap: true
         })));
     }
     let conf = {
         bail: true,
         stats: argv["ci"] ? "errors-only" : "minimal",
-        devtool: "eval",
+        devtool: "source-map",
         plugins,
         module: {
             rules: [

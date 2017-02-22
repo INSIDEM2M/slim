@@ -108,11 +108,6 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             ]
         },
         plugins: [
-            // Fixes https://github.com/webpack/webpack/issues/196
-            new webpack.ContextReplacementPlugin(
-                /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-                "./src"
-            ),
             new webpack.DefinePlugin({ environment })
         ]
     };
