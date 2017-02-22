@@ -14,6 +14,7 @@ import * as fs from "fs";
 import * as os from "os";
 import { spawn } from "child_process";
 import { logger } from "./utils";
+import { argv } from "yargs";
 
 export function main() {
 
@@ -28,23 +29,25 @@ export function main() {
         process.exit(0);
     });
 
-    const slimPath = path.join(os.homedir(), ".slim");
-    const metadataPath = path.join(slimPath, ".metadata.json");
-    let slimMetadata;
+    if (!argv["ci"]) {
+        const slimPath = path.join(os.homedir(), ".slim");
+        const metadataPath = path.join(slimPath, ".metadata.json");
+        let slimMetadata;
 
-    if (!fs.existsSync(slimPath)) {
-        fs.mkdirSync(slimPath);
-        slimMetadata = {};
-    } else {
-        if (fs.existsSync(metadataPath)) {
-            slimMetadata = require(metadataPath);
-        } else {
+        if (!fs.existsSync(slimPath)) {
+            fs.mkdirSync(slimPath);
             slimMetadata = {};
+        } else {
+            if (fs.existsSync(metadataPath)) {
+                slimMetadata = require(metadataPath);
+            } else {
+                slimMetadata = {};
+            }
         }
-    }
 
-    if (!slimMetadata.lastVersionUpdateCheck || new Date().getTime() - new Date(slimMetadata.lastVersionUpdateCheck).getTime() > 1000 * 60 * 60 * 24) {
-        checkForUpdate(pkg, metadataPath, slimMetadata);
+        if (!slimMetadata.lastVersionUpdateCheck || new Date().getTime() - new Date(slimMetadata.lastVersionUpdateCheck).getTime() > 1000 * 60 * 60 * 24) {
+            checkForUpdate(pkg, metadataPath, slimMetadata);
+        }
     }
 
     yargs
