@@ -1,3 +1,13 @@
+<a name="0.5.7"></a>
+## [0.5.7](https://github.com/INSIDEM2M/slim/compare/0.5.6...v0.5.7) (2017-02-22)
+
+
+### Bug Fixes
+
+* **cli-helpers:** overwrite SlimConfig.sass.importIgnoredDuring ([fb2280246a05605ae4895be17506875d15d4fe10](https://github.com/INSIDEM2M/slim/commit/fb2280246a05605ae4895be17506875d15d4fe10))
+
+
+
 <a name="0.5.6"></a>
 ## [0.5.6](https://github.com/INSIDEM2M/slim/compare/v0.5.1...v0.5.6) (2017-02-22)
 
