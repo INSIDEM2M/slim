@@ -1,3 +1,13 @@
+<a name="0.5.8"></a>
+## [0.5.8](https://github.com/INSIDEM2M/slim/compare/0.5.7...v0.5.8) (2017-02-22)
+
+
+### Bug Fixes
+
+* **build:** fix angular lazy loading ([d42a27dae7d56d84755eb3ac5b46ea75582552d2](https://github.com/INSIDEM2M/slim/commit/d42a27dae7d56d84755eb3ac5b46ea75582552d2))
+
+
+
 <a name="0.5.7"></a>
 ## [0.5.7](https://github.com/INSIDEM2M/slim/compare/0.5.6...v0.5.7) (2017-02-22)
 
