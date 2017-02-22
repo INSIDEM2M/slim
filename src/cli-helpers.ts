@@ -56,8 +56,11 @@ export function getSlimConfig(rootDir: string): SlimConfig {
     let config = defaultSlimConfig;
     const slimConfigPath = path.join(rootDir, "slim.config.ts");
     if (fs.existsSync(slimConfigPath)) {
-        const projectSlimConfig = require(slimConfigPath);
+        const projectSlimConfig: SlimConfig = require(slimConfigPath);
         config = merge(config, projectSlimConfig);
+        if (Array.isArray(projectSlimConfig.sass.importsIgnoredDuringTesting)) {
+            config.sass.importsIgnoredDuringTesting = projectSlimConfig.sass.importsIgnoredDuringTesting;
+        }
     } else {
         logger.debug("Did not find a slim.config.ts file in the current directory.");
     }
