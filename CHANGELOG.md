@@ -1,3 +1,13 @@
+<a name="0.5.6"></a>
+## [0.5.6](https://github.com/INSIDEM2M/slim/compare/v0.5.1...v0.5.6) (2017-02-22)
+
+
+### Bug Fixes
+
+* **cli:** skip update check in CI environment ([cc4ef4a9f84a7023cdd437091d2a6f36e44cbc72](https://github.com/INSIDEM2M/slim/commit/cc4ef4a9f84a7023cdd437091d2a6f36e44cbc72))
+
+
+
 <a name="0.5.5"></a>
 ## [0.5.5](https://github.com/INSIDEM2M/slim/compare/0.5.4...v0.5.5) (2017-02-15)
 
