@@ -1,3 +1,13 @@
+<a name="0.5.9"></a>
+## [0.5.9](https://github.com/INSIDEM2M/slim/compare/0.5.8...v0.5.9) (2017-02-24)
+
+
+### Bug Fixes
+
+* **dev:** fix HMR for global styles ([8dce96cf96ee4198d3ad463d0232d908b4adf958](https://github.com/INSIDEM2M/slim/commit/8dce96cf96ee4198d3ad463d0232d908b4adf958))
+
+
+
 <a name="0.5.8"></a>
 ## [0.5.8](https://github.com/INSIDEM2M/slim/compare/0.5.7...v0.5.8) (2017-02-22)
 
