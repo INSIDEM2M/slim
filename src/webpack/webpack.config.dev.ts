@@ -38,7 +38,8 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
                 aggregateTimeout: 300
             },
             hot: !aot,
-            clientLogLevel: "warning"
+            clientLogLevel: "warning",
+            overlay: true
         },
         module: {
             rules: [
@@ -50,7 +51,6 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
                         {
                             loader: "css-loader",
                             options: {
-                                importLoaders: 1,
                                 localIdentName: "[name]"
                             }
                         },
@@ -101,7 +101,10 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
     };
 
     if (!aot) {
-        conf.entry.app.unshift("webpack/hot/only-dev-server");
+        conf.entry.app.unshift("webpack/hot/dev-server");
+        if (conf.entry.styles && config.sass.globalStyles.length > 0) {
+            conf.entry.styles = ["webpack/hot/dev-server"];
+        }
         conf.module.rules.push({
             test: /\.ts$/,
             use: [
@@ -126,6 +129,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
             exclude: [/\.(spec|e2e|d)\.ts$/]
         });
     }
+
 
     return conf;
 }

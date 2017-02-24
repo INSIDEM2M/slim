@@ -152,7 +152,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
     }
     if (Array.isArray(config.sass.globalStyles) && config.sass.globalStyles.length > 0) {
         conf.entry = {
-            styles: config.sass.globalStyles
+            app: config.sass.globalStyles
         };
     }
 

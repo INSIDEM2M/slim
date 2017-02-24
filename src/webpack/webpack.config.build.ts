@@ -48,7 +48,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
             sourceMap: true
         })));
     }
-    let conf = {
+    let conf: any = {
         bail: true,
         stats: argv["ci"] ? "errors-only" : "minimal",
         devtool: "source-map",
@@ -95,5 +95,8 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
             app: config.typescript.entry,
         },
     };
+    if (Array.isArray(config.sass.globalStyles) && config.sass.globalStyles.length > 0) {
+        conf.entry.styles = config.sass.globalStyles;
+    }
     return conf;
 }
