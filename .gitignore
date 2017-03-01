@@ -12,3 +12,4 @@ dist
 docs
 yarn.lock
 test-reports/
+.history

@@ -18,12 +18,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
             { name: "styles", match: /\.js/ }
         ]),
         new RemoveScriptsPlugin(["styles.js"]),
-        new ExtractTextPlugin("styles.css"),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "vendor",
-            chunks: ["app"],
-            minChunks: (module: any) => module.resource && module.resource.startsWith(path.join(config.rootDir, "node_modules"))
-        })
+        new ExtractTextPlugin("styles.css")
     ];
     if (minify) {
         plugins.push(new webpack.optimize.UglifyJsPlugin((<any>{
