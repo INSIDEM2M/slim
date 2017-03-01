@@ -1,3 +1,14 @@
+<a name="0.5.10"></a>
+## [0.5.10](https://github.com/INSIDEM2M/slim/compare/0.5.9...v0.5.10) (2017-03-01)
+
+
+### Bug Fixes
+
+* **build:** fix global styles not being included in the build ([46ce1c2f929f32d28d2cd62f9777a68bcdab0b14](https://github.com/INSIDEM2M/slim/commit/46ce1c2f929f32d28d2cd62f9777a68bcdab0b14))
+* **package:** update extract-text-webpack-plugin to version 2.0.0 ([d31c8932ac48a4944d43dd15d8951c7a71ac87fa](https://github.com/INSIDEM2M/slim/commit/d31c8932ac48a4944d43dd15d8951c7a71ac87fa))
+
+
+
 <a name="0.5.9"></a>
 ## [0.5.9](https://github.com/INSIDEM2M/slim/compare/0.5.8...v0.5.9) (2017-02-24)
 
