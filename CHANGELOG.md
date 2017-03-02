@@ -1,3 +1,13 @@
+<a name="0.5.11"></a>
+## [0.5.11](https://github.com/INSIDEM2M/slim/compare/0.5.10...v0.5.11) (2017-03-02)
+
+
+### Features
+
+* **build:** add skip-sourcemaps option ([150c9cb220402a234674c3409a1442f828861629](https://github.com/INSIDEM2M/slim/commit/150c9cb220402a234674c3409a1442f828861629))
+
+
+
 <a name="0.5.10"></a>
 ## [0.5.10](https://github.com/INSIDEM2M/slim/compare/0.5.9...v0.5.10) (2017-03-01)
 
