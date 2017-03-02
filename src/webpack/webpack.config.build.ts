@@ -8,7 +8,7 @@ import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
 import { argv } from "yargs";
 import * as path from "path";
 
-export function getBuildConfigPartial(config: SlimConfig, minify: boolean, indexPath: string): any {
+export function getBuildConfigPartial(config: SlimConfig, minify: boolean, indexPath: string, skipSourceMaps: boolean): any {
     let plugins = [
         new HtmlWebpackPlugin({
             template: indexPath
@@ -46,7 +46,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
     let conf: any = {
         bail: true,
         stats: argv["ci"] ? "errors-only" : "minimal",
-        devtool: "source-map",
+        devtool: skipSourceMaps ? false : "source-map",
         plugins,
         module: {
             rules: [

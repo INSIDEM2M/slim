@@ -20,6 +20,7 @@ declare interface Options {
     ci: boolean;
     "skip-update"?: boolean;
     "skip-build"?: boolean;
+    "skip-sourcemaps"?: boolean;
     "xml-report"?: string;
     "use-version"?: string;
     "update-dlls": boolean;

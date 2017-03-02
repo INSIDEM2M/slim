@@ -18,6 +18,10 @@ export const buildCommand: yargs.CommandModule = {
             type: "boolean",
             alias: "s",
             description: "Serve the application after it was built."
+        },
+        "skip-sourcemaps": {
+            type: "boolean",
+            description: "Skip sourcemap generation."
         }
     },
     handler: (options: Options) => {
@@ -28,9 +32,9 @@ export const buildCommand: yargs.CommandModule = {
         const buildTask = require("../tasks/build.task");
         const serveTask = require("../tasks/serve.task");
         if (options.serve) {
-            exitCode = buildTask(environmentVariables, slimConfig, options.minify, options.aot).then(() => serveTask(environmentVariables, slimConfig, options.open));
+            exitCode = buildTask(environmentVariables, slimConfig, options.minify, options.aot, options["skip-sourcemaps"]).then(() => serveTask(environmentVariables, slimConfig, options.open));
         } else {
-            exitCode = buildTask(environmentVariables, slimConfig, options.minify, options.aot);
+            exitCode = buildTask(environmentVariables, slimConfig, options.minify, options.aot, options["skip-sourcemaps"]);
         }
         exitCode
             .then(code => {
