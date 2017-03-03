@@ -85,7 +85,7 @@
     "webpack-dev-server": "2.4.1",
     "webpack-merge": "^2.4.0",
     "xmldom": "^0.1.27",
-    "yargs": "^6.6.0",
+    "yargs": "^7.0.1",
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
