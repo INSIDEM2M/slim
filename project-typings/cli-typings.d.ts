@@ -1,5 +1,3 @@
-/// <reference types='typescript/lib/typescriptServices' />
-
 declare type Browser = "Chrome" | "Firefox" | "Safari";
 
 declare interface Options {
