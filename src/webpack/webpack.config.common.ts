@@ -137,11 +137,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 test: /\.ts$/,
                 use: [
                     {
-                        loader: "awesome-typescript-loader",
-                        options: {
-                            transpileOnly: !config.typescript.typecheck,
-                            useTranspileModule: !config.typescript.typecheck
-                        }
+                        loader: "awesome-typescript-loader"
                     },
                     "angular2-template-loader?keepUrl=true",
                     "angular-router-loader"

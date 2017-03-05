@@ -118,8 +118,6 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
                 {
                     loader: "awesome-typescript-loader",
                     options: {
-                        useTranspileModule: !config.typescript.typecheck,
-                        transpileOnly: !config.typescript.typecheck,
                         useCache: true
                     }
                 },
