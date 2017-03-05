@@ -1,3 +1,18 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/INSIDEM2M/slim/compare/0.5.11...v0.6.0) (2017-03-05)
+
+
+### Bug Fixes
+
+* **package:** update yargs to version 7.0.1 ([b822b08022f9645301ea6f279f7f751f04c5bdcc](https://github.com/INSIDEM2M/slim/commit/b822b08022f9645301ea6f279f7f751f04c5bdcc))
+
+
+### Features
+
+* **dev:** enable type checking ([4d4026c6c008cecfc5ecc6d375071f66e8e8fa7d](https://github.com/INSIDEM2M/slim/commit/4d4026c6c008cecfc5ecc6d375071f66e8e8fa7d))
+
+
+
 <a name="0.5.11"></a>
 ## [0.5.11](https://github.com/INSIDEM2M/slim/compare/0.5.10...v0.5.11) (2017-03-02)
 
