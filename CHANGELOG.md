@@ -1,3 +1,13 @@
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/INSIDEM2M/slim/compare/0.6.0...v0.6.1) (2017-03-05)
+
+
+### Bug Fixes
+
+* **build:** remove type declaration from project-typings ([75507c68177329366ce4e1cd91e7a90b32888b29](https://github.com/INSIDEM2M/slim/commit/75507c68177329366ce4e1cd91e7a90b32888b29))
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/INSIDEM2M/slim/compare/0.5.11...v0.6.0) (2017-03-05)
 
