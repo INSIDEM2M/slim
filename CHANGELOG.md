@@ -1,3 +1,13 @@
+<a name="0.6.2"></a>
+## [0.6.2](https://github.com/INSIDEM2M/slim/compare/0.6.1...v0.6.2) (2017-03-06)
+
+
+### Bug Fixes
+
+* **build:** disable type checking in ci ([20fc3618f3b17fc9a0be8c35887e4d1b556661b0](https://github.com/INSIDEM2M/slim/commit/20fc3618f3b17fc9a0be8c35887e4d1b556661b0))
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/INSIDEM2M/slim/compare/0.6.0...v0.6.1) (2017-03-05)
 
