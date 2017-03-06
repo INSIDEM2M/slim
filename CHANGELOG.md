@@ -1,3 +1,13 @@
+<a name="0.6.3"></a>
+## [0.6.3](https://github.com/INSIDEM2M/slim/compare/0.6.2...v0.6.3) (2017-03-06)
+
+
+### Bug Fixes
+
+* **build:** do not try to emit sourcemaps when skip-sourcemaps option is present ([ef47be3dec9cd42c38c0691644c9559849d0b77c](https://github.com/INSIDEM2M/slim/commit/ef47be3dec9cd42c38c0691644c9559849d0b77c))
+
+
+
 <a name="0.6.2"></a>
 ## [0.6.2](https://github.com/INSIDEM2M/slim/compare/0.6.1...v0.6.2) (2017-03-06)
 
