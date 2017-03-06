@@ -11,7 +11,7 @@ changes until version 1.0.0 is released.
 ## Installation
 
 ```bash
-yarn global add slim-cli
+npm i -g slim-cli
 ```
 
 ## Usage
