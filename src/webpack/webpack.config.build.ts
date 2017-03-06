@@ -40,7 +40,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
                 if_return: true,
                 join_vars: true
             },
-            sourceMap: true
+            sourceMap: !skipSourceMaps
         })));
     }
     let conf: any = {
