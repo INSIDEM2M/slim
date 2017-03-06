@@ -80,6 +80,8 @@
     "tracer": "^0.8.7",
     "ts-node": "^2.1.0",
     "typescript": "^2.2.1",
+    "uglify-js": "^2.8.7",
+    "uglifyjs-webpack-plugin": "^0.3.0",
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",
     "webpack-dev-server": "2.4.1",

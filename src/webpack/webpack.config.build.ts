@@ -1,4 +1,3 @@
-import * as webpack from "webpack";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import SuppressChunksPlugin from "suppress-chunks-webpack-plugin";
@@ -7,6 +6,7 @@ import { SlimConfig } from "../config/slim-typings/slim-config";
 import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
 import { argv } from "yargs";
 import * as path from "path";
+import * as UglifyJsPlugin from "uglifyjs-webpack-plugin";
 
 export function getBuildConfigPartial(config: SlimConfig, minify: boolean, indexPath: string, skipSourceMaps: boolean): any {
     let plugins = [
@@ -21,7 +21,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
         new ExtractTextPlugin("styles.css")
     ];
     if (minify) {
-        plugins.push(new webpack.optimize.UglifyJsPlugin((<any>{
+        plugins.push(new UglifyJsPlugin((<any>{
             beautify: false,
             comments: false,
             mangle: { screw_ie8: true },
