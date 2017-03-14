@@ -18,7 +18,10 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
             { name: "styles", match: /\.js/ }
         ]),
         new RemoveScriptsPlugin(["styles.js"]),
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin({
+            filename: "[name].css",
+            allChunks: true
+        })
     ];
     if (minify) {
         plugins.push(new UglifyJsPlugin((<any>{
