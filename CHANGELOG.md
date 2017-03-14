@@ -1,3 +1,13 @@
+<a name="0.6.5"></a>
+## [0.6.5](https://github.com/INSIDEM2M/slim/compare/0.6.4...v0.6.5) (2017-03-14)
+
+
+### Bug Fixes
+
+* **build:** include all chunks when extracting css ([66aca64](https://github.com/INSIDEM2M/slim/commit/66aca64))
+
+
+
 <a name="0.6.4"></a>
 ## [0.6.4](https://github.com/INSIDEM2M/slim/compare/0.6.3...v0.6.4) (2017-03-14)
 
