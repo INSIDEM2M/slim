@@ -1,3 +1,13 @@
+<a name="0.6.4"></a>
+## [0.6.4](https://github.com/INSIDEM2M/slim/compare/0.6.3...v0.6.4) (2017-03-14)
+
+
+### Bug Fixes
+
+* **common:** take typecheck config entry into account when building ([909ef50](https://github.com/INSIDEM2M/slim/commit/909ef50))
+
+
+
 <a name="0.6.3"></a>
 ## [0.6.3](https://github.com/INSIDEM2M/slim/compare/0.6.2...v0.6.3) (2017-03-06)
 
