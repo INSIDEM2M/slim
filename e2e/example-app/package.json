@@ -9,25 +9,25 @@
     "e2e": "node ../../src/cli-entry.ts e2e"
   },
   "dependencies": {
-    "@angular/common": "2.2.1",
-    "@angular/compiler": "2.2.1",
-    "@angular/compiler-cli": "2.2.1",
-    "@angular/core": "2.2.1",
-    "@angular/forms": "2.2.1",
-    "@angular/http": "2.2.1",
-    "@angular/platform-browser": "2.2.1",
-    "@angular/platform-browser-dynamic": "2.2.1",
-    "@angular/platform-server": "2.2.1",
-    "@angular/router": "3.2.1",
+    "@angular/common": "^2.4.9",
+    "@angular/compiler": "^2.4.9",
+    "@angular/compiler-cli": "^2.4.9",
+    "@angular/core": "^2.4.9",
+    "@angular/forms": "^2.4.9",
+    "@angular/http": "^2.4.9",
+    "@angular/platform-browser": "^2.4.9",
+    "@angular/platform-browser-dynamic": "^2.4.9",
+    "@angular/platform-server": "^2.4.9",
+    "@angular/router": "^3.4.9",
     "core-js": "^2.4.1",
-    "ionic-angular": "^2.0.0-rc.5",
+    "ionic-angular": "^2.2.0",
     "ionicons": "^3.0.0",
-    "rxjs": "5.0.0-beta.12",
-    "zone.js": "^0.6.21"
+    "rxjs": "^5.2.0",
+    "zone.js": "^0.8.2"
   },
   "devDependencies": {
     "@angularclass/hmr": "^1.2.2",
     "ts-helpers": "^1.1.2",
-    "typescript": "2.0.10"
+    "typescript": "^2.2.1"
   }
 }
