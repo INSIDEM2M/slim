@@ -25,7 +25,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
         performance: {
             hints: false
         },
-        devtool: "cheap-module-eval-source-map",
+        devtool: "inline-source-map",
         devServer: {
             compress: true,
             port: port,
