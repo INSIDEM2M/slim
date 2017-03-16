@@ -11,5 +11,6 @@ coverage.json
 dist
 docs
 yarn.lock
+e2e/**/yarn.lock
 test-reports/
 .history
