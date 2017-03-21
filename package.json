@@ -79,7 +79,7 @@
     "svg-url-loader": "^2.0.1",
     "tracer": "^0.8.7",
     "ts-helpers": "^1.1.2",
-    "ts-node": "^2.1.0",
+    "ts-node": "^3.0.0",
     "typescript": "^2.2.1",
     "uglify-js": "^2.8.7",
     "uglifyjs-webpack-plugin": "^0.3.0",
