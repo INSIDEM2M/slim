@@ -25,7 +25,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
         performance: {
             hints: false
         },
-        devtool: "inline-source-map",
+        devtool: "cheap-module-eval-source-map",
         devServer: {
             compress: true,
             port: port,
@@ -47,11 +47,14 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
                     test: /\.scss$/,
                     exclude: /\.style\.scss$/,
                     use: [
-                        "style-loader",
+                        {
+                            loader: "vue-style-loader"
+                        },
                         {
                             loader: "css-loader",
                             options: {
-                                localIdentName: "[name]"
+                                localIdentName: "[name]",
+                                sourceMap: true
                             }
                         },
                         {
@@ -63,7 +66,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
                         {
                             loader: "sass-loader",
                             options: {
-                                sourceMap: false,
+                                sourceMap: true,
                                 includePaths: config.sass.includePaths,
                                 outputStyle: config.sass.outputStyle
                             }

@@ -9,6 +9,7 @@ const ProgressPlugin = (webpack as any).ProgressPlugin;
 export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig, stripSassImports: boolean = false, aot: boolean) {
     let conf: any = {
         resolve: {
+            symlinks: false,
             extensions: [".ts", ".js", ".json"],
             modules: [
                 path.resolve(process.cwd(), path.join(config.rootDir, "node_modules")),

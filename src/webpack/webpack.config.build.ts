@@ -27,7 +27,9 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
         plugins.push(new UglifyJsPlugin((<any>{
             beautify: false,
             comments: false,
-            mangle: { screw_ie8: true },
+            mangle: {
+                screw_ie8: true
+            },
             compress: {
                 screw_ie8: true,
                 warnings: argv["debug"],
@@ -41,7 +43,9 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
                 booleans: true,
                 unused: true,
                 if_return: true,
-                join_vars: true
+                join_vars: true,
+                passes: 2,
+                reduce_vars: true
             },
             sourceMap: !skipSourceMaps
         })));
