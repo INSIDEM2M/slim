@@ -1,3 +1,16 @@
+<a name="0.6.6"></a>
+## [0.6.6](https://github.com/INSIDEM2M/slim/compare/0.6.5...v0.6.6) (2017-03-24)
+
+
+### Bug Fixes
+
+* add missing ts-helpers dependency ([37f1b4f](https://github.com/INSIDEM2M/slim/commit/37f1b4f))
+* **dev:** enable source maps for global styles ([d9c2172](https://github.com/INSIDEM2M/slim/commit/d9c2172))
+* **e2e:** remove yarn.lock ([69bb454](https://github.com/INSIDEM2M/slim/commit/69bb454))
+* **package:** update ts-node to version 3.0.0 ([1afadb1](https://github.com/INSIDEM2M/slim/commit/1afadb1))
+
+
+
 <a name="0.6.5"></a>
 ## [0.6.5](https://github.com/INSIDEM2M/slim/compare/0.6.4...v0.6.5) (2017-03-14)
 
