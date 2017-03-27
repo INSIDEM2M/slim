@@ -52,7 +52,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
     }
     let conf: any = {
         bail: true,
-        stats: argv["ci"] ? "errors-only" : "minimal",
+        stats: argv["ci"] && !argv["debug"] ? "errors-only" : "normal",
         devtool: skipSourceMaps ? false : "source-map",
         plugins,
         module: {

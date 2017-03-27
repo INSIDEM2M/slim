@@ -8,6 +8,8 @@ import { getBuildConfigPartial } from "../webpack/webpack.config.build";
 import { timer, logger } from "../utils";
 import { SlimConfig } from "../config/slim-typings/slim-config";
 import { prettyPrintConfig } from "../cli-helpers";
+import { argv } from "yargs";
+import * as fs from "fs";
 
 module.exports = function (env: Environment, config: SlimConfig, minify: boolean, aot: boolean, skipSourceMaps: boolean) {
     rimraf.sync(config.targetDir);
@@ -18,10 +20,10 @@ module.exports = function (env: Environment, config: SlimConfig, minify: boolean
     const webpackConfig = webpackMerge.smart(commonConfig, buildConfig);
     logger.debug("Created webpack build config.", prettyPrintConfig(webpackConfig));
     logger.info(`Building ${minify ? "minified " : ""}application${aot ? " using the Angular AOT compiler" : ""}...`);
-    return runBuild(webpackConfig);
+    return runBuild(webpackConfig, config);
 };
 
-function runBuild(config: webpack.Configuration) {
+function runBuild(config: webpack.Configuration, conf: SlimConfig) {
     timer.start("Application build");
     return new Promise((resolve, reject) => {
         webpack(config, (error, stats) => {
@@ -34,9 +36,12 @@ function runBuild(config: webpack.Configuration) {
             } else if (stats.hasErrors()) {
                 const jsonStats = stats.toJson();
                 if (jsonStats.errors && jsonStats.errors.length > 0) {
-                    logger.error(jsonStats.errors[0]);
+                    logger.error(jsonStats.errors);
                 }
                 return reject(1);
+            }
+            if (argv["debug"]) {
+                fs.writeFileSync(path.join(conf.targetDir, "stats.json"), JSON.stringify(stats.toJson()), { encoding: "utf-8" });
             }
             timer.end("Application build");
             resolve(0);

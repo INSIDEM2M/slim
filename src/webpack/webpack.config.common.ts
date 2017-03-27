@@ -20,6 +20,17 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             extensions: [".js", ".ts"],
             modules: [path.resolve(__dirname, "../../", "node_modules"), path.join(__dirname, "loaders")]
         },
+        node: {
+            fs: "empty",
+            global: true,
+            crypto: "empty",
+            tls: "empty",
+            net: "empty",
+            process: true,
+            module: false,
+            clearImmediate: false,
+            setImmediate: false
+        },
         module: {
             noParse: [
                 // This is needed because otherwise all moment locales will be included in the build.
@@ -122,7 +133,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             new AotPlugin({
                 tsConfigPath: config.angular.aotTsConfig,
                 entryModule: config.angular.appModule,
-                typeChecking: config.typescript.typecheck
+                typeChecking: argv["ci"] ? false : config.typescript.typecheck
             })
         );
         conf.module.rules.push(
@@ -140,8 +151,8 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                     {
                         loader: "awesome-typescript-loader",
                         options: {
-                            useTranspileModule: argv["ci"] ? false : !config.typescript.typecheck,
-                            transpileOnly: argv["ci"] ? false : !config.typescript.typecheck
+                            useTranspileModule: argv["ci"] ? true : !config.typescript.typecheck,
+                            transpileOnly: argv["ci"] ? true : !config.typescript.typecheck
                         }
                     },
                     "angular2-template-loader?keepUrl=true",
