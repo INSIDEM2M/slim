@@ -1,3 +1,13 @@
+<a name="0.6.7"></a>
+## [0.6.7](https://github.com/INSIDEM2M/slim/compare/0.6.6...v0.6.7) (2017-03-27)
+
+
+### Bug Fixes
+
+* **build:** ping [@ngtools](https://github.com/ngtools)/webpack version ([ddb32ab](https://github.com/INSIDEM2M/slim/commit/ddb32ab))
+
+
+
 <a name="0.6.6"></a>
 ## [0.6.6](https://github.com/INSIDEM2M/slim/compare/0.6.5...v0.6.6) (2017-03-24)
 
