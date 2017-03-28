@@ -1,3 +1,13 @@
+<a name="0.6.10"></a>
+## [0.6.10](https://github.com/INSIDEM2M/slim/compare/0.6.9...v0.6.10) (2017-03-28)
+
+
+### Bug Fixes
+
+* **build:** remove prepublish script because of npm.... ([b7984a7](https://github.com/INSIDEM2M/slim/commit/b7984a7))
+
+
+
 <a name="0.6.9"></a>
 ## [0.6.9](https://github.com/INSIDEM2M/slim/compare/0.6.8...v0.6.9) (2017-03-28)
 
