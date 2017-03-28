@@ -1,3 +1,13 @@
+<a name="0.6.9"></a>
+## [0.6.9](https://github.com/INSIDEM2M/slim/compare/0.6.8...v0.6.9) (2017-03-28)
+
+
+### Bug Fixes
+
+* **build:** add prepublish script ([1200c6c](https://github.com/INSIDEM2M/slim/commit/1200c6c))
+
+
+
 <a name="0.6.8"></a>
 ## [0.6.8](https://github.com/INSIDEM2M/slim/compare/0.6.7...v0.6.8) (2017-03-28)
 
