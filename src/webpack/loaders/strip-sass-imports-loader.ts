@@ -11,7 +11,12 @@ export interface StripSassImportsLoaderQuery {
  * during testing.
  */
 module.exports = function (content: Buffer) {
-    const query: StripSassImportsLoaderQuery = loaderUtils.getOptions(this);
+    let query: StripSassImportsLoaderQuery;
+    if (typeof loaderUtils.getOptions === "function") {
+        query = loaderUtils.getOptions(this);
+    } else {
+        query = loaderUtils.parseQuery(this.query);
+    }
     if (query.stripSassImports) {
         if (query.importsIgnoredDuringTesting && Array.isArray(query.importsIgnoredDuringTesting) && query.importsIgnoredDuringTesting.length > 0) {
             let sassContent = content.toString();
