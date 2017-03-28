@@ -7,7 +7,7 @@
     "url": "https://github.com/INSIDEM2M/slim"
   },
   "scripts": {
-    "prepublish": "cp src/config/*.js dist/config/ && tsc",
+    "build": "cp src/config/*.js dist/config/ && tsc",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "bin": {
