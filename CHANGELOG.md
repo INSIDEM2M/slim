@@ -1,3 +1,13 @@
+<a name="0.6.8"></a>
+## [0.6.8](https://github.com/INSIDEM2M/slim/compare/0.6.7...v0.6.8) (2017-03-28)
+
+
+### Bug Fixes
+
+* **webpack:** allow older versions of loader-utils ([026632b](https://github.com/INSIDEM2M/slim/commit/026632b))
+
+
+
 <a name="0.6.7"></a>
 ## [0.6.7](https://github.com/INSIDEM2M/slim/compare/0.6.6...v0.6.7) (2017-03-27)
 
