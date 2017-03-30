@@ -48,8 +48,12 @@ function runBuild(config: webpack.Configuration) {
     timer.start("DLL bundle creation");
     return new Promise((resolve, reject) => {
         webpack(config, (error, stats) => {
+            if (error) {
+                logger.error(error);
+            }
             if (stats.hasErrors()) {
-                return reject(stats.toJson().errors[0]);
+                logger.error(stats.toJson().errors[0]);
+                return reject(1);
             }
             timer.end("DLL bundle creation");
             resolve(0);

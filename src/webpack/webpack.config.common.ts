@@ -156,7 +156,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                         }
                     },
                     "angular2-template-loader?keepUrl=true",
-                    "angular-router-loader"
+                    "angular-router-loader?debug=" + (argv["debug"] === true)
                 ],
                 exclude: [/\.(spec|e2e|d)\.ts$/]
             }
