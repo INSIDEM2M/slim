@@ -1,3 +1,17 @@
+<a name="0.6.11"></a>
+## [0.6.11](https://github.com/INSIDEM2M/slim/compare/0.6.10...v0.6.11) (2017-03-31)
+
+
+### Bug Fixes
+
+* **common:** set module filename to absolute path ([f2174fd](https://github.com/INSIDEM2M/slim/commit/f2174fd))
+* **dll:** log error to console ([78f844e](https://github.com/INSIDEM2M/slim/commit/78f844e))
+* **package:** update angular-router-loader to version 0.6.0 ([06b8cce](https://github.com/INSIDEM2M/slim/commit/06b8cce))
+* **package:** update css-loader to version 0.28.0 ([4e760c0](https://github.com/INSIDEM2M/slim/commit/4e760c0))
+* **package:** update uglifyjs-webpack-plugin to version 0.4.0 ([b83deb1](https://github.com/INSIDEM2M/slim/commit/b83deb1))
+
+
+
 <a name="0.6.10"></a>
 ## [0.6.10](https://github.com/INSIDEM2M/slim/compare/0.6.9...v0.6.10) (2017-03-28)
 
