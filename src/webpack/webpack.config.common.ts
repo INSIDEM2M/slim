@@ -8,6 +8,9 @@ const ProgressPlugin = (webpack as any).ProgressPlugin;
 
 export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig, stripSassImports: boolean = false, aot: boolean) {
     let conf: any = {
+        output: {
+            devtoolModuleFilenameTemplate: "webpack:///[absolute-resource-path]"
+        },
         resolve: {
             symlinks: false,
             extensions: [".ts", ".js", ".json"],
