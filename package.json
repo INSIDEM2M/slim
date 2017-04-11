@@ -14,7 +14,7 @@
     "slim": "dist/cli-entry.js"
   },
   "dependencies": {
-    "@angular/compiler": "^2.4.7",
+    "@angular/compiler": "^4.0.2",
     "@angular/compiler-cli": "^2.4.7",
     "@angular/core": "^2.4.7",
     "@angular/tsc-wrapped": "^0.5.2",
