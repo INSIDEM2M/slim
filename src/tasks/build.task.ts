@@ -36,7 +36,7 @@ function runBuild(config: webpack.Configuration, conf: SlimConfig) {
             } else if (stats.hasErrors()) {
                 const jsonStats = stats.toJson();
                 if (jsonStats.errors && jsonStats.errors.length > 0) {
-                    logger.error(jsonStats.errors);
+                    logger.error(jsonStats.errors[0]);
                 }
                 return reject(1);
             }
