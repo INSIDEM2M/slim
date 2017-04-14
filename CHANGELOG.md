@@ -1,3 +1,13 @@
+<a name="0.6.12"></a>
+## [0.6.12](https://github.com/INSIDEM2M/slim/compare/0.6.11...0.6.12) (2017-04-14)
+
+
+### Bug Fixes
+
+* **build:** correctly log errors from aot ([0865606](https://github.com/INSIDEM2M/slim/commit/0865606))
+
+
+
 <a name="0.6.11"></a>
 ## [0.6.11](https://github.com/INSIDEM2M/slim/compare/0.6.10...v0.6.11) (2017-03-31)
 
