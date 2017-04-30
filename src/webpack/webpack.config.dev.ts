@@ -1,11 +1,11 @@
-import * as webpack from "webpack";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
-import * as CopyWebpackPlugin from "copy-webpack-plugin";
-import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
+import * as CopyWebpackPlugin from "copy-webpack-plugin";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import * as path from "path";
+import * as webpack from "webpack";
 import { DllTagPlugin } from "./plugins/dll-tags.plugin";
-import { SlimConfig } from "../config/slim-typings/slim-config";
 import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 
 const DllReferencePlugin = (webpack as any).DllReferencePlugin;
 const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
@@ -25,7 +25,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
         performance: {
             hints: false
         },
-        devtool: "cheap-module-eval-source-map",
+        devtool: "cheap-module-source-map",
         devServer: {
             compress: true,
             port: port,
