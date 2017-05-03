@@ -1,3 +1,15 @@
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/INSIDEM2M/slim/compare/0.6.12...0.7.0) (2017-05-03)
+
+
+### Bug Fixes
+
+* **compodoc:** use new [@compodoc](https://github.com/compodoc)/compodoc package ([1885f3c](https://github.com/INSIDEM2M/slim/commit/1885f3c))
+* **dev:** fix source map ([2300a18](https://github.com/INSIDEM2M/slim/commit/2300a18))
+* **package:** update jasmine-spec-reporter to version 4.0.0 ([5f21b5f](https://github.com/INSIDEM2M/slim/commit/5f21b5f))
+
+
+
 <a name="0.6.12"></a>
 ## [0.6.12](https://github.com/INSIDEM2M/slim/compare/0.6.11...0.6.12) (2017-04-14)
 
