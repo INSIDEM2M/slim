@@ -6,7 +6,7 @@ import { argv } from "yargs";
 
 module.exports = function (env: Environment, config: SlimConfig) {
     logger.info("Creating documentation...");
-    let args = ["--tsconfig", "tsconfig.json", "--hideGenerator", "--disableGraph", "--output", "docs", "--toggleMenuItems", "components,directives,injectables,interfaces,pipes", "--disablePrivateOrInternalSupport"];
+    let args = ["--tsconfig", "tsconfig.json", "--hideGenerator", "--disableGraph", "--output", "docs", "--toggleMenuItems", "components,directives,injectables,interfaces,pipes,classes", "--disablePrivateOrInternalSupport"];
     if (!argv["debug"]) {
         args.push("--silent");
     }
