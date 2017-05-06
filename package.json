@@ -81,7 +81,7 @@
     "ts-helpers": "^1.1.2",
     "ts-node": "^3.0.0",
     "typescript": "^2.3.2",
-    "uglify-js": "^2.8.16",
+    "uglify-js": "^3.0.0",
     "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "^0.5.8",
     "vue-style-loader": "^3.0.1",
