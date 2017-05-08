@@ -62,13 +62,14 @@ export function getTestConfigPartial(config: SlimConfig) {
                         {
                             loader: "postcss-loader",
                             options: {
-                                config: path.resolve(__dirname, "..", "config")
+                                config: {
+                                    path: path.resolve(__dirname, "..", "config", "postcss.config.js")
+                                }
                             }
                         },
                         {
                             loader: "sass-loader",
                             options: {
-                                sourceMap: false,
                                 includePaths: config.sass.includePaths,
                                 outputStyle: config.sass.outputStyle
                             }

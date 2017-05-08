@@ -71,7 +71,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
                             {
                                 loader: "postcss-loader",
                                 options: {
-                                    config: path.resolve(__dirname, "..", "config")
+                                    path: path.relative(__dirname, path.resolve("..", "config", "postcss.config.js")),
                                 }
                             },
                             {

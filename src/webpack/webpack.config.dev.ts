@@ -60,7 +60,10 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
                         {
                             loader: "postcss-loader",
                             options: {
-                                config: path.resolve(__dirname, "..", "config")
+                                config: {
+                                    path: path.resolve(__dirname, "..", "config", "postcss.config.js")
+                                },
+                                sourceMap: true
                             }
                         },
                         {
