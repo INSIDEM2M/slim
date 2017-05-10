@@ -24,7 +24,7 @@ module.exports = function (content: Buffer) {
                 const regex = new RegExp(`@import\\s['|"].*${ignoredImport}.*['|"];`);
                 if (regex.test(sassContent)) {
                     sassContent = sassContent.replace(regex, "");
-                    logger.debug(`[strip-sass-imports-loader] Ignored import of ${ignoredImport}.`);
+                    logger.debug(`[strip-sass-imports-loader] Ignored import of ${ignoredImport} in ${this.resourcePath}.`);
                 }
             }
             return sassContent;
