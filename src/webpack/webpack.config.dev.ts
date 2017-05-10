@@ -27,6 +27,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
         },
         devtool: "cheap-module-source-map",
         devServer: {
+            disableHostCheck: true,
             compress: true,
             port: port,
             historyApiFallback: {
