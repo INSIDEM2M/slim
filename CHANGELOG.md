@@ -1,3 +1,18 @@
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/INSIDEM2M/slim/compare/0.7.0...0.8.0) (2017-05-10)
+
+
+### Bug Fixes
+
+* **doc:** also toggle classes tab by default ([07b44a7](https://github.com/INSIDEM2M/slim/commit/07b44a7))
+
+
+### Features
+
+* **doc:** generate info about sass variables of the component ([1a9c708](https://github.com/INSIDEM2M/slim/commit/1a9c708))
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/INSIDEM2M/slim/compare/0.6.12...0.7.0) (2017-05-03)
 
