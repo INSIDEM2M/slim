@@ -1,3 +1,14 @@
+<a name="0.8.1"></a>
+## [0.8.1](https://github.com/INSIDEM2M/slim/compare/0.8.0...0.8.1) (2017-05-10)
+
+
+### Bug Fixes
+
+* **dev:** enable accessing the build from other hosts ([b43f6a9](https://github.com/INSIDEM2M/slim/commit/b43f6a9))
+* **strip-sass-imports-loader:** provide context in which file the import was removed during testing ([a50e5b2](https://github.com/INSIDEM2M/slim/commit/a50e5b2))
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/INSIDEM2M/slim/compare/0.7.0...0.8.0) (2017-05-10)
 
