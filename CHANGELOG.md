@@ -1,3 +1,13 @@
+<a name="0.8.2"></a>
+## [0.8.2](https://github.com/INSIDEM2M/slim/compare/0.8.1...0.8.2) (2017-05-15)
+
+
+### Bug Fixes
+
+* remove postcss-discard-unused ([5a513c0](https://github.com/INSIDEM2M/slim/commit/5a513c0))
+
+
+
 <a name="0.8.1"></a>
 ## [0.8.1](https://github.com/INSIDEM2M/slim/compare/0.8.0...0.8.1) (2017-05-10)
 
