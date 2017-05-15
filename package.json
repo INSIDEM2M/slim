@@ -60,7 +60,6 @@
     "node-sass": "^4.3.0",
     "opn": "^5.0.0",
     "portfinder": "^1.0.12",
-    "postcss-discard-unused": "^2.2.3",
     "postcss-loader": "^2.0.4",
     "progress-bar-webpack-plugin": "^1.9.2",
     "protractor": "^5.1.1",
