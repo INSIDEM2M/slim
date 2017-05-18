@@ -1,3 +1,13 @@
+<a name="0.9.0"></a>
+# [0.9.0](https://github.com/INSIDEM2M/slim/compare/0.8.3...0.9.0) (2017-05-18)
+
+
+### Features
+
+* **codesplit:** add behaviour to split code into app, manifest and vendor bundles ([#250](https://github.com/INSIDEM2M/slim/issues/250)) ([04bb821](https://github.com/INSIDEM2M/slim/commit/04bb821))
+
+
+
 <a name="0.8.3"></a>
 ## [0.8.3](https://github.com/INSIDEM2M/slim/compare/0.8.2...0.8.3) (2017-05-15)
 
