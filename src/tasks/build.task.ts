@@ -10,18 +10,31 @@ import { SlimConfig } from "../config/slim-typings/slim-config";
 import { prettyPrintConfig } from "../cli-helpers";
 import { argv } from "yargs";
 import * as fs from "fs";
+import { extractBundles } from "../webpack/plugins/chunk.plugin";
 
-module.exports = function (env: Environment, config: SlimConfig, minify: boolean, aot: boolean, skipSourceMaps: boolean) {
+module.exports = function (env: Environment, config: SlimConfig, minify: boolean, aot: boolean, skipSourceMaps: boolean, codesplit: boolean) {
     rimraf.sync(config.targetDir);
     logger.debug("Deleted " + config.targetDir);
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config, false, aot);
     const buildConfig = getBuildConfigPartial(config, minify, indexPath, skipSourceMaps);
-    const webpackConfig = webpackMerge.smart(commonConfig, buildConfig);
+    const codesplitConfig = codesplit ? extractBundles([{
+        name: "vendor",
+        minChunks: isVendor // extract node_modules
+    }, {
+        name: "manifest" // extract webpack runtime code
+    }]) : undefined;
+    const webpackConfig = webpackMerge.smart(commonConfig, buildConfig, codesplitConfig);
     logger.debug("Created webpack build config.", prettyPrintConfig(webpackConfig));
     logger.info(`Building ${minify ? "minified " : ""}application${aot ? " using the Angular AOT compiler" : ""}...`);
     return runBuild(webpackConfig, config);
 };
+
+function isVendor({ resource }) {
+    return resource &&
+        resource.indexOf("node_modules") >= 0 &&
+        resource.match(/\.js$/);
+}
 
 function runBuild(config: webpack.Configuration, conf: SlimConfig) {
     timer.start("Application build");

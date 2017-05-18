@@ -6,6 +6,7 @@ declare interface Options {
     app?: boolean;
     minify?: boolean;
     aot?: boolean;
+    codesplit?: boolean;
     serve?: boolean;
     open?: boolean;
     watch?: boolean;
