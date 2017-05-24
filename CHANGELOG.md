@@ -1,3 +1,8 @@
+<a name="0.9.2"></a>
+## [0.9.2](https://github.com/INSIDEM2M/slim/compare/0.9.1...0.9.2) (2017-05-24)
+
+
+
 <a name="0.9.1"></a>
 ## [0.9.1](https://github.com/INSIDEM2M/slim/compare/0.9.0...0.9.1) (2017-05-24)
 
