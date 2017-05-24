@@ -11,7 +11,7 @@ import * as simpleGit from "simple-git";
 function getNextVersion(options: Options, version: string) {
     let nextVersion;
     if (options["use-version"]) {
-        if (semver.valid(options["use-version"])) {
+        if (!semver.valid(options["use-version"])) {
             logger.error(options["use-version"] + " is no valid version! Aborting release...");
             process.exit(1);
         } else {
