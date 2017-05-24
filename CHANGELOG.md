@@ -1,3 +1,13 @@
+<a name="0.9.1"></a>
+## [0.9.1](https://github.com/INSIDEM2M/slim/compare/0.9.0...0.9.1) (2017-05-24)
+
+
+### Bug Fixes
+
+* **release:** correct logic when use-version option is set ([d61a396](https://github.com/INSIDEM2M/slim/commit/d61a396))
+
+
+
 <a name="0.9.0"></a>
 # [0.9.0](https://github.com/INSIDEM2M/slim/compare/0.8.3...0.9.0) (2017-05-18)
 
