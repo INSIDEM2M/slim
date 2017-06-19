@@ -86,7 +86,7 @@
     "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "^0.5.8",
     "vue-style-loader": "^3.0.1",
-    "webpack": "^2.5.1",
+    "webpack": "^3.0.0",
     "webpack-dev-server": "^2.4.5",
     "webpack-merge": "^4.1.0",
     "xmldom": "^0.1.27",
