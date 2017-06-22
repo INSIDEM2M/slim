@@ -7,6 +7,7 @@ import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
 import { argv } from "yargs";
 import * as path from "path";
 import * as UglifyJsPlugin from "uglifyjs-webpack-plugin";
+import * as webpack from "webpack";
 
 export function getBuildConfigPartial(config: SlimConfig, minify: boolean, indexPath: string, skipSourceMaps: boolean): any {
     let plugins = [
@@ -21,7 +22,8 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
         new ExtractTextPlugin({
             filename: "[name].css",
             allChunks: true
-        })
+        }),
+        new (webpack.optimize as any).ModuleConcatenationPlugin()
     ];
     if (minify) {
         plugins.push(new UglifyJsPlugin((<any>{
