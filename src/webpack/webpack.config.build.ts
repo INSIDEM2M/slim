@@ -10,7 +10,7 @@ import * as UglifyJsPlugin from "uglifyjs-webpack-plugin";
 import * as webpack from "webpack";
 
 export function getBuildConfigPartial(config: SlimConfig, minify: boolean, indexPath: string, skipSourceMaps: boolean): any {
-    let plugins = [
+    let plugins: webpack.Plugin[] = [
         new HtmlWebpackPlugin({
             template: indexPath
         }),
@@ -23,10 +23,10 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
             filename: "[name].css",
             allChunks: true
         }),
-        new (webpack.optimize as any).ModuleConcatenationPlugin()
+        new webpack.optimize.ModuleConcatenationPlugin()
     ];
     if (minify) {
-        plugins.push(new UglifyJsPlugin((<any>{
+        plugins.push(new UglifyJsPlugin(({
             beautify: false,
             comments: false,
             mangle: {

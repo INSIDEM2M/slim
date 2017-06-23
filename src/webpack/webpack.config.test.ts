@@ -4,11 +4,11 @@ import { CheckerPlugin } from "awesome-typescript-loader";
 import { SlimConfig } from "../config/slim-typings/slim-config";
 import { argv } from "yargs";
 
-const DllReferencePlugin = (webpack as any).DllReferencePlugin;
-const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
+const DllReferencePlugin = webpack.DllReferencePlugin;
+const NamedModulesPlugin = webpack.NamedModulesPlugin;
 
 export function getTestConfigPartial(config: SlimConfig) {
-    let conf = {
+    let conf: webpack.Configuration = {
         devtool: argv["ci"] ? "eval" : "inline-source-map",
         stats: "minimal",
         module: {

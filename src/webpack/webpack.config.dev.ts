@@ -7,11 +7,11 @@ import { DllTagPlugin } from "./plugins/dll-tags.plugin";
 import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
 import { SlimConfig } from "../config/slim-typings/slim-config";
 
-const DllReferencePlugin = (webpack as any).DllReferencePlugin;
-const NamedModulesPlugin = (webpack as any).NamedModulesPlugin;
+const DllReferencePlugin = webpack.DllReferencePlugin;
+const NamedModulesPlugin = webpack.NamedModulesPlugin;
 
 export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: boolean, port?: number): webpack.Configuration {
-    const conf: any = {
+    const conf: webpack.Configuration = {
         output: {
             path: config.targetDir,
             filename: "[name].js"
@@ -108,11 +108,11 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
     };
 
     if (!aot) {
-        conf.entry.app.unshift("webpack/hot/dev-server");
-        if (conf.entry.styles && config.sass.globalStyles.length > 0) {
-            conf.entry.styles = ["webpack/hot/dev-server"];
+        ((conf.entry as webpack.Entry).app as string[]).unshift("webpack/hot/dev-server");
+        if ((conf.entry as webpack.Entry).styles && config.sass.globalStyles.length > 0) {
+            (conf.entry as webpack.Entry).styles = ["webpack/hot/dev-server"];
         }
-        conf.module.rules.push({
+        (conf.module as webpack.NewModule).rules.push({
             test: /\.ts$/,
             use: [
                 {
@@ -134,7 +134,5 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
             exclude: [/\.(spec|e2e|d)\.ts$/]
         });
     }
-
-
     return conf;
 }

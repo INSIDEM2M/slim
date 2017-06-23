@@ -7,7 +7,7 @@ import { argv } from "yargs";
 const ProgressPlugin = (webpack as any).ProgressPlugin;
 
 export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig, stripSassImports: boolean = false, aot: boolean) {
-    let conf: any = {
+    let conf: webpack.Configuration = {
         output: {
             devtoolModuleFilenameTemplate: "webpack:///[absolute-resource-path]"
         },
@@ -139,7 +139,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 typeChecking: argv["ci"] ? false : config.typescript.typecheck
             })
         );
-        conf.module.rules.push(
+        (conf.module as webpack.NewModule).rules.push(
             {
                 test: /\.ts$/,
                 loader: "@ngtools/webpack",
@@ -147,7 +147,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             }
         );
     } else {
-        conf.module.rules.push(
+        (conf.module as webpack.NewModule).rules.push(
             {
                 test: /\.ts$/,
                 use: [
