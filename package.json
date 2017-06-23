@@ -110,7 +110,7 @@
     "@types/opn": "^3.0.28",
     "@types/selenium-webdriver": "^3.0.4",
     "@types/semver": "^5.3.31",
-    "@types/webpack": "^2.2.16",
+    "@types/webpack": "^3.0.0",
     "@types/webpack-dev-server": "^2.4.0",
     "@types/webpack-merge": "^0.0.4",
     "@types/xmldom": "^0.1.28",
