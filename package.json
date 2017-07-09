@@ -55,7 +55,7 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.3",
-    "local-web-server": "^1.2.8",
+    "local-web-server": "^2.0.0",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
     "opn": "^5.1.0",
