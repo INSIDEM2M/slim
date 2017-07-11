@@ -49,7 +49,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
                     exclude: /\.style\.scss$/,
                     use: [
                         {
-                            loader: "vue-style-loader"
+                            loader: "style-loader"
                         },
                         {
                             loader: "css-loader",
