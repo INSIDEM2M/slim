@@ -19,6 +19,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
         entry: {
             app: [
                 `webpack-dev-server/client?http://localhost:${port}/`,
+                path.join(__dirname, "disable-log.entry.js"),
                 config.typescript.entry
             ]
         },
@@ -33,7 +34,22 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
             historyApiFallback: {
                 disableDotRule: true,
             },
-            stats: "minimal",
+            // It suppress error shown in console, so it has to be set to false.
+            quiet: false,
+            // It suppress everything except error, so it has to be set to false as well
+            // to see success build.
+            noInfo: false,
+            stats: {
+                // Config for minimal console.log mess.
+                assets: false,
+                colors: true,
+                version: false,
+                hash: false,
+                modules: false,
+                timings: true,
+                chunks: false,
+                chunkModules: false
+            },
             host: "0.0.0.0",
             watchOptions: {
                 aggregateTimeout: 300
