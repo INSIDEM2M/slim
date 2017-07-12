@@ -74,7 +74,22 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                     loader: "source-map-loader",
                     exclude: config.webpack.ignoreSourceMaps
                 },
-                { test: /\.html/, loader: "raw-loader", exclude: [indexPath] },
+                {
+                    test: /\.html/,
+                    exclude: [indexPath],
+                    use: [
+                        "raw-loader",
+                        {
+                            loader: "html-minify-loader",
+                            options: {
+                                quotes: true,
+                                dom: { // options of !(htmlparser2)[https://github.com/fb55/htmlparser2]
+                                    lowerCaseAttributeNames: false,
+                                }
+                            }
+                        }
+                    ]
+                },
                 { test: /\.css$/, loader: "raw-loader" },
                 {
                     test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
