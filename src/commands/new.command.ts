@@ -66,20 +66,22 @@ export const newCommand: yargs.CommandModule = {
             let targetPath = path.join(os.homedir(), ".slim", answers.project.type);
 
             if (fs.existsSync(targetPath)) {
-                var simpleGit = require("simple-git")(targetPath);
+                const simpleGit = require("simple-git")(targetPath);
 
-                simpleGit.pull("origin", "master", { "--rebase": "true" })
-                    .then(() => scaffold(targetPath, process.cwd()), () => { logger.error("error") });
+                simpleGit.pull("origin", "master", { "--rebase": "true" }, () => {
+                    scaffold(targetPath, process.cwd()), () => {
+                        logger.error("error");
+                    };
+                });
 
                 logger.debug("check if local availabe");
                 logger.debug("pull if availabe");
             } else {
                 let simpleGit = require("simple-git")();
                 logger.debug("clone if not available");
-                simpleGit.clone(
-                    builder[answers.project.type].url,
-                    targetPath)
-                    .then(() => scaffold(targetPath, process.cwd()));
+                simpleGit.clone(builder[answers.project.type].url, targetPath, () => {
+                    scaffold(targetPath, process.cwd());
+                });
             }
         });
 

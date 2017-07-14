@@ -138,7 +138,11 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             ]
         },
         plugins: [
-            new webpack.DefinePlugin({ environment })
+            new webpack.DefinePlugin({ environment }),
+            new webpack.ContextReplacementPlugin(
+                /ionic-angular(\\|\/)util/,
+                config.sourceDir
+            )
         ]
     };
 

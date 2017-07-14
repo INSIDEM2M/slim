@@ -16,9 +16,10 @@ export const publishCommand: yargs.CommandModule = {
                 logger.info("Published package to the npm registry.");
                 simpleGit(rootDir)
                     .push("origin")
-                    .pushTags("origin")
-                    .then(() => logger.info("Pushed the package to the git repository."))
-                    .then(() => process.exit(0));
+                    .pushTags("origin", () => {
+                        logger.info("Pushed the package to the git repository.");
+                        process.exit(0);
+                    });
             } else {
                 logger.error("Could not publish package!");
                 process.exit(exitCode);
