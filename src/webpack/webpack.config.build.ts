@@ -59,6 +59,22 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
         module: {
             rules: [
                 {
+                    test: /\.html/,
+                    exclude: [indexPath],
+                    use: [
+                        "raw-loader",
+                        {
+                            loader: "html-minify-loader",
+                            options: {
+                                quotes: true,
+                                dom: { // options of !(htmlparser2)[https://github.com/fb55/htmlparser2]
+                                    lowerCaseAttributeNames: false,
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
                     test: /\.scss$/,
                     exclude: /\.style\.scss$/,
                     use: ExtractTextPlugin.extract({
