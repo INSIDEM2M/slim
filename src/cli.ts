@@ -15,6 +15,7 @@ import * as os from "os";
 import { spawn } from "child_process";
 import { logger } from "./utils";
 import { argv } from "yargs";
+import { gt } from "semver";
 
 export function main() {
 
@@ -79,7 +80,7 @@ export function main() {
 function checkForUpdate(pkg: any, metadataPath: string, slimMetadata: any) {
     logger.debug("Checking for newer slim version...");
     return getLatestSlimVersion(pkg).then(version => {
-        if (pkg.version !== version) {
+        if (gt(version, pkg.version)) {
             console.log("\n");
             logger.info("---------------- UPDATE AVAILABLE! ----------------");
             logger.info(`There is a new version of slim available! Current version: ${pkg.version}. Latest version: ${version}.`);

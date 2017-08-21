@@ -52,7 +52,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
             sourceMap: !skipSourceMaps
         })));
     }
-    let conf: any = {
+    let conf: webpack.Configuration = {
         stats: argv["ci"] && !argv["debug"] ? "errors-only" : "normal",
         devtool: skipSourceMaps ? false : "source-map",
         plugins,
@@ -61,7 +61,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
                 {
                     test: /\.html/,
                     exclude: [indexPath],
-                    use: [
+                    use: minify ? [
                         "raw-loader",
                         {
                             loader: "html-minify-loader",
@@ -72,13 +72,19 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
                                 }
                             }
                         }
-                    ]
+                    ] : ["raw-loader"]
                 },
                 {
                     test: /\.scss$/,
                     exclude: /\.style\.scss$/,
                     use: ExtractTextPlugin.extract({
                         use: [
+                            {
+                                loader: "cache-loader",
+                                options: {
+                                    cacheDirectory: path.join(config.rootDir, ".awcache")
+                                }
+                            },
                             {
                                 loader: "css-loader",
                                 options: {
@@ -115,7 +121,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
         },
     };
     if (Array.isArray(config.sass.globalStyles) && config.sass.globalStyles.length > 0) {
-        conf.entry.styles = config.sass.globalStyles;
+        (conf.entry as webpack.Entry).styles = config.sass.globalStyles;
     }
     return conf;
 }

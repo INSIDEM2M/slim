@@ -2,47 +2,47 @@
 # yarn lockfile v1
 
 
-"@angular/common@^4.3.0":
-  version "4.3.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@angular/common/-/common-4.3.1.tgz#260f487a7cdca326c436bd3ea9515c797de2ff72"
+"@angular/common@^4.3.5":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.3.5.tgz#5f6b11347eae1dfc34623ccfd4c06c8f4c488e2d"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/compiler-cli@^4.3.0":
-  version "4.3.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@angular/compiler-cli/-/compiler-cli-4.3.1.tgz#00b41afb6faeb4aef561b8427804ac8880aff63c"
+"@angular/compiler-cli@^4.3.5":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-4.3.5.tgz#24e99b36c0909363ff8247bf331a8b89eaedfe63"
   dependencies:
-    "@angular/tsc-wrapped" "4.3.1"
+    "@angular/tsc-wrapped" "4.3.5"
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
 
-"@angular/compiler@^4.3.0":
-  version "4.3.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@angular/compiler/-/compiler-4.3.1.tgz#3a24d49ecf01ac2b6e07f63e378b8ff8e257fe09"
+"@angular/compiler@^4.3.5":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.3.5.tgz#50d3c986657beff1fef4f6dd9a3fa58e24abd548"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/core@^4.3.0":
-  version "4.3.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@angular/core/-/core-4.3.1.tgz#a9d0a7d644b96260674269b689a04feea632a8d3"
+"@angular/core@^4.3.5":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.3.5.tgz#bd1efdbf1ebcfb9c27a238e2aa4c48159b0895bb"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser-dynamic@^4.3.0":
-  version "4.3.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.3.1.tgz#84034da60a82ef36e7effda7b3ade6e645b330b3"
+"@angular/platform-browser-dynamic@^4.3.5":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.3.5.tgz#4a697b3b0aec805b33884fd4a9b3473065bab1e0"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser@^4.3.0":
-  version "4.3.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@angular/platform-browser/-/platform-browser-4.3.1.tgz#db727b06eed64bda5defec71815db26a4da2f690"
+"@angular/platform-browser@^4.3.5":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.3.5.tgz#c0d03409499cc29f81677aab623c9086760d84ef"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/tsc-wrapped@4.3.1", "@angular/tsc-wrapped@^4.3.0":
-  version "4.3.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@angular/tsc-wrapped/-/tsc-wrapped-4.3.1.tgz#f6616a4d2a3bbec1cded664fd1f526edce99ef41"
+"@angular/tsc-wrapped@4.3.5", "@angular/tsc-wrapped@^4.3.5":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-4.3.5.tgz#95fdaa813cfc57262fc7ef5fea726d628aefabac"
   dependencies:
     tsickle "^0.21.0"
 
@@ -56,29 +56,30 @@
   version "2.1.3"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@angularclass/hmr/-/hmr-2.1.3.tgz#34e658ed3da37f23b0a200e2da5a89be92bb209f"
 
-"@compodoc/compodoc@^1.0.0-beta.10":
-  version "1.0.0-beta.13"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@compodoc/compodoc/-/compodoc-1.0.0-beta.13.tgz#3bfd36b534ab42ba696b51bf59246e9addc2c035"
+"@compodoc/compodoc@^1.0.0-beta.14":
+  version "1.0.0-beta.14"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@compodoc/compodoc/-/compodoc-1.0.0-beta.14.tgz#66f0682eacdf85b1ef4bf6ac780794bd352650f8"
   dependencies:
     "@compodoc/ngd-core" "^2.0.0-alpha.1"
     "@compodoc/ngd-transformer" "^2.0.0-alpha.3"
-    cheerio "^1.0.0-rc.1"
+    cheerio "^1.0.0-rc.2"
     chokidar "^1.7.0"
     colors "^1.1.2"
     commander "2.11.0"
-    fs-extra "^3.0.1"
+    findit "^2.0.0"
+    fs-extra "^4.0.0"
     glob "^7.1.2"
     gulp-util "^3.0.8"
     handlebars "^4.0.10"
     html-entities "^1.2.1"
     json5 "^0.5.1"
-    live-server "^1.2.0"
+    live-server "1.1.0"
     lodash "^4.17.3"
     lunr "1.0.0"
     marked "^0.3.6"
     os-name "^2.0.1"
     shelljs "^0.7.8"
-    typescript "2.4.1"
+    typescript "2.4.2"
 
 "@compodoc/ngd-core@2.0.0-alpha.1", "@compodoc/ngd-core@^2.0.0-alpha.1":
   version "2.0.0-alpha.1"
@@ -96,13 +97,12 @@
     q "^1.4.1"
     viz.js "^1.6.0"
 
-"@ngtools/webpack@1.2.13":
-  version "1.2.13"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@ngtools/webpack/-/webpack-1.2.13.tgz#543237cd6ef49b59140114a5c0e8757b15d6e133"
+"@ngtools/webpack@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-1.6.1.tgz#247fa77937a9df23a7cc499fee305bcb05745b18"
   dependencies:
-    enhanced-resolve "^3.1.0"
     loader-utils "^1.0.2"
-    magic-string "^0.19.0"
+    magic-string "^0.22.3"
     source-map "^0.5.6"
 
 "@types/bluebird@*":
@@ -137,9 +137,9 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
-"@types/glob@^5.0.30":
-  version "5.0.30"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/glob/-/glob-5.0.30.tgz#1026409c5625a8689074602808d082b2867b8a51"
+"@types/glob@^5.0.31":
+  version "5.0.31"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/glob/-/glob-5.0.31.tgz#6cb8500bd170750c1948f785cc5828e9cff0c36a"
   dependencies:
     "@types/minimatch" "*"
     "@types/node" "*"
@@ -178,9 +178,9 @@
     "@types/log4js" "*"
     "@types/node" "*"
 
-"@types/lodash@^4.14.69":
-  version "4.14.71"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/lodash/-/lodash-4.14.71.tgz#0dc383f78981216ac76e2f2c3afd998e0450e4c1"
+"@types/lodash@^4.14.73":
+  version "4.14.73"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/lodash/-/lodash-4.14.73.tgz#9837e47db8643ba5bcef2c7921f37d90f9c24213"
 
 "@types/log4js@*":
   version "0.0.32"
@@ -196,13 +196,17 @@
   version "2.0.29"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/minimatch/-/minimatch-2.0.29.tgz#5002e14f75e2d71e564281df0431c8c1b4a2a36a"
 
-"@types/node@*", "@types/node@^8.0.13":
+"@types/node@*":
   version "8.0.16"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/node/-/node-8.0.16.tgz#5aa51abd72621a0ce53fb86bccd76825ee1b4ca9"
 
 "@types/node@^6.0.46":
   version "6.0.85"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/node/-/node-6.0.85.tgz#ec02bfe54a61044f2be44f13b389c6a0e8ee05ae"
+
+"@types/node@^8.0.24":
+  version "8.0.24"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.24.tgz#06c580084d9add1fb40c1510ef0b448961246fb1"
 
 "@types/opn@^3.0.28":
   version "3.0.28"
@@ -314,9 +318,9 @@
   version "3.0.4"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/selenium-webdriver/-/selenium-webdriver-3.0.4.tgz#8a6c33c7216f8a8b0962028bf9b868540fdcba47"
 
-"@types/semver@^5.3.31":
-  version "5.3.32"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/semver/-/semver-5.3.32.tgz#a7afdc4bee713c081114cd811b51be10907d7bae"
+"@types/semver@^5.3.34":
+  version "5.3.34"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-5.3.34.tgz#6fade409ceb8ae817c1f7f1cfa5375416e97045f"
 
 "@types/serve-static@*":
   version "1.7.31"
@@ -353,15 +357,23 @@
     "@types/serve-static" "*"
     "@types/webpack" "*"
 
-"@types/webpack-merge@^0.0.4":
-  version "0.0.4"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/webpack-merge/-/webpack-merge-0.0.4.tgz#7150eaa758591905fbbb157f88ea15cae35d1b6c"
+"@types/webpack-merge@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@types/webpack-merge/-/webpack-merge-0.0.5.tgz#bdbc6a4839dcb67c2d57d4e8d775f197946836a4"
   dependencies:
     "@types/webpack" "*"
 
-"@types/webpack@*", "@types/webpack@^3.0.0":
+"@types/webpack@*":
   version "3.0.5"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/webpack/-/webpack-3.0.5.tgz#da3bca3665071ccbaba9ff929e361db85d3cc48a"
+  dependencies:
+    "@types/node" "*"
+    "@types/tapable" "*"
+    "@types/uglify-js" "*"
+
+"@types/webpack@^3.0.9":
+  version "3.0.9"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/webpack/-/webpack-3.0.9.tgz#9e3749c6da68e0c86870a7a876b48aed31a2edf8"
   dependencies:
     "@types/node" "*"
     "@types/tapable" "*"
@@ -371,9 +383,9 @@
   version "0.1.29"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/xmldom/-/xmldom-0.1.29.tgz#c4428b0ca86d3b881475726fd94980b38a27c381"
 
-"@types/yargs@^8.0.1":
-  version "8.0.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/@types/yargs/-/yargs-8.0.1.tgz#f0e79284b713d9383f315fa38c71d933959637f8"
+"@types/yargs@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-8.0.2.tgz#0f9c7b236e2d78cd8f4b6502de15d0728aa29385"
 
 JSONStream@^1.0.4, JSONStream@^1.3.1:
   version "1.3.1"
@@ -473,6 +485,13 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
 
+ambi@^2.2.0, ambi@^2.5.0:
+  version "2.5.0"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/ambi/-/ambi-2.5.0.tgz#7c8e372be48891157e7cea01cb6f9143d1f74220"
+  dependencies:
+    editions "^1.1.1"
+    typechecker "^4.3.0"
+
 amdefine@>=0.0.4, amdefine@^1.0.0:
   version "1.0.1"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
@@ -485,7 +504,7 @@ angular-router-loader@^0.6.0:
 
 angular2-template-loader@0.6.0:
   version "0.6.0"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/angular2-template-loader/-/angular2-template-loader-0.6.0.tgz#8a7fae4cf5a2494968da512aa43152a82a0c99b6"
+  resolved "https://registry.yarnpkg.com/angular2-template-loader/-/angular2-template-loader-0.6.0.tgz#8a7fae4cf5a2494968da512aa43152a82a0c99b6"
   dependencies:
     loader-utils "^0.2.15"
 
@@ -538,15 +557,15 @@ anymatch@^1.3.0:
     arrify "^1.0.0"
     micromatch "^2.1.5"
 
-apache-crypt@^1.1.2:
-  version "1.2.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/apache-crypt/-/apache-crypt-1.2.1.tgz#d6fc72aa6d27d99c95a94fd188d731eefffa663c"
+apache-crypt@1.1.2:
+  version "1.1.2"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/apache-crypt/-/apache-crypt-1.1.2.tgz#820782a33bb6a5fd2712082f0ed3a24e3c9b0214"
   dependencies:
     unix-crypt-td-js "^1.0.0"
 
-apache-md5@^1.0.6:
-  version "1.1.2"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/apache-md5/-/apache-md5-1.1.2.tgz#ee49736b639b4f108b6e9e626c6da99306b41692"
+apache-md5@1.0.6:
+  version "1.0.6"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/apache-md5/-/apache-md5-1.0.6.tgz#470239d40c54e7c32dd9d6eb11bc3578ecc903c2"
 
 aproba@^1.0.3:
   version "1.1.2"
@@ -685,7 +704,7 @@ async@^0.9.0, async@~0.9.0:
   version "0.9.2"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/async/-/async-0.9.2.tgz#aea74d5e61c1f899613bf64bda66d4c78f2fd17d"
 
-async@^2.1.2, async@^2.1.5, async@^2.4.1:
+async@^2.1.2, async@^2.1.5, async@^2.3.0, async@^2.4.1:
   version "2.5.0"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/async/-/async-2.5.0.tgz#843190fd6b7357a0b9e1c956edddd5ec8462b54d"
   dependencies:
@@ -725,12 +744,12 @@ autoprefixer@^7.1.1:
     postcss "^6.0.6"
     postcss-value-parser "^3.2.3"
 
-awesome-typescript-loader@^3.1.3:
-  version "3.2.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/awesome-typescript-loader/-/awesome-typescript-loader-3.2.1.tgz#600f5d552da3e5501e3e5c19aa3e8986059f8947"
+awesome-typescript-loader@^3.2.3:
+  version "3.2.3"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/awesome-typescript-loader/-/awesome-typescript-loader-3.2.3.tgz#aa2119b7c808a031e2b28945b031450a8975367f"
   dependencies:
     colors "^1.1.2"
-    enhanced-resolve "^3.1.0"
+    enhanced-resolve "3.3.0"
     loader-utils "^1.1.0"
     lodash "^4.17.4"
     micromatch "^3.0.3"
@@ -872,10 +891,6 @@ bcrypt-pbkdf@^1.0.0:
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.1.tgz#63bc5dcb61331b92bc05fd528953c33462a06f8d"
   dependencies:
     tweetnacl "^0.14.3"
-
-bcryptjs@^2.3.0:
-  version "2.4.3"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
 
 beeper@^1.0.0:
   version "1.1.1"
@@ -1128,6 +1143,14 @@ cache-base@^0.8.4:
     union-value "^0.2.3"
     unset-value "^0.1.1"
 
+cache-loader@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/cache-loader/-/cache-loader-1.0.3.tgz#7717963ec082db068b17a1412deaaa72d21c4e30"
+  dependencies:
+    async "^2.3.0"
+    loader-utils "^1.1.0"
+    mkdirp "^0.5.1"
+
 callsite@1.0.0:
   version "1.0.0"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/callsite/-/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
@@ -1220,7 +1243,15 @@ chalk@^2.0.0, chalk@^2.0.1:
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
 
-cheerio@^1.0.0-rc.1:
+chalk@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.1.0.tgz#ac5becf14fa21b99c6c92ca7a7d7cfd5b17e743e"
+  dependencies:
+    ansi-styles "^3.1.0"
+    escape-string-regexp "^1.0.5"
+    supports-color "^4.0.0"
+
+cheerio@^1.0.0-rc.2:
   version "1.0.0-rc.2"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/cheerio/-/cheerio-1.0.0-rc.2.tgz#4b9f53a81b27e4d5dac31c0ffd0cfa03cc6830db"
   dependencies:
@@ -1363,6 +1394,10 @@ coa@~1.0.1:
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
+
+coffee-script@^1.12.5:
+  version "1.12.7"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/coffee-script/-/coffee-script-1.12.7.tgz#c05dae0cb79591d05b3070a8433a98c9a89ccc53"
 
 collection-visit@^0.2.1:
   version "0.2.3"
@@ -1541,12 +1576,12 @@ connect-history-api-fallback@^1.1.0, connect-history-api-fallback@^1.3.0:
   version "1.3.0"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/connect-history-api-fallback/-/connect-history-api-fallback-1.3.0.tgz#e51d17f8f0ef0db90a64fdb47de3051556e9f169"
 
-connect@3.5.x:
-  version "3.5.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/connect/-/connect-3.5.1.tgz#6d30d7a63c7f170857a6b3aa6b363d973dca588e"
+connect@3.4.x:
+  version "3.4.1"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/connect/-/connect-3.4.1.tgz#a21361d3f4099ef761cda6dc4a973bb1ebb0a34d"
   dependencies:
     debug "~2.2.0"
-    finalhandler "0.5.1"
+    finalhandler "0.4.1"
     parseurl "~1.3.1"
     utils-merge "1.0.0"
 
@@ -1716,7 +1751,7 @@ conventional-commits-parser@^1.0.0:
     through2 "^2.0.0"
     trim-off-newlines "^1.0.0"
 
-convert-source-map@^1.1.1, convert-source-map@^1.3.0:
+convert-source-map@^1.1.1, convert-source-map@^1.5.0:
   version "1.5.0"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/convert-source-map/-/convert-source-map-1.5.0.tgz#9acd70851c6d5dfdd93d9282e5edf94a03ff46b5"
 
@@ -1856,13 +1891,19 @@ crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
 
+csextends@^1.0.3:
+  version "1.1.1"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/csextends/-/csextends-1.1.1.tgz#cc53c1349faf7f0ae6cdf6f6c4a4d9156d3c4ec1"
+  dependencies:
+    coffee-script "^1.12.5"
+
 css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
-css-loader@^0.28.4:
-  version "0.28.4"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/css-loader/-/css-loader-0.28.4.tgz#6cf3579192ce355e8b38d5f42dd7a1f2ec898d0f"
+css-loader@^0.28.5:
+  version "0.28.5"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.5.tgz#dd02bb91b94545710212ef7f6aaa66663113d754"
   dependencies:
     babel-code-frame "^6.11.0"
     css-selector-tokenizer "^0.7.0"
@@ -1877,7 +1918,7 @@ css-loader@^0.28.4:
     postcss-modules-scope "^1.0.0"
     postcss-modules-values "^1.1.0"
     postcss-value-parser "^3.3.0"
-    source-list-map "^0.1.7"
+    source-list-map "^2.0.0"
 
 css-select@^1.1.0, css-select@~1.2.0:
   version "1.2.0"
@@ -2278,11 +2319,22 @@ duplexify@^3.2.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
+eachr@^3.2.0:
+  version "3.2.0"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/eachr/-/eachr-3.2.0.tgz#2c35e43ea086516f7997cf80b7aa64d55a4a4484"
+  dependencies:
+    editions "^1.1.1"
+    typechecker "^4.3.0"
+
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
   dependencies:
     jsbn "~0.1.0"
+
+editions@^1.1.1, editions@^1.1.2, editions@^1.3.3:
+  version "1.3.3"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/editions/-/editions-1.3.3.tgz#0907101bdda20fac3cbe334c27cbd0688dc99a5b"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -2379,6 +2431,15 @@ enhanced-resolve@3.3.0:
     memory-fs "^0.4.0"
     object-assign "^4.0.1"
     tapable "^0.2.5"
+
+enhanced-resolve@^3.4.0, enhanced-resolve@^3.4.1:
+  version "3.4.1"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/enhanced-resolve/-/enhanced-resolve-3.4.1.tgz#0421e339fd71419b3da13d129b3979040230476e"
+  dependencies:
+    graceful-fs "^4.1.2"
+    memory-fs "^0.4.0"
+    object-assign "^4.0.1"
+    tapable "^0.2.7"
 
 ent@~2.2.0:
   version "2.2.0"
@@ -2696,6 +2757,13 @@ extend@3, extend@^3.0.0, extend@~3.0.0:
   version "3.0.1"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
 
+extendr@^3.2.0, extendr@^3.2.2:
+  version "3.2.2"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/extendr/-/extendr-3.2.2.tgz#c6e46fe6d90b2e3e8812a6654bd6182cbf91cd06"
+  dependencies:
+    editions "^1.1.2"
+    typechecker "^4.3.0"
+
 external-editor@^2.0.4:
   version "2.0.4"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/external-editor/-/external-editor-2.0.4.tgz#1ed9199da9cbfe2ef2f7a31b2fde8b0d12368972"
@@ -2722,6 +2790,20 @@ extglob@^1.1.0:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^2.1.0"
+
+extract-loader@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/extract-loader/-/extract-loader-1.0.1.tgz#f82dbb0e17f7358e8ed99efc3556f77eba03f44f"
+  dependencies:
+    loader-utils "^1.1.0"
+
+extract-opts@^3.3.1:
+  version "3.3.1"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/extract-opts/-/extract-opts-3.3.1.tgz#5abbedc98c0d5202e3278727f9192d7e086c6be1"
+  dependencies:
+    eachr "^3.2.0"
+    editions "^1.1.1"
+    typechecker "^4.3.0"
 
 extract-text-webpack-plugin@^3.0.0:
   version "3.0.0"
@@ -2808,14 +2890,13 @@ fill-range@^4.0.0:
     repeat-string "^1.6.1"
     to-regex-range "^2.1.0"
 
-finalhandler@0.5.1:
-  version "0.5.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/finalhandler/-/finalhandler-0.5.1.tgz#2c400d8d4530935bc232549c5fa385ec07de6fcd"
+finalhandler@0.4.1:
+  version "0.4.1"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/finalhandler/-/finalhandler-0.4.1.tgz#85a17c6c59a94717d262d61230d4b0ebe3d4a14d"
   dependencies:
     debug "~2.2.0"
     escape-html "~1.0.3"
     on-finished "~2.3.0"
-    statuses "~1.3.1"
     unpipe "~1.0.0"
 
 finalhandler@1.0.3, finalhandler@~1.0.3:
@@ -2853,6 +2934,10 @@ find-up@^2.0.0:
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
   dependencies:
     locate-path "^2.0.0"
+
+findit@^2.0.0:
+  version "2.0.0"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/findit/-/findit-2.0.0.tgz#6509f0126af4c178551cfa99394e032e13a4d56e"
 
 first-chunk-stream@^1.0.0:
   version "1.0.0"
@@ -2943,9 +3028,9 @@ fs-extra@^2.0.0:
     graceful-fs "^4.1.2"
     jsonfile "^2.1.0"
 
-fs-extra@^3.0.1:
-  version "3.0.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/fs-extra/-/fs-extra-3.0.1.tgz#3794f378c58b342ea7dbbb23095109c4b3b62291"
+fs-extra@^4.0.0:
+  version "4.0.1"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/fs-extra/-/fs-extra-4.0.1.tgz#7fc0c6c8957f983f57f306a24e5b9ddd8d0dd880"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^3.0.0"
@@ -3193,7 +3278,7 @@ got@^6.7.1:
     unzip-response "^2.0.1"
     url-parse-lax "^1.0.0"
 
-graceful-fs@^4.0.0, graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
+graceful-fs@*, graceful-fs@^4.0.0, graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.4, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
   version "4.1.11"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
@@ -3419,9 +3504,9 @@ html-minify-loader@^1.3.0:
     loader-utils "^1.1.0"
     minimize "^1.8.1"
 
-html-webpack-plugin@^2.26.0:
-  version "2.29.0"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/html-webpack-plugin/-/html-webpack-plugin-2.29.0.tgz#e987f421853d3b6938c8c4c8171842e5fd17af23"
+html-webpack-plugin@^2.30.1:
+  version "2.30.1"
+  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.30.1.tgz#7f9c421b7ea91ec460f56527d78df484ee7537d5"
   dependencies:
     bluebird "^3.4.7"
     html-minifier "^3.2.3"
@@ -3457,14 +3542,13 @@ http-assert@^1.1.0:
     deep-equal "~1.0.1"
     http-errors "~1.6.1"
 
-http-auth@3.1.x:
-  version "3.1.3"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/http-auth/-/http-auth-3.1.3.tgz#945cfadd66521eaf8f7c84913d377d7b15f24e31"
+http-auth@2.4.x:
+  version "2.4.11"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/http-auth/-/http-auth-2.4.11.tgz#61f024a6e0e7c48934944895c87a1395509c619b"
   dependencies:
-    apache-crypt "^1.1.2"
-    apache-md5 "^1.0.6"
-    bcryptjs "^2.3.0"
-    uuid "^3.0.0"
+    apache-crypt "1.1.2"
+    apache-md5 "1.0.6"
+    node-uuid "^1.4.7"
 
 http-deceiver@^1.2.7:
   version "1.2.7"
@@ -3549,6 +3633,17 @@ ieee754@^1.1.4:
   version "1.1.8"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
 
+ignorefs@^1.0.0, ignorefs@^1.1.1:
+  version "1.2.0"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/ignorefs/-/ignorefs-1.2.0.tgz#da59fb858976e4a5e43702ccd1f282fdbc9e5756"
+  dependencies:
+    editions "^1.3.3"
+    ignorepatterns "^1.1.0"
+
+ignorepatterns@^1.1.0:
+  version "1.1.0"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/ignorepatterns/-/ignorepatterns-1.1.0.tgz#ac8f436f2239b5dfb66d5f0d3a904a87ac67cc5e"
+
 import-lazy@^2.1.0:
   version "2.1.0"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/import-lazy/-/import-lazy-2.1.0.tgz#05698e3d45c88e8d7e9d92cb0584e77f096f3e43"
@@ -3598,9 +3693,9 @@ ini@^1.3.2, ini@^1.3.4, ini@~1.3.0:
   version "1.3.4"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
 
-inquirer@^3.1.1:
-  version "3.2.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/inquirer/-/inquirer-3.2.1.tgz#06ceb0f540f45ca548c17d6840959878265fa175"
+inquirer@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-3.2.2.tgz#c2aaede1507cc54d826818737742d621bef2e823"
   dependencies:
     ansi-escapes "^2.0.0"
     chalk "^2.0.0"
@@ -3637,7 +3732,7 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-ip@^1.1.0:
+ip@^1.1.0, ip@^1.1.5:
   version "1.1.5"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
 
@@ -3897,22 +3992,22 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-istanbul-instrumenter-loader@2.0.0:
-  version "2.0.0"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/istanbul-instrumenter-loader/-/istanbul-instrumenter-loader-2.0.0.tgz#e5492900ab0bba835efa8024cb00be9b3eea2700"
+istanbul-instrumenter-loader@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/istanbul-instrumenter-loader/-/istanbul-instrumenter-loader-3.0.0.tgz#9f553923b22360bac95e617aaba01add1f7db0b2"
   dependencies:
-    convert-source-map "^1.3.0"
-    istanbul-lib-instrument "^1.1.3"
-    loader-utils "^0.2.16"
-    object-assign "^4.1.0"
+    convert-source-map "^1.5.0"
+    istanbul-lib-instrument "^1.7.3"
+    loader-utils "^1.1.0"
+    schema-utils "^0.3.0"
 
 istanbul-lib-coverage@^1.1.1:
   version "1.1.1"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/istanbul-lib-coverage/-/istanbul-lib-coverage-1.1.1.tgz#73bfb998885299415c93d38a3e9adf784a77a9da"
 
-istanbul-lib-instrument@^1.1.3:
+istanbul-lib-instrument@^1.7.3:
   version "1.7.4"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/istanbul-lib-instrument/-/istanbul-lib-instrument-1.7.4.tgz#e9fd920e4767f3d19edc765e2d6b3f5ccbd0eea8"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-instrument/-/istanbul-lib-instrument-1.7.4.tgz#e9fd920e4767f3d19edc765e2d6b3f5ccbd0eea8"
   dependencies:
     babel-generator "^6.18.0"
     babel-template "^6.16.0"
@@ -3941,7 +4036,11 @@ istanbul@0.4.5, istanbul@^0.4.0, istanbul@^0.4.5:
     which "^1.1.1"
     wordwrap "^1.0.0"
 
-jasmine-core@^2.6.4, jasmine-core@~2.6.0:
+jasmine-core@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-2.7.0.tgz#50ff8c4f92d8ef5c0b2c1b846dd263ed85152091"
+
+jasmine-core@~2.6.0:
   version "2.6.4"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/jasmine-core/-/jasmine-core-2.6.4.tgz#dec926cd0a9fa287fb6db5c755fa487e74cecac5"
 
@@ -3952,9 +4051,9 @@ jasmine-reporters@^2.2.0:
     mkdirp "^0.5.1"
     xmldom "^0.1.22"
 
-jasmine-spec-reporter@^4.1.1:
-  version "4.1.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/jasmine-spec-reporter/-/jasmine-spec-reporter-4.1.1.tgz#5a6d58ab5d61bea7309fbc279239511756b1b588"
+jasmine-spec-reporter@^4.2.1:
+  version "4.2.1"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/jasmine-spec-reporter/-/jasmine-spec-reporter-4.2.1.tgz#1d632aec0341670ad324f92ba84b4b32b35e9e22"
   dependencies:
     colors "1.1.2"
 
@@ -4395,23 +4494,23 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-live-server@^1.2.0:
-  version "1.2.0"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/live-server/-/live-server-1.2.0.tgz#4498644bbf81a66f18dd8dffdef61c4c1c374ca3"
+live-server@1.1.0:
+  version "1.1.0"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/live-server/-/live-server-1.1.0.tgz#a69f0e6ca581e0391aa57941970e17c308dd4869"
   dependencies:
-    chokidar "^1.6.0"
     colors latest
-    connect "3.5.x"
+    connect "3.4.x"
     cors latest
     event-stream latest
     faye-websocket "0.11.x"
-    http-auth "3.1.x"
+    http-auth "2.4.x"
     morgan "^1.6.1"
     object-assign latest
     opn latest
     proxy-middleware latest
     send latest
     serve-index "^1.7.2"
+    watchr "2.6.x"
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -4821,9 +4920,9 @@ macos-release@^1.0.0:
   version "1.1.0"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/macos-release/-/macos-release-1.1.0.tgz#831945e29365b470aa8724b0ab36c8f8959d10fb"
 
-magic-string@^0.19.0:
-  version "0.19.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/magic-string/-/magic-string-0.19.1.tgz#14d768013caf2ec8fdea16a49af82fc377e75201"
+magic-string@^0.22.3:
+  version "0.22.4"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.22.4.tgz#31039b4e40366395618c1d6cf8193c53917475ff"
   dependencies:
     vlq "^0.2.1"
 
@@ -5273,7 +5372,7 @@ node-sass@^4.5.3:
     sass-graph "^2.1.1"
     stdout-stream "^1.4.0"
 
-node-uuid@~1.4.7:
+node-uuid@^1.4.7, node-uuid@~1.4.7:
   version "1.4.8"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/node-uuid/-/node-uuid-1.4.8.tgz#b040eb0923968afabf8d32fb1f17f1167fdab907"
 
@@ -6551,9 +6650,9 @@ rx-lite@*, rx-lite@^4.0.8:
   version "4.0.8"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/rx-lite/-/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
 
-rxjs@^5.4.1:
-  version "5.4.2"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/rxjs/-/rxjs-5.4.2.tgz#2a3236fcbf03df57bae06fd6972fd99e5c08fcf7"
+rxjs@^5.4.3:
+  version "5.4.3"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/rxjs/-/rxjs-5.4.3.tgz#0758cddee6033d68e0fd53676f0f3596ce3d483f"
   dependencies:
     symbol-observable "^1.0.1"
 
@@ -6568,6 +6667,19 @@ safe-wipe@0.*:
     extend "2.*"
     q "1.*"
     rimraf "2.*"
+
+safefs@^3.1.2:
+  version "3.2.2"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/safefs/-/safefs-3.2.2.tgz#8170c1444d7038e08caea05a374fae2fa349e15c"
+  dependencies:
+    graceful-fs "*"
+
+safefs@^4.1.0:
+  version "4.1.0"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/safefs/-/safefs-4.1.0.tgz#f82aeb4bdd7ae51f653eb20f6728b3058c8d6445"
+  dependencies:
+    editions "^1.1.1"
+    graceful-fs "^4.1.4"
 
 sass-convert@^0.5.0:
   version "0.5.2"
@@ -6665,6 +6777,14 @@ sax@0.6.x:
 sax@>=0.6.0, sax@~1.2.1:
   version "1.2.4"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
+
+scandirectory@^2.5.0:
+  version "2.5.0"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/scandirectory/-/scandirectory-2.5.0.tgz#6ce03f54a090b668e3cbedbf20edf9e310593e72"
+  dependencies:
+    ignorefs "^1.0.0"
+    safefs "^3.1.2"
+    taskgroup "^4.0.5"
 
 schema-utils@^0.3.0:
   version "0.3.0"
@@ -6851,9 +6971,9 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-simple-git@^1.73.0:
-  version "1.74.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/simple-git/-/simple-git-1.74.1.tgz#802f1cb6f38e826aa238bda19990e7e3b3198181"
+simple-git@^1.75.0:
+  version "1.75.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-1.75.0.tgz#eaddc90118b40a1dca3837d51c50ac064ee1d288"
   dependencies:
     debug "^2.6.7"
 
@@ -6961,10 +7081,6 @@ sort-keys@^1.0.0:
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/sort-keys/-/sort-keys-1.1.2.tgz#441b6d4d346798f1b4e49e8920adfba0e543f9ad"
   dependencies:
     is-plain-obj "^1.0.0"
-
-source-list-map@^0.1.7:
-  version "0.1.8"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/source-list-map/-/source-list-map-0.1.8.tgz#c550b2ab5427f6b3f21f5afead88c4f5587b2106"
 
 source-list-map@^2.0.0:
   version "2.0.0"
@@ -7283,7 +7399,7 @@ supports-color@^3.1.0, supports-color@^3.1.1, supports-color@^3.2.3:
   dependencies:
     has-flag "^1.0.0"
 
-supports-color@^4.0.0, supports-color@^4.2.0:
+supports-color@^4.0.0, supports-color@^4.2.0, supports-color@^4.2.1:
   version "4.2.1"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/supports-color/-/supports-color-4.2.1.tgz#65a4bb2631e90e02420dba5554c375a4754bb836"
   dependencies:
@@ -7342,9 +7458,13 @@ table-layout@^0.4.0, table-layout@~0.4.0:
     typical "^2.6.0"
     wordwrapjs "^2.0.0"
 
-tapable@^0.2.5, tapable@~0.2.5:
+tapable@^0.2.5:
   version "0.2.7"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/tapable/-/tapable-0.2.7.tgz#e46c0daacbb2b8a98b9b0cea0f4052105817ed5c"
+
+tapable@^0.2.7:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.2.8.tgz#99372a5c999bf2df160afc0d74bed4f47948cd22"
 
 tar-pack@^3.4.0:
   version "3.4.0"
@@ -7366,6 +7486,22 @@ tar@^2.0.0, tar@^2.2.1:
     block-stream "*"
     fstream "^1.0.2"
     inherits "2"
+
+taskgroup@^4.0.5:
+  version "4.3.1"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/taskgroup/-/taskgroup-4.3.1.tgz#7de193febd768273c457730497024d512c27915a"
+  dependencies:
+    ambi "^2.2.0"
+    csextends "^1.0.3"
+
+taskgroup@^5.0.1:
+  version "5.0.1"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/taskgroup/-/taskgroup-5.0.1.tgz#08736c9b24683b1434774231eb4b73aa7c3f79b5"
+  dependencies:
+    ambi "^2.5.0"
+    eachr "^3.2.0"
+    editions "^1.1.1"
+    extendr "^3.2.0"
 
 tempfile@^1.1.1:
   version "1.1.1"
@@ -7634,15 +7770,17 @@ type-is@^1.5.5, type-is@~1.6.15, type-is@~1.6.6:
     media-typer "0.3.0"
     mime-types "~2.1.15"
 
+typechecker@^4.3.0:
+  version "4.4.1"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/typechecker/-/typechecker-4.4.1.tgz#f97b95f51b038417212d677d45a373ee7bced7e6"
+  dependencies:
+    editions "^1.3.3"
+
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@2.4.1:
-  version "2.4.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/typescript/-/typescript-2.4.1.tgz#c3ccb16ddaa0b2314de031e7e6fee89e5ba346bc"
-
-typescript@^2.4.1:
+typescript@2.4.2:
   version "2.4.2"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/typescript/-/typescript-2.4.2.tgz#f8395f85d459276067c988aa41837a8f82870844"
 
@@ -7650,7 +7788,7 @@ typical@^2.6.0, typical@^2.6.1:
   version "2.6.1"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/typical/-/typical-2.6.1.tgz#5c080e5d661cbbe38259d2e70a3c7253e873881d"
 
-uglify-js@3.0.x, uglify-js@^3.0.19:
+uglify-js@3.0.x:
   version "3.0.26"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/uglify-js/-/uglify-js-3.0.26.tgz#ba279ca597b13fe6c62c2d87dd5188e57a7a3233"
   dependencies:
@@ -7665,6 +7803,13 @@ uglify-js@^2.6, uglify-js@^2.8.29:
     yargs "~3.10.0"
   optionalDependencies:
     uglify-to-browserify "~1.0.0"
+
+uglify-js@^3.0.28:
+  version "3.0.28"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.0.28.tgz#96b8495f0272944787b5843a1679aa326640d5f7"
+  dependencies:
+    commander "~2.11.0"
+    source-map "~0.5.1"
 
 uglify-js@~2.4:
   version "2.4.24"
@@ -7971,6 +8116,19 @@ watchpack@^1.4.0:
     chokidar "^1.7.0"
     graceful-fs "^4.1.2"
 
+watchr@2.6.x:
+  version "2.6.0"
+  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/watchr/-/watchr-2.6.0.tgz#e75c423b10be79267a0c3ef76e2ea104fe0267a5"
+  dependencies:
+    eachr "^3.2.0"
+    extendr "^3.2.2"
+    extract-opts "^3.3.1"
+    ignorefs "^1.1.1"
+    safefs "^4.1.0"
+    scandirectory "^2.5.0"
+    taskgroup "^5.0.1"
+    typechecker "^4.3.0"
+
 wbuf@^1.1.0, wbuf@^1.7.2:
   version "1.7.2"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/wbuf/-/wbuf-1.7.2.tgz#d697b99f1f59512df2751be42769c1580b5801fe"
@@ -8009,9 +8167,9 @@ webpack-dev-middleware@^1.0.11, webpack-dev-middleware@^1.11.0:
     path-is-absolute "^1.0.0"
     range-parser "^1.0.3"
 
-webpack-dev-server@^2.5.0:
-  version "2.6.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/webpack-dev-server/-/webpack-dev-server-2.6.1.tgz#0b292a9da96daf80a65988f69f87b4166e5defe7"
+webpack-dev-server@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-2.7.1.tgz#21580f5a08cd065c71144cf6f61c345bca59a8b8"
   dependencies:
     ansi-html "0.0.7"
     bonjour "^3.5.0"
@@ -8023,6 +8181,7 @@ webpack-dev-server@^2.5.0:
     html-entities "^1.2.0"
     http-proxy-middleware "~0.17.4"
     internal-ip "^1.2.0"
+    ip "^1.1.5"
     loglevel "^1.4.1"
     opn "4.0.2"
     portfinder "^1.0.9"
@@ -8049,16 +8208,16 @@ webpack-sources@^1.0.1:
     source-list-map "^2.0.0"
     source-map "~0.5.3"
 
-webpack@^3.3.0:
-  version "3.3.0"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/webpack/-/webpack-3.3.0.tgz#ce2f9e076566aba91f74887133a883fd7da187bc"
+webpack@^3.5.5:
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.5.5.tgz#3226f09fc8b3e435ff781e7af34f82b68b26996c"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^2.0.0"
     ajv "^5.1.5"
     ajv-keywords "^2.0.0"
     async "^2.1.2"
-    enhanced-resolve "^3.3.0"
+    enhanced-resolve "^3.4.0"
     escope "^3.6.0"
     interpret "^1.0.0"
     json-loader "^0.5.4"
@@ -8069,12 +8228,12 @@ webpack@^3.3.0:
     mkdirp "~0.5.0"
     node-libs-browser "^2.0.0"
     source-map "^0.5.3"
-    supports-color "^3.1.0"
-    tapable "~0.2.5"
+    supports-color "^4.2.1"
+    tapable "^0.2.7"
     uglifyjs-webpack-plugin "^0.4.6"
     watchpack "^1.4.0"
     webpack-sources "^1.0.1"
-    yargs "^6.0.0"
+    yargs "^8.0.2"
 
 websocket-driver@>=0.5.1:
   version "0.6.5"
@@ -8146,13 +8305,6 @@ wordwrapjs@^2.0.0:
     feature-detect-es6 "^1.3.1"
     reduce-flatten "^1.0.1"
     typical "^2.6.0"
-
-worker-loader@^0.8.0:
-  version "0.8.1"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/worker-loader/-/worker-loader-0.8.1.tgz#e8e995331ea34df5bf68296824bfb7f0ad578d43"
-  dependencies:
-    loader-utils "^1.0.2"
-    schema-utils "^0.3.0"
 
 wrap-ansi@^2.0.0:
   version "2.1.0"
@@ -8345,6 +8497,6 @@ yn@^2.0.0:
   version "2.0.0"
   resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/yn/-/yn-2.0.0.tgz#e5adabc8acf408f6385fc76495684c88e6af689a"
 
-zone.js@^0.8.13:
-  version "0.8.14"
-  resolved "https://crm.inside-m2m.de/nexus/repository/npm-all/zone.js/-/zone.js-0.8.14.tgz#0c4db24b178232274ccb43f78c99db7f3642b6cf"
+zone.js@^0.8.16:
+  version "0.8.16"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.16.tgz#ac31b6c418f88c0f918ad6acd8a402aca9313abb"

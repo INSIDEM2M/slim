@@ -68,6 +68,12 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
                             loader: "style-loader"
                         },
                         {
+                            loader: "cache-loader",
+                            options: {
+                                cacheDirectory: path.join(config.rootDir, ".awcache")
+                            }
+                        },
+                        {
                             loader: "css-loader",
                             options: {
                                 localIdentName: "[name]",

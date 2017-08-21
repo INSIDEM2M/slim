@@ -71,7 +71,9 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 },
                 {
                     test: /\.js$/,
-                    loader: "source-map-loader",
+                    use: [
+                        "source-map-loader"
+                    ],
                     exclude: config.webpack.ignoreSourceMaps
                 },
                 {
@@ -152,7 +154,9 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
         (conf.module as webpack.NewModule).rules.push(
             {
                 test: /\.ts$/,
-                loader: "@ngtools/webpack",
+                use: [
+                    "@ngtools/webpack"
+                ],
                 exclude: [/\.(spec|e2e|d)\.ts$/]
             }
         );

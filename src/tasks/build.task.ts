@@ -36,6 +36,14 @@ function isVendor({ resource }) {
         resource.match(/\.js$/);
 }
 
+function onlyTemplateErrors(errors: string[]) {
+    return errors.reduce((prev, curr) => prev && isTemplateError(curr), true);
+}
+
+function isTemplateError(error: string) {
+    return error.startsWith("ng://") || error.includes("$$_gendir");
+}
+
 function runBuild(config: webpack.Configuration, conf: SlimConfig) {
     timer.start("Application build");
     return new Promise((resolve, reject) => {
@@ -49,9 +57,22 @@ function runBuild(config: webpack.Configuration, conf: SlimConfig) {
             } else if (stats.hasErrors()) {
                 const jsonStats = stats.toJson();
                 if (jsonStats.errors && jsonStats.errors.length > 0) {
-                    logger.error(jsonStats.errors[0]);
+                    for (const e of jsonStats.errors as string[]) {
+                        let prettyError = e
+                            .replace(conf.rootDir + "/", "");
+                        if (isTemplateError(prettyError)) {
+                            logger.warn(prettyError
+                                .replace("ng://", "")
+                                .replace("$$_gendir", "")
+                            );
+                        } else {
+                            logger.error(prettyError);
+                        }
+                    }
                 }
-                return reject(1);
+                if (!onlyTemplateErrors(jsonStats.errors)) {
+                    return reject(1);
+                }
             }
             if (argv["debug"]) {
                 fs.writeFileSync(path.join(conf.targetDir, "stats.json"), JSON.stringify(stats.toJson()), { encoding: "utf-8" });
