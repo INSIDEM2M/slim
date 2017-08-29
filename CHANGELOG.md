@@ -1,3 +1,19 @@
+<a name="0.9.4"></a>
+## [0.9.4](https://github.com/INSIDEM2M/slim/compare/0.9.3...0.9.4) (2017-08-29)
+
+
+### Bug Fixes
+
+* **build:** update to newest [@ngtools](https://github.com/ngtools)/webpack ([6bc3ddb](https://github.com/INSIDEM2M/slim/commit/6bc3ddb))
+
+
+### Features
+
+* **common:** minimize html files ([c468137](https://github.com/INSIDEM2M/slim/commit/c468137))
+* **dev:** disable logging of updated modules ([43ddae9](https://github.com/INSIDEM2M/slim/commit/43ddae9))
+
+
+
 <a name="0.9.3"></a>
 ## [0.9.3](https://github.com/INSIDEM2M/slim/compare/0.9.2...0.9.3) (2017-06-22)
 
