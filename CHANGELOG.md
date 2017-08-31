@@ -1,3 +1,13 @@
+<a name="0.9.6"></a>
+## [0.9.6](https://github.com/INSIDEM2M/slim/compare/0.9.5...0.9.6) (2017-08-31)
+
+
+### Bug Fixes
+
+* **build:** import typescript helpers ([bf82ca0](https://github.com/INSIDEM2M/slim/commit/bf82ca0))
+
+
+
 <a name="0.9.5"></a>
 ## [0.9.5](https://github.com/INSIDEM2M/slim/compare/0.9.4...0.9.5) (2017-08-31)
 
