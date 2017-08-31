@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@angularclass/hmr": "^1.2.2",
-    "ts-helpers": "^1.1.2",
+    "tslib": "1.7.1",
     "typescript": "^2.2.1"
   }
 }
