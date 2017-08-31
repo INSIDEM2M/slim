@@ -1,3 +1,13 @@
+<a name="0.9.5"></a>
+## [0.9.5](https://github.com/INSIDEM2M/slim/compare/0.9.4...0.9.5) (2017-08-31)
+
+
+### Bug Fixes
+
+* **build:** allow errors when typeCheck is set to false ([4323239](https://github.com/INSIDEM2M/slim/commit/4323239))
+
+
+
 <a name="0.9.4"></a>
 ## [0.9.4](https://github.com/INSIDEM2M/slim/compare/0.9.3...0.9.4) (2017-08-29)
 
