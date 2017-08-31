@@ -7,7 +7,6 @@
         "sourceMap": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "noEmitHelpers": true,
         "outDir": "dist",
         "skipLibCheck": true,
         "lib": [

@@ -1,10 +1,17 @@
-import { getAvailablePort } from "../cli-helpers";
-import * as opn from "opn";
 import { Server } from "http";
-import { logger } from "../utils";
+import * as opn from "opn";
+import { getAvailablePort } from "../cli-helpers";
 import { SlimConfig } from "../config/slim-typings/slim-config";
+import { logger } from "../utils";
 
-module.exports = function (env: Environment, config: SlimConfig, open: boolean, forcePort?: number, quitAfterStart?: boolean, silent: boolean = true) {
+module.exports = function(
+    env: Environment,
+    config: SlimConfig,
+    open: boolean,
+    forcePort?: number,
+    quitAfterStart?: boolean,
+    silent: boolean = true
+) {
     return getAvailablePort().then(port => {
         const localWebServer = require("local-web-server");
         const server = localWebServer({

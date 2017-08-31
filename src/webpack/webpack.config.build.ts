@@ -1,23 +1,21 @@
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
-import SuppressChunksPlugin from "suppress-chunks-webpack-plugin";
 import * as ExtractTextPlugin from "extract-text-webpack-plugin";
-import { SlimConfig } from "../config/slim-typings/slim-config";
-import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
-import { argv } from "yargs";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as path from "path";
+import SuppressChunksPlugin from "suppress-chunks-webpack-plugin";
 import * as UglifyJsPlugin from "uglifyjs-webpack-plugin";
 import * as webpack from "webpack";
+import { argv } from "yargs";
+import { SlimConfig } from "../config/slim-typings/slim-config";
+import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
 
 export function getBuildConfigPartial(config: SlimConfig, minify: boolean, indexPath: string, skipSourceMaps: boolean): any {
-    let plugins: webpack.Plugin[] = [
+    const plugins: webpack.Plugin[] = [
         new HtmlWebpackPlugin({
             template: indexPath
         }),
         new CopyWebpackPlugin(config.assets.entries),
-        new SuppressChunksPlugin([
-            { name: "styles", match: /\.js/ }
-        ]),
+        new SuppressChunksPlugin([{ name: "styles", match: /\.js/ }]),
         new RemoveScriptsPlugin(["styles.js"]),
         new ExtractTextPlugin({
             filename: "[name].css",
@@ -26,34 +24,36 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
         new webpack.optimize.ModuleConcatenationPlugin()
     ];
     if (minify) {
-        plugins.push(new UglifyJsPlugin(({
-            beautify: false,
-            comments: false,
-            mangle: {
-                screw_ie8: true
-            },
-            compress: {
-                screw_ie8: true,
-                warnings: argv["debug"],
-                sequences: true,
-                dead_code: true,
-                conditionals: true,
-                comparisons: true,
-                drop_debugger: true,
-                evaluate: true,
-                loops: true,
-                booleans: true,
-                unused: true,
-                if_return: true,
-                join_vars: true,
-                passes: 2,
-                reduce_vars: true
-            },
-            sourceMap: !skipSourceMaps
-        })));
+        plugins.push(
+            new UglifyJsPlugin({
+                beautify: false,
+                comments: false,
+                mangle: {
+                    screw_ie8: true
+                },
+                compress: {
+                    screw_ie8: true,
+                    warnings: argv.debug,
+                    sequences: true,
+                    dead_code: true,
+                    conditionals: true,
+                    comparisons: true,
+                    drop_debugger: true,
+                    evaluate: true,
+                    loops: true,
+                    booleans: true,
+                    unused: true,
+                    if_return: true,
+                    join_vars: true,
+                    passes: 2,
+                    reduce_vars: true
+                },
+                sourceMap: !skipSourceMaps
+            })
+        );
     }
-    let conf: any = {
-        stats: argv["ci"] && !argv["debug"] ? "errors-only" : "normal",
+    const conf: any = {
+        stats: argv.ci && !argv.debug ? "errors-only" : "normal",
         devtool: skipSourceMaps ? false : "source-map",
         plugins,
         module: {
@@ -73,7 +73,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
                             {
                                 loader: "postcss-loader",
                                 options: {
-                                    path: path.relative(__dirname, path.resolve("..", "config", "postcss.config.js")),
+                                    path: path.relative(__dirname, path.resolve("..", "config", "postcss.config.js"))
                                 }
                             },
                             {
@@ -87,7 +87,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
                             "empty-sass-shim-loader"
                         ]
                     })
-                },
+                }
             ]
         },
         output: {
@@ -95,8 +95,8 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
             filename: "[name].js"
         },
         entry: {
-            app: config.typescript.entry,
-        },
+            app: config.typescript.entry
+        }
     };
     if (Array.isArray(config.sass.globalStyles) && config.sass.globalStyles.length > 0) {
         conf.entry.styles = config.sass.globalStyles;

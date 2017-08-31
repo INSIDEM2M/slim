@@ -1,13 +1,19 @@
-import * as webpack from "webpack";
-import * as path from "path";
-import { SlimConfig } from "../config/slim-typings/slim-config";
 import { AotPlugin } from "@ngtools/webpack";
+import * as path from "path";
+import * as webpack from "webpack";
 import { argv } from "yargs";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 
 const ProgressPlugin = (webpack as any).ProgressPlugin;
 
-export function getCommonConfigPartial(indexPath: string, environment: any, config: SlimConfig, stripSassImports: boolean = false, aot: boolean) {
-    let conf: webpack.Configuration = {
+export function getCommonConfigPartial(
+    indexPath: string,
+    environment: any,
+    config: SlimConfig,
+    stripSassImports: boolean = false,
+    aot: boolean
+) {
+    const conf: webpack.Configuration = {
         output: {
             devtoolModuleFilenameTemplate: "webpack:///[absolute-resource-path]"
         },
@@ -63,7 +69,7 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                             loader: "strip-sass-imports-loader",
                             options: {
                                 importsIgnoredDuringTesting: config.sass.importsIgnoredDuringTesting,
-                                stripSassImports: stripSassImports
+                                stripSassImports
                             }
                         },
                         "empty-sass-shim-loader"
@@ -83,8 +89,9 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                             loader: "html-minify-loader",
                             options: {
                                 quotes: true,
-                                dom: { // options of !(htmlparser2)[https://github.com/fb55/htmlparser2]
-                                    lowerCaseAttributeNames: false,
+                                dom: {
+                                    // options of !(htmlparser2)[https://github.com/fb55/htmlparser2]
+                                    lowerCaseAttributeNames: false
                                 }
                             }
                         }
@@ -137,12 +144,10 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
                 }
             ]
         },
-        plugins: [
-            new webpack.DefinePlugin({ environment })
-        ]
+        plugins: [new webpack.DefinePlugin({ environment })]
     };
 
-    if (!argv["ci"]) {
+    if (!argv.ci) {
         conf.plugins.push(new ProgressPlugin());
     }
 
@@ -151,34 +156,30 @@ export function getCommonConfigPartial(indexPath: string, environment: any, conf
             new AotPlugin({
                 tsConfigPath: config.angular.aotTsConfig,
                 entryModule: config.angular.appModule,
-                typeChecking: argv["ci"] ? false : config.typescript.typecheck
+                typeChecking: argv.ci ? false : config.typescript.typecheck
             })
         );
-        (conf.module as webpack.NewModule).rules.push(
-            {
-                test: /\.ts$/,
-                loader: "@ngtools/webpack",
-                exclude: [/\.(spec|e2e|d)\.ts$/]
-            }
-        );
+        (conf.module as webpack.NewModule).rules.push({
+            test: /\.ts$/,
+            loader: "@ngtools/webpack",
+            exclude: [/\.(spec|e2e|d)\.ts$/]
+        });
     } else {
-        (conf.module as webpack.NewModule).rules.push(
-            {
-                test: /\.ts$/,
-                use: [
-                    {
-                        loader: "awesome-typescript-loader",
-                        options: {
-                            useTranspileModule: argv["ci"] ? true : !config.typescript.typecheck,
-                            transpileOnly: argv["ci"] ? true : !config.typescript.typecheck
-                        }
-                    },
-                    "angular2-template-loader?keepUrl=true",
-                    "angular-router-loader?debug=" + (argv["debug"] === true)
-                ],
-                exclude: [/\.(spec|e2e|d)\.ts$/]
-            }
-        );
+        (conf.module as webpack.NewModule).rules.push({
+            test: /\.ts$/,
+            use: [
+                {
+                    loader: "awesome-typescript-loader",
+                    options: {
+                        useTranspileModule: argv.ci ? true : !config.typescript.typecheck,
+                        transpileOnly: argv.ci ? true : !config.typescript.typecheck
+                    }
+                },
+                "angular2-template-loader?keepUrl=true",
+                "angular-router-loader?debug=" + (argv.debug === true)
+            ],
+            exclude: [/\.(spec|e2e|d)\.ts$/]
+        });
     }
     if (Array.isArray(config.sass.globalStyles) && config.sass.globalStyles.length > 0) {
         conf.entry = {

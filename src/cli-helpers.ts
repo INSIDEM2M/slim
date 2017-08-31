@@ -1,19 +1,20 @@
 import * as childProcess from "child_process";
-import * as portFinder from "portfinder";
-import * as path from "path";
-import { logger } from "./utils";
-import * as opn from "opn";
-import { merge } from "lodash";
-import { SlimConfig, defaultSlimConfig } from "./config/slim-typings";
 import * as fs from "fs";
-import { argv } from "yargs";
+import { merge } from "lodash";
+import * as opn from "opn";
+import * as path from "path";
+import * as portFinder from "portfinder";
 import * as webpack from "webpack";
+import { argv } from "yargs";
+import { defaultSlimConfig, SlimConfig } from "./config/slim-typings";
+import { logger } from "./utils";
 
 function getCurrentCommit(): string {
     if (fs.existsSync(path.join(process.cwd(), ".git"))) {
         return childProcess
             .execSync("git rev-parse HEAD")
-            .toString().trim();
+            .toString()
+            .trim();
     } else {
         return "";
     }
@@ -24,7 +25,7 @@ export function getAvailablePort(): Promise<number> {
     if (randomPort) {
         return Promise.resolve(randomPort);
     } else {
-        if (argv["ci"]) {
+        if (argv.ci) {
             randomPort = 2048 + Math.round(Math.random() * 60000);
             return Promise.resolve(randomPort);
         } else {
@@ -41,15 +42,15 @@ export function getEnvironment(rootDir: string): Environment {
     const environment = process.env.NODE_ENV || "development";
 
     const pkg = getPackage(rootDir);
-    const version = JSON.stringify(pkg["version"] || "unknown");
+    const version = JSON.stringify(pkg.version || "unknown");
     const commit = JSON.stringify(getCurrentCommit());
     const buildDate = JSON.stringify(new Date());
 
-    const properties = pkg["buildProperties"] ? pkg.buildProperties[argv["env"] ? argv["env"] : environment] : {};
+    const properties = pkg.buildProperties ? pkg.buildProperties[argv.env ? argv.env : environment] : {};
 
-    Object.keys(properties).forEach(prop => properties[prop] = JSON.stringify(properties[prop]));
+    Object.keys(properties).forEach(prop => (properties[prop] = JSON.stringify(properties[prop])));
 
-    return Object.assign({}, properties, { version, commit, buildDate, current: JSON.stringify(environment) });
+    return { ...properties, version, commit, buildDate, current: JSON.stringify(environment) };
 }
 
 export function getSlimConfig(rootDir: string): SlimConfig {
@@ -71,7 +72,7 @@ export function getSlimConfig(rootDir: string): SlimConfig {
 export function prettyPrintConfig(webpackConfig: webpack.Configuration): string {
     const replacerFn = (key: string, value: any) => {
         // Filter webpack.DllReferencePlugin manifest entries
-        if (value && value["options"] !== undefined && value["options"]["context"] !== undefined) {
+        if (value && value.options !== undefined && value.options.context !== undefined) {
             return undefined;
         }
         return value;
@@ -88,8 +89,8 @@ function normalizeConfig(config: SlimConfig): SlimConfig {
     config.angular.aotTsConfig = path.join(config.rootDir, config.angular.aotTsConfig);
     config.angular.appModule = path.join(config.rootDir, config.angular.appModule);
     config.sass.includePaths.push(config.sourceDir);
-    config.sass.globalStyles = config.sass.globalStyles.map(style => path.isAbsolute(style) ? style : path.join(config.rootDir, style));
-    for (let asset of config.assets.entries) {
+    config.sass.globalStyles = config.sass.globalStyles.map(style => (path.isAbsolute(style) ? style : path.join(config.rootDir, style)));
+    for (const asset of config.assets.entries) {
         if (!path.isAbsolute(asset.from)) {
             asset.from = path.join(config.rootDir, asset.from);
         }

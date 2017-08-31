@@ -1,35 +1,29 @@
-import * as webpack from "webpack";
-import * as path from "path";
 import { CheckerPlugin } from "awesome-typescript-loader";
-import { SlimConfig } from "../config/slim-typings/slim-config";
+import * as path from "path";
+import * as webpack from "webpack";
 import { argv } from "yargs";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 
 const DllReferencePlugin = webpack.DllReferencePlugin;
 const NamedModulesPlugin = webpack.NamedModulesPlugin;
 
 export function getTestConfigPartial(config: SlimConfig) {
-    let conf: webpack.Configuration = {
-        devtool: argv["ci"] ? "eval" : "inline-source-map",
+    const conf: webpack.Configuration = {
+        devtool: argv.ci ? "eval" : "inline-source-map",
         stats: "minimal",
         module: {
             rules: [
                 {
                     test: /\.js$/,
                     enforce: "pre",
-                    use: [
-                        "source-map-loader"
-                    ],
-                    exclude: [
-                        "node_modules"
-                    ]
+                    use: ["source-map-loader"],
+                    exclude: ["node_modules"]
                 },
                 {
-                    test: /\.(js|ts)$/, loader: "istanbul-instrumenter-loader",
+                    test: /\.(js|ts)$/,
+                    loader: "istanbul-instrumenter-loader",
                     include: config.sourceDir,
-                    exclude: [
-                        /\.(e2e|spec)\.ts$/,
-                        /node_modules/
-                    ],
+                    exclude: [/\.(e2e|spec)\.ts$/, /node_modules/],
                     options: {
                         esModules: true
                     }
@@ -102,17 +96,15 @@ export function getTestConfigPartial(config: SlimConfig) {
                 }
             ]
         },
-        plugins: [
-            new NamedModulesPlugin(),
-            new CheckerPlugin()
-        ]
+        plugins: [new NamedModulesPlugin(), new CheckerPlugin()]
     };
 
-    if (!argv["ci"]) {
-        conf.plugins.push(new DllReferencePlugin({
-            context: ".",
-            manifest: require(path.join(config.dllDir, "polyfills.dll.json"))
-        }),
+    if (!argv.ci) {
+        conf.plugins.push(
+            new DllReferencePlugin({
+                context: ".",
+                manifest: require(path.join(config.dllDir, "polyfills.dll.json"))
+            }),
             new DllReferencePlugin({
                 context: ".",
                 manifest: require(path.join(config.dllDir, "vendors.dll.json"))

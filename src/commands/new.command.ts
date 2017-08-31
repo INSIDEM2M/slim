@@ -1,19 +1,18 @@
-import { logger } from "../utils";
-import * as yargs from "yargs";
-import * as path from "path";
-import * as os from "os";
 import * as fs from "fs";
+import * as os from "os";
+import * as path from "path";
+import * as yargs from "yargs";
+import { logger } from "../utils";
 
-let builder: yargs.CommandBuilder = ((): yargs.CommandBuilder => {
-
+const builder: yargs.CommandBuilder = ((): yargs.CommandBuilder => {
     let templates: yargs.CommandBuilder = {
-        "portal": {
+        portal: {
             alias: "p",
             type: "boolean",
             description: "Create a portal project.",
             url: "https://github.com/0xE282B0/slim-test-template"
         },
-        "app": {
+        app: {
             alias: "a",
             type: "boolean",
             description: "Create an app project.",
@@ -31,11 +30,11 @@ let builder: yargs.CommandBuilder = ((): yargs.CommandBuilder => {
         // logger.info(".slim/templates.ts:\n" + JSON.stringify(templates, null, 2));
     } catch (error) {
         logger.info(error);
-        //TODO: (0xe282b0) Print more understandable error message (IO/format)
+        // TODO: (0xe282b0) Print more understandable error message (IO/format)
     }
 
-    //TODO: (0xe282b0) check that templates variable is a valid CommandBuilder;
-    //TODO: (0xe282b0) check that aliases are unique;
+    // TODO: (0xe282b0) check that templates variable is a valid CommandBuilder;
+    // TODO: (0xe282b0) check that aliases are unique;
 
     return templates;
 })();
@@ -46,98 +45,97 @@ export const newCommand: yargs.CommandModule = {
     handler: (options: Options) => {
         // logger.info(options);
 
-        //TODO: (0xe282b0): only if not a single option is selected
+        // TODO: (0xe282b0): only if not a single option is selected
 
-        var inquirer = require("inquirer");
-        inquirer.prompt(
-            [
+        const inquirer = require("inquirer");
+        inquirer
+            .prompt([
                 {
                     type: "list",
                     name: "project.type",
                     message: "What do you want to create?",
                     choices: Object.keys(builder)
                 }
-            ]
+            ])
+            .then(function(answers) {
+                const targetPath = path.join(os.homedir(), ".slim", answers.project.type);
 
-        ).then(function (answers) {
+                if (fs.existsSync(targetPath)) {
+                    const simpleGit = require("simple-git")(targetPath);
 
-            let fs = require("fs");
+                    simpleGit.pull("origin", "master", { "--rebase": "true" }).then(
+                        () => scaffold(targetPath, process.cwd()),
+                        () => {
+                            logger.error("error");
+                        }
+                    );
 
-            let targetPath = path.join(os.homedir(), ".slim", answers.project.type);
-
-            if (fs.existsSync(targetPath)) {
-                var simpleGit = require("simple-git")(targetPath);
-
-                simpleGit.pull("origin", "master", { "--rebase": "true" })
-                    .then(() => scaffold(targetPath, process.cwd()), () => { logger.error("error") });
-
-                logger.debug("check if local availabe");
-                logger.debug("pull if availabe");
-            } else {
-                let simpleGit = require("simple-git")();
-                logger.debug("clone if not available");
-                simpleGit.clone(
-                    builder[answers.project.type].url,
-                    targetPath)
-                    .then(() => scaffold(targetPath, process.cwd()));
-            }
-        });
-
+                    logger.debug("check if local availabe");
+                    logger.debug("pull if availabe");
+                } else {
+                    const simpleGit = require("simple-git")();
+                    logger.debug("clone if not available");
+                    simpleGit.clone(builder[answers.project.type].url, targetPath).then(() => scaffold(targetPath, process.cwd()));
+                }
+            });
     }
 };
 
 const scaffold = (source, target) => {
-    let _ = require("lodash");
-    let glob = require("glob");
+    const _ = require("lodash");
+    const glob = require("glob");
 
-    let templateConfig = require(path.join(source, "template.ts")).config;
+    const templateConfig = require(path.join(source, "template.ts")).config;
 
-
-    let inquirer = require("inquirer");
-    inquirer.prompt(templateConfig.questions)
-        .then((answers) => new Promise((resolve, jeject) => resolve(templateConfig.transformAnswers(answers))))
-        .then(answers => new Promise((resolve, reject) => {
-
-            glob("**", { cwd: source, ignore: templateConfig.include }, function (er, files) {
-                for (let f of files) {
-                    const sourcePath = path.join(source, f);
-                    const targetPath = path.join(target, f);
-                    if (fs.lstatSync(sourcePath).isDirectory()) {
-                        if (!fs.existsSync(targetPath)) {
-                            fs.mkdirSync(targetPath);
-                        }
-                        continue;
-                    }
-
-                    logger.debug(f);
-                    fs.createReadStream(path.join(source, f)).pipe(fs.createWriteStream(path.join(target, f)));
-                }
-
-                glob(templateConfig.include, { cwd: source }, function (er, files) {
-
-                    for (let f of files) {
-                        const sourcePath = path.join(source, f);
-                        const targetPath = _.template(path.join(target, f))(answers);
-                        if (fs.lstatSync(sourcePath).isDirectory()) {
-                            if (!fs.existsSync(targetPath)) {
-                                fs.mkdirSync(targetPath);
-                            }
-                            continue;
-                        }
-                        logger.debug(f);
-                        fs.writeFile(targetPath,
-                            _.template(fs.readFileSync(path.join(source, f), { "encoding": "utf8" }))(answers),
-                            function (err) {
-                                if (err) {
-                                    return logger.debug(err);
+    const inquirer = require("inquirer");
+    inquirer
+        .prompt(templateConfig.questions)
+        .then(answers => new Promise((resolve, jeject) => resolve(templateConfig.transformAnswers(answers))))
+        .then(
+            answers =>
+                new Promise((resolve, reject) => {
+                    glob("**", { cwd: source, ignore: templateConfig.include }, function(er, files) {
+                        for (const f of files) {
+                            const sourcePath = path.join(source, f);
+                            const targetPath = path.join(target, f);
+                            if (fs.lstatSync(sourcePath).isDirectory()) {
+                                if (!fs.existsSync(targetPath)) {
+                                    fs.mkdirSync(targetPath);
                                 }
-                            });
-                    }
+                                continue;
+                            }
 
-                    resolve(0);
-                });
-            });
-        }));
+                            logger.debug(f);
+                            fs.createReadStream(path.join(source, f)).pipe(fs.createWriteStream(path.join(target, f)));
+                        }
+
+                        glob(templateConfig.include, { cwd: source }, function(err, f) {
+                            for (const file of f) {
+                                const sourcePath = path.join(source, file);
+                                const targetPath = _.template(path.join(target, file))(answers);
+                                if (fs.lstatSync(sourcePath).isDirectory()) {
+                                    if (!fs.existsSync(targetPath)) {
+                                        fs.mkdirSync(targetPath);
+                                    }
+                                    continue;
+                                }
+                                logger.debug(file);
+                                fs.writeFile(
+                                    targetPath,
+                                    _.template(fs.readFileSync(path.join(source, file), { encoding: "utf8" }))(answers),
+                                    function(error) {
+                                        if (error) {
+                                            return logger.debug(error);
+                                        }
+                                    }
+                                );
+                            }
+
+                            resolve(0);
+                        });
+                    });
+                })
+        );
 
     // logger.debug("Read template.js");
     // logger.debug("Check if description is complete");

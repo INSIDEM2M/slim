@@ -1,16 +1,26 @@
 import { spawn } from "child_process";
-import * as path from "path";
-import { logger } from "../utils";
-import { SlimConfig } from "../config/slim-typings/slim-config";
-import { argv } from "yargs";
-import * as glob from "glob";
-import * as sassDoc from "sassdoc";
 import * as fs from "fs";
+import * as glob from "glob";
+import * as path from "path";
+import * as sassDoc from "sassdoc";
+import { argv } from "yargs";
+import { SlimConfig } from "../config/slim-typings/slim-config";
+import { logger } from "../utils";
 
-module.exports = function (env: Environment, config: SlimConfig) {
+module.exports = function(env: Environment, config: SlimConfig) {
     logger.info("Creating documentation...");
-    let args = ["--tsconfig", "tsconfig.json", "--hideGenerator", "--disableGraph", "--output", "docs", "--toggleMenuItems", "components,directives,injectables,interfaces,pipes,classes", "--disablePrivateOrInternalSupport"];
-    if (!argv["debug"]) {
+    const args = [
+        "--tsconfig",
+        "tsconfig.json",
+        "--hideGenerator",
+        "--disableGraph",
+        "--output",
+        "docs",
+        "--toggleMenuItems",
+        "components,directives,injectables,interfaces,pipes,classes",
+        "--disablePrivateOrInternalSupport"
+    ];
+    if (!argv.debug) {
         args.push("--silent");
     }
     const docProcess = spawn(getCompodocBinaryPath(), args, {
@@ -18,8 +28,8 @@ module.exports = function (env: Environment, config: SlimConfig) {
         stdio: "inherit"
     });
     return createSassDocumentation(config).then(() => {
-        return new Promise((resolve) => {
-            docProcess.on("exit", (exitCode) => {
+        return new Promise(resolve => {
+            docProcess.on("exit", exitCode => {
                 resolve(exitCode);
             });
         });
@@ -43,7 +53,7 @@ function createSassDocumentation(config: SlimConfig): Promise<any> {
             return prev;
         }, {}) as { [path: string]: { docs: ParseResult[] } };
         Object.keys(files).forEach(file => {
-            let componentPath = glob.sync(path.join(config.sourceDir, "**", file));
+            const componentPath = glob.sync(path.join(config.sourceDir, "**", file));
             if (componentPath.length === 1) {
                 const readmePath = componentPath[0].replace(".style.scss", ".component.md");
                 let readmeContent = "# Sass variables\n\n";

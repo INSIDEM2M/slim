@@ -8,16 +8,13 @@ import { logger } from "../../utils";
  * ignored during development in the browser.
  */
 export class RemoveScriptsPlugin {
+    constructor(private scripts: string[] = []) {}
 
-    constructor(private scripts: string[] = []) {
-
-    }
-
-    apply(compiler: any) {
-        compiler.plugin("compilation", (compilation) => {
+    public apply(compiler: any) {
+        compiler.plugin("compilation", compilation => {
             compilation.plugin("html-webpack-plugin-before-html-processing", (htmlPluginData, callback) => {
-                for (let script of this.scripts) {
-                    const regex = new RegExp("<script.+src=\"" + script + "\".*?<\/script>");
+                for (const script of this.scripts) {
+                    const regex = new RegExp('<script.+src="' + script + '".*?</script>');
                     if (regex.test(htmlPluginData.html)) {
                         htmlPluginData.html = htmlPluginData.html.replace(regex, "");
                         logger.debug(`Removed ${script} from index.html.`);
@@ -29,7 +26,7 @@ export class RemoveScriptsPlugin {
             compilation.plugin("html-webpack-plugin-alter-asset-tags", (htmlPluginData, callback) => {
                 if (htmlPluginData.body && Array.isArray(htmlPluginData.body)) {
                     htmlPluginData.body = htmlPluginData.body.filter(asset => {
-                        for (let script of this.scripts) {
+                        for (const script of this.scripts) {
                             const regex = new RegExp(script);
                             if (asset.attributes && typeof asset.attributes.src === "string") {
                                 if (regex.test(asset.attributes.src)) {
@@ -45,5 +42,4 @@ export class RemoveScriptsPlugin {
             });
         });
     }
-
 }

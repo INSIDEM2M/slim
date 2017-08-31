@@ -1,18 +1,17 @@
+import * as chalk from "chalk";
+import { Server } from "http";
+import * as path from "path";
+import * as readline from "readline";
+import * as webpack from "webpack";
 import * as WebpackDevServer from "webpack-dev-server";
 import * as webpackMerge from "webpack-merge";
-import * as webpack from "webpack";
-import * as path from "path";
-import { Server } from "http";
-
+import { getAvailablePort, openBrowser, prettyPrintConfig } from "../cli-helpers";
+import { SlimConfig } from "../config/slim-typings/slim-config";
+import { logger } from "../utils";
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getDevConfigPartial } from "../webpack/webpack.config.dev";
-import { getAvailablePort, openBrowser, prettyPrintConfig } from "../cli-helpers";
-import { logger } from "../utils";
-import * as chalk from "chalk";
-import * as readline from "readline";
-import { SlimConfig } from "../config/slim-typings/slim-config";
 
-module.exports = function (env: Environment, config: SlimConfig, open: boolean, aot: boolean) {
+module.exports = function(env: Environment, config: SlimConfig, open: boolean, aot: boolean) {
     return getAvailablePort().then(port => {
         const webpackConfig = createWebpackDevConfig(env, config, port, aot);
         const compiler = webpack(webpackConfig);

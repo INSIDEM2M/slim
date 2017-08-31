@@ -1,12 +1,11 @@
-import * as yargs from "yargs";
-import { logger } from "../utils";
+import * as conventionalChangelog from "conventional-changelog";
+import * as fs from "fs";
 import * as path from "path";
 import * as semver from "semver";
-import * as fs from "fs";
-import { DOMParser, XMLSerializer } from "xmldom";
-import * as conventionalChangelog from "conventional-changelog";
-
 import * as simpleGit from "simple-git";
+import { DOMParser, XMLSerializer } from "xmldom";
+import * as yargs from "yargs";
+import { logger } from "../utils";
 
 function getNextVersion(options: Options, version: string) {
     let nextVersion;
@@ -43,19 +42,21 @@ function updateChangelog(rootDir, changelogFileName) {
             encoding: "utf-8"
         });
     }
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         let changelogEntry = "";
         conventionalChangelog({
             preset: "angular"
-        }).on("data", (data) => {
-            changelogEntry += data.toString();
-        }).on("end", () => {
-            const existingChangelog = fs.readFileSync(changelogPath);
-            const changelog = changelogEntry + existingChangelog;
-            fs.writeFileSync(changelogPath, changelog, { encoding: "utf-8" });
-            logger.info(`Updated ${changelogFileName} file.`);
-            resolve(0);
-        });
+        })
+            .on("data", data => {
+                changelogEntry += data.toString();
+            })
+            .on("end", () => {
+                const existingChangelog = fs.readFileSync(changelogPath);
+                const changelog = changelogEntry + existingChangelog;
+                fs.writeFileSync(changelogPath, changelog, { encoding: "utf-8" });
+                logger.info(`Updated ${changelogFileName} file.`);
+                resolve(0);
+            });
     });
 }
 
@@ -63,15 +64,15 @@ export const releaseCommand: yargs.CommandModule = {
     command: "release",
     describe: "Perform a release. Update the version in the package.json and in an cordova project aswell in the config.xml.",
     builder: {
-        "patch": {
+        patch: {
             description: "Perform a patch release.",
             type: "boolean"
         },
-        "minor": {
+        minor: {
             description: "Perform a minor release.",
             type: "boolean"
         },
-        "major": {
+        major: {
             description: "Perform a major release.",
             type: "boolean"
         },
@@ -107,7 +108,7 @@ export const releaseCommand: yargs.CommandModule = {
             return simpleGit(rootDir)
                 .add(filesToAdd)
                 .commit(nextVersion)
-                .addTag(nextVersion, (error) => {
+                .addTag(nextVersion, error => {
                     if (error) {
                         process.exit(1);
                     } else {
