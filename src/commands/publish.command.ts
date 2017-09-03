@@ -1,7 +1,7 @@
-import * as yargs from "yargs";
-import { logger } from "../utils";
 import { spawn } from "child_process";
 import * as simpleGit from "simple-git";
+import * as yargs from "yargs";
+import { logger } from "../utils";
 
 export const publishCommand: yargs.CommandModule = {
     command: "publish",

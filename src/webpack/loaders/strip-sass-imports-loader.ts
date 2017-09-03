@@ -10,17 +10,17 @@ export interface StripSassImportsLoaderQuery {
  * This loader is needed to remove imports to non-existing sass files
  * during testing.
  */
-module.exports = function (content: Buffer) {
-    let query: StripSassImportsLoaderQuery;
-    if (typeof loaderUtils.getOptions === "function") {
-        query = loaderUtils.getOptions(this);
-    } else {
-        query = loaderUtils.parseQuery(this.query);
-    }
+module.exports = function(content: Buffer) {
+    const query: StripSassImportsLoaderQuery =
+        typeof loaderUtils.getOptions === "function" ? loaderUtils.getOptions(this) : loaderUtils.parseQuery(this.query);
     if (query.stripSassImports) {
-        if (query.importsIgnoredDuringTesting && Array.isArray(query.importsIgnoredDuringTesting) && query.importsIgnoredDuringTesting.length > 0) {
+        if (
+            query.importsIgnoredDuringTesting &&
+            Array.isArray(query.importsIgnoredDuringTesting) &&
+            query.importsIgnoredDuringTesting.length > 0
+        ) {
             let sassContent = content.toString();
-            for (let ignoredImport of query.importsIgnoredDuringTesting) {
+            for (const ignoredImport of query.importsIgnoredDuringTesting) {
                 const regex = new RegExp(`@import\\s['|"].*${ignoredImport}.*['|"];`);
                 if (regex.test(sassContent)) {
                     sassContent = sassContent.replace(regex, "");

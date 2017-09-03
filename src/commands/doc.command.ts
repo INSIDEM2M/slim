@@ -1,5 +1,5 @@
 import * as yargs from "yargs";
-import { getSlimConfig, getEnvironment } from "../cli-helpers";
+import { getEnvironment, getSlimConfig } from "../cli-helpers";
 
 export const docCommand: yargs.CommandModule = {
     command: "doc",
@@ -13,7 +13,7 @@ export const docCommand: yargs.CommandModule = {
             .then(code => {
                 process.exit(code);
             })
-            .catch((code) => {
+            .catch(code => {
                 process.exit(code);
             });
     }

@@ -3,9 +3,9 @@ import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as path from "path";
 import * as webpack from "webpack";
+import { SlimConfig } from "../config/slim-typings/slim-config";
 import { DllTagPlugin } from "./plugins/dll-tags.plugin";
 import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
-import { SlimConfig } from "../config/slim-typings/slim-config";
 
 const DllReferencePlugin = webpack.DllReferencePlugin;
 const NamedModulesPlugin = webpack.NamedModulesPlugin;
@@ -32,7 +32,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
             compress: true,
             port: port,
             historyApiFallback: {
-                disableDotRule: true,
+                disableDotRule: true
             },
             // It suppress error shown in console, so it has to be set to false.
             quiet: false,

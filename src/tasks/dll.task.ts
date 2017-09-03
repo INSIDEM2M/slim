@@ -1,18 +1,17 @@
+import * as fs from "fs";
 import * as path from "path";
 import * as webpack from "webpack";
 import * as webpackMerge from "webpack-merge";
-
+import { SlimConfig } from "../config/slim-typings/slim-config";
+import { logger, timer } from "../utils";
 import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 import { getDllConfigPartial } from "../webpack/webpack.config.dll";
-import * as fs from "fs";
-import { VENDORS } from "../webpack/webpack.vendors";
 import { POLYFILLS } from "../webpack/webpack.polyfills";
-import { logger, timer } from "../utils";
-import { SlimConfig } from "../config/slim-typings/slim-config";
+import { VENDORS } from "../webpack/webpack.vendors";
 
 const DLL_CACHE_FILE_NAME = "dll.cache.json";
 
-module.exports = function (env: Environment, config: SlimConfig, forceUpdate: boolean) {
+module.exports = function(env: Environment, config: SlimConfig, forceUpdate: boolean) {
     const pkg = JSON.parse(fs.readFileSync(path.join(config.rootDir, "package.json"), "utf-8"));
     const dllDependencies = getDllDependencies(config);
     if (forceUpdate) {
@@ -34,9 +33,9 @@ function updateDlls(env: Environment, config: SlimConfig, dllDependencies: strin
     const commonConfig = getCommonConfigPartial(indexPath, env, config, false, false);
     const buildConfig = getDllConfigPartial(path.join(config.dllDir));
     const webpackConfig = (webpackMerge as any).strategy({
-        "entry": "replace"
+        entry: "replace"
     })(commonConfig, buildConfig);
-    return runBuild(webpackConfig).then((exitCode) => {
+    return runBuild(webpackConfig).then(exitCode => {
         if (exitCode === 0) {
             writeDllCache(config.dllDir, DLL_CACHE_FILE_NAME, dllDependencies, pkg);
         }
@@ -63,21 +62,23 @@ function runBuild(config: webpack.Configuration) {
 
 export function getDllDependencies(config: SlimConfig): string[] {
     const additionalVendors = config.typescript && Array.isArray(config.typescript.vendors) ? config.typescript.vendors : [];
-    return VENDORS.concat(POLYFILLS).concat(additionalVendors).map(vendor => {
-        // This is needed to compare vendors with deep import paths like
-        // zone.js/dist/long-stack-trace-zone.js. In this case we have to check whether
-        // the version of zone.js has changed.
-        if (vendor.includes("/")) {
-            // Scoped npm packages contain a '/' in their name that we have to preserve
-            if (vendor.startsWith("@")) {
-                return vendor.split("/")[0] + "/" + vendor.split("/")[1];
+    return VENDORS.concat(POLYFILLS)
+        .concat(additionalVendors)
+        .map(vendor => {
+            // This is needed to compare vendors with deep import paths like
+            // zone.js/dist/long-stack-trace-zone.js. In this case we have to check whether
+            // the version of zone.js has changed.
+            if (vendor.includes("/")) {
+                // Scoped npm packages contain a '/' in their name that we have to preserve
+                if (vendor.startsWith("@")) {
+                    return vendor.split("/")[0] + "/" + vendor.split("/")[1];
+                } else {
+                    return vendor.split("/")[0];
+                }
             } else {
-                return vendor.split("/")[0];
+                return vendor;
             }
-        } else {
-            return vendor;
-        }
-    });
+        });
 }
 
 export function dllsUpToDate(dllDir: string, dllCacheFile: string, pkg: any, dllDependencies: string[]): boolean {
@@ -90,8 +91,8 @@ export function dllsUpToDate(dllDir: string, dllCacheFile: string, pkg: any, dll
         try {
             const dllCache = JSON.parse(dllCacheFileContent);
             let result = true;
-            for (let dep of dllDependencies) {
-                result = result && (pkg.dependencies[dep] === dllCache.dependencies[dep]);
+            for (const dep of dllDependencies) {
+                result = result && pkg.dependencies[dep] === dllCache.dependencies[dep];
             }
             return result;
         } catch (error) {
@@ -106,7 +107,7 @@ export function writeDllCache(dllDir: string, dllCacheFile: string, dllDependenc
     const dllCache = {
         dependencies: {}
     };
-    for (let dep of dllDependencies) {
+    for (const dep of dllDependencies) {
         dllCache.dependencies[dep] = pkg.dependencies[dep];
     }
     if (!fs.existsSync(dllDir)) {

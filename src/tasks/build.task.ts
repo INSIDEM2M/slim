@@ -1,29 +1,40 @@
+import * as fs from "fs";
 import * as path from "path";
+import * as rimraf from "rimraf";
 import * as webpack from "webpack";
 import * as webpackMerge from "webpack-merge";
-import * as rimraf from "rimraf";
-
-import { getCommonConfigPartial } from "../webpack/webpack.config.common";
-import { getBuildConfigPartial } from "../webpack/webpack.config.build";
-import { timer, logger } from "../utils";
-import { SlimConfig } from "../config/slim-typings/slim-config";
-import { prettyPrintConfig } from "../cli-helpers";
 import { argv } from "yargs";
-import * as fs from "fs";
+import { prettyPrintConfig } from "../cli-helpers";
+import { SlimConfig } from "../config/slim-typings/slim-config";
+import { logger, timer } from "../utils";
 import { extractBundles } from "../webpack/plugins/chunk.plugin";
+import { getBuildConfigPartial } from "../webpack/webpack.config.build";
+import { getCommonConfigPartial } from "../webpack/webpack.config.common";
 
-module.exports = function (env: Environment, config: SlimConfig, minify: boolean, aot: boolean, skipSourceMaps: boolean, codesplit: boolean) {
+module.exports = function(
+    env: Environment,
+    config: SlimConfig,
+    minify: boolean,
+    aot: boolean,
+    skipSourceMaps: boolean,
+    codesplit: boolean
+) {
     rimraf.sync(config.targetDir);
     logger.debug("Deleted " + config.targetDir);
     const indexPath = path.join(config.sourceDir, "index.html");
     const commonConfig = getCommonConfigPartial(indexPath, env, config, false, aot);
     const buildConfig = getBuildConfigPartial(config, minify, indexPath, skipSourceMaps);
-    const codesplitConfig = codesplit ? extractBundles([{
-        name: "vendor",
-        minChunks: isVendor // extract node_modules
-    }, {
-        name: "manifest" // extract webpack runtime code
-    }]) : undefined;
+    const codesplitConfig = codesplit
+        ? extractBundles([
+              {
+                  name: "vendor",
+                  minChunks: isVendor // extract node_modules
+              },
+              {
+                  name: "manifest" // extract webpack runtime code
+              }
+          ])
+        : undefined;
     const webpackConfig = webpackMerge.smart(commonConfig, buildConfig, codesplitConfig);
     logger.debug("Created webpack build config.", prettyPrintConfig(webpackConfig));
     logger.info(`Building ${minify ? "minified " : ""}application${aot ? " using the Angular AOT compiler" : ""}...`);
@@ -31,9 +42,7 @@ module.exports = function (env: Environment, config: SlimConfig, minify: boolean
 };
 
 function isVendor({ resource }) {
-    return resource &&
-        resource.indexOf("node_modules") >= 0 &&
-        resource.match(/\.js$/);
+    return resource && resource.indexOf("node_modules") >= 0 && resource.match(/\.js$/);
 }
 
 function onlyTemplateErrors(errors: string[]) {
@@ -58,13 +67,9 @@ function runBuild(config: webpack.Configuration, conf: SlimConfig) {
                 const jsonStats = stats.toJson();
                 if (jsonStats.errors && jsonStats.errors.length > 0) {
                     for (const e of jsonStats.errors as string[]) {
-                        let prettyError = e
-                            .replace(conf.rootDir + "/", "");
+                        const prettyError = e.replace(conf.rootDir + "/", "");
                         if (isTemplateError(prettyError)) {
-                            logger.warn(prettyError
-                                .replace("ng://", "")
-                                .replace("$$_gendir", "")
-                            );
+                            logger.warn(prettyError.replace("ng://", "").replace("$$_gendir", ""));
                         } else {
                             logger.error(prettyError);
                         }

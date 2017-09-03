@@ -1,5 +1,5 @@
 import * as yargs from "yargs";
-import { getSlimConfig, getEnvironment, getAvailablePort } from "../cli-helpers";
+import { getAvailablePort, getEnvironment, getSlimConfig } from "../cli-helpers";
 
 export const e2eCommand: yargs.CommandModule = {
     command: "e2e",
@@ -13,7 +13,7 @@ export const e2eCommand: yargs.CommandModule = {
             type: "boolean",
             description: "Do not update the webdriver binaries."
         },
-        "specs": {
+        specs: {
             type: "string",
             description: "Only run the these E2E tests."
         }
@@ -27,12 +27,12 @@ export const e2eCommand: yargs.CommandModule = {
         const environmentVariables = getEnvironment(rootDir);
         (options["skip-build"] === true ? Promise.resolve(0) : buildTask(environmentVariables, slimConfig, options.minify, options.aot))
             .then(() => getAvailablePort())
-            .then((port) => serveTask(environmentVariables, slimConfig, options.open, port, true))
-            .then((port) => e2eTask(environmentVariables, slimConfig, port, options["skip-update"], options.specs))
+            .then(port => serveTask(environmentVariables, slimConfig, options.open, port, true))
+            .then(port => e2eTask(environmentVariables, slimConfig, port, options["skip-update"], options.specs))
             .then(code => {
                 process.exit(code);
             })
-            .catch((code) => {
+            .catch(code => {
                 process.exit(code);
             });
     }

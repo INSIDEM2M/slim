@@ -1,20 +1,20 @@
 import * as yargs from "yargs";
-import { getSlimConfig, getEnvironment } from "../cli-helpers";
+import { getEnvironment, getSlimConfig } from "../cli-helpers";
 
 export const buildCommand: yargs.CommandModule = {
     command: "build",
     describe: "Bundle the application using webpack and put the result in the targetDir (default: www) of the project.",
     builder: {
-        "minify": {
+        minify: {
             alias: "m",
             type: "boolean",
             description: "Use UglifyJS to minify the bundle."
         },
-        "aot": {
+        aot: {
             type: "boolean",
             description: "Use the Angular AOT compiler."
         },
-        "serve": {
+        serve: {
             type: "boolean",
             alias: "s",
             description: "Serve the application after it was built."
@@ -23,7 +23,7 @@ export const buildCommand: yargs.CommandModule = {
             type: "boolean",
             description: "Skip sourcemap generation."
         },
-        "codesplit": {
+        codesplit: {
             type: "boolean",
             description: "Split code into app, manifest and vendor bundles."
         }
@@ -36,15 +36,29 @@ export const buildCommand: yargs.CommandModule = {
         const buildTask = require("../tasks/build.task");
         const serveTask = require("../tasks/serve.task");
         if (options.serve) {
-            exitCode = buildTask(environmentVariables, slimConfig, options.minify, options.aot, options["skip-sourcemaps"], options.codesplit).then(() => serveTask(environmentVariables, slimConfig, options.open));
+            exitCode = buildTask(
+                environmentVariables,
+                slimConfig,
+                options.minify,
+                options.aot,
+                options["skip-sourcemaps"],
+                options.codesplit
+            ).then(() => serveTask(environmentVariables, slimConfig, options.open));
         } else {
-            exitCode = buildTask(environmentVariables, slimConfig, options.minify, options.aot, options["skip-sourcemaps"], options.codesplit);
+            exitCode = buildTask(
+                environmentVariables,
+                slimConfig,
+                options.minify,
+                options.aot,
+                options["skip-sourcemaps"],
+                options.codesplit
+            );
         }
         exitCode
             .then(code => {
                 process.exit(code);
             })
-            .catch((code) => {
+            .catch(code => {
                 process.exit(code);
             });
     }
