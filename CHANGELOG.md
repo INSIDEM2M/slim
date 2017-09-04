@@ -1,3 +1,13 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/INSIDEM2M/slim/compare/2.0.0...2.0.1) (2017-09-04)
+
+
+### Bug Fixes
+
+* **build:** export helpers ([ab7b636](https://github.com/INSIDEM2M/slim/commit/ab7b636))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/INSIDEM2M/slim/compare/0.9.3...2.0.0) (2017-09-04)
 
