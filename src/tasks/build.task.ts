@@ -75,7 +75,7 @@ function runBuild(config: webpack.Configuration, conf: SlimConfig) {
                         }
                     }
                 }
-                if (!onlyTemplateErrors(jsonStats.errors)) {
+                if (conf.typescript.typecheck && !onlyTemplateErrors(jsonStats.errors)) {
                     return reject(1);
                 }
             }
