@@ -1,3 +1,24 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/INSIDEM2M/slim/compare/0.9.3...2.0.0) (2017-09-04)
+
+
+### Bug Fixes
+
+* 5660:15-102 Critical dependency: the request of a dependency is an expression ([24df481](https://github.com/INSIDEM2M/slim/commit/24df481))
+* **build:** add yarn.lock file ([d55569f](https://github.com/INSIDEM2M/slim/commit/d55569f))
+* **build:** allow typescript errors when typecheck is set to false ([70bfe2a](https://github.com/INSIDEM2M/slim/commit/70bfe2a))
+
+
+### Features
+
+* add cache-loader, update [@ngtools](https://github.com/ngtools)/webpack ([e756282](https://github.com/INSIDEM2M/slim/commit/e756282))
+* update to Angular 4.2.6 ([c68f880](https://github.com/INSIDEM2M/slim/commit/c68f880))
+* update to Angular 4.3.0 ([b526723](https://github.com/INSIDEM2M/slim/commit/b526723))
+* **common:** minimize html files ([c468137](https://github.com/INSIDEM2M/slim/commit/c468137))
+* **dev:** disable logging of updated modules ([43ddae9](https://github.com/INSIDEM2M/slim/commit/43ddae9))
+
+
+
 <a name="0.9.3"></a>
 ## [0.9.3](https://github.com/INSIDEM2M/slim/compare/0.9.2...0.9.3) (2017-06-22)
 
