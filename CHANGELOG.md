@@ -1,3 +1,13 @@
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/INSIDEM2M/slim/compare/2.0.3...2.1.0) (2017-09-06)
+
+
+### Features
+
+* **e2e:** use chrome headless ([49ec922](https://github.com/INSIDEM2M/slim/commit/49ec922))
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/INSIDEM2M/slim/compare/2.0.2...2.0.3) (2017-09-04)
 
