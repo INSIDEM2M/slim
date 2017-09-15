@@ -15,6 +15,10 @@ export const devCommand: yargs.CommandModule = {
             type: "boolean",
             description: "Create dynamically linked libraries for vendors (@angular/core, etc.) and polyfills."
         },
+        cordova: {
+            type: "boolean",
+            description: "Output the build to the target directory."
+        },
         aot: {
             type: "boolean",
             description: "Use the Angular AOT compiler."

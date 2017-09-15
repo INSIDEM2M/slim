@@ -1,8 +1,12 @@
 import { CheckerPlugin } from "awesome-typescript-loader";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import * as ip from "ip";
 import * as path from "path";
 import * as webpack from "webpack";
+import * as WriteFilePlugin from "write-file-webpack-plugin";
+import { argv } from "yargs";
+
 import { SlimConfig } from "../config/slim-typings/slim-config";
 import { DllTagPlugin } from "./plugins/dll-tags.plugin";
 import { RemoveScriptsPlugin } from "./plugins/remove-scripts.plugin";
@@ -18,7 +22,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
         },
         entry: {
             app: [
-                `webpack-dev-server/client?http://localhost:${port}/`,
+                `webpack-dev-server/client?http://${argv.cordova ? ip.address() : "0.0.0.0"}:${port}/`,
                 path.join(__dirname, "disable-log.entry.js"),
                 config.typescript.entry
             ]
@@ -30,7 +34,7 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
         devServer: {
             disableHostCheck: true,
             compress: true,
-            port: port,
+            port,
             historyApiFallback: {
                 disableDotRule: true
             },
@@ -128,6 +132,10 @@ export function getDevConfigPartial(config: SlimConfig, indexPath: string, aot: 
             new RemoveScriptsPlugin(config.webpack.ignoreScripts)
         ]
     };
+
+    if (argv.cordova) {
+        conf.plugins.push(new WriteFilePlugin());
+    }
 
     if (!aot) {
         ((conf.entry as webpack.Entry).app as string[]).unshift("webpack/hot/dev-server");
