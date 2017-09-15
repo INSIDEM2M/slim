@@ -1,3 +1,18 @@
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/INSIDEM2M/slim/compare/2.1.0...2.1.1) (2017-09-15)
+
+
+### Bug Fixes
+
+* **doc:** fix sass doc generation ([695fe2f](https://github.com/INSIDEM2M/slim/commit/695fe2f))
+
+
+### Features
+
+* **dev:** add --cordova flag to emit the files during dev ([df61c6b](https://github.com/INSIDEM2M/slim/commit/df61c6b))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/INSIDEM2M/slim/compare/2.0.3...2.1.0) (2017-09-06)
 
