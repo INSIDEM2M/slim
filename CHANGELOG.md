@@ -1,3 +1,13 @@
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/INSIDEM2M/slim/compare/2.1.1...2.1.2) (2017-09-15)
+
+
+### Bug Fixes
+
+* **build:** use [@ngtools](https://github.com/ngtools)/webpack@1.6.2 ([715a888](https://github.com/INSIDEM2M/slim/commit/715a888))
+
+
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/INSIDEM2M/slim/compare/2.1.0...2.1.1) (2017-09-15)
 
