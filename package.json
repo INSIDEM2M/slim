@@ -104,7 +104,7 @@
     "@types/html-webpack-plugin": "^2.28.0",
     "@types/inquirer": "^0.0.35",
     "@types/jasmine": "^2.5.53",
-    "@types/karma": "^0.13.36",
+    "@types/karma": "^1.7.0",
     "@types/lodash": "^4.14.66",
     "@types/node": "^8.0.2",
     "@types/opn": "^3.0.28",
