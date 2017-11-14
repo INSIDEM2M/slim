@@ -22,7 +22,7 @@
     "@angularclass/hmr-loader": "^3.0.2",
     "@compodoc/compodoc": "^1.0.0-beta.10",
     "@ngtools/webpack": "^1.6.2",
-    "angular-router-loader": "^0.6.0",
+    "angular-router-loader": "^0.7.0",
     "angular2-template-loader": "0.6.0",
     "autoprefixer": "^7.1.1",
     "awesome-typescript-loader": "^3.1.3",
