@@ -21,9 +21,9 @@ export const testCommand: yargs.CommandModule = {
         browsers: {
             type: "string",
             alias: "b",
-            description: `Comma separated list of browsers to run the tests in. Example: ${chalk.bold(
+            description: `Comma separated list of browsers to run the tests in. Example: ${chalk.default.bold(
                 "chrome,firefox,safari"
-            )}. Default is ${chalk.bold("chrome")}.`
+            )}. Default is ${chalk.default.bold("chrome")}.`
         },
         "xml-report": {
             type: "string",

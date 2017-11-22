@@ -16,7 +16,7 @@ module.exports = function(env: Environment, config: SlimConfig, open: boolean, a
         const webpackConfig = createWebpackDevConfig(env, config, port, aot);
         const compiler = webpack(webpackConfig);
         logger.info(`Started webpack development server at port ${port}.`);
-        logger.info("Go to " + chalk.underline("http://localhost:" + port) + " to view the application.");
+        logger.info("Go to " + chalk.default.underline("http://localhost:" + port) + " to view the application.");
         const server = new WebpackDevServer(compiler, webpackConfig.devServer);
         return startServer(server, port, open, config.baseHref);
     });

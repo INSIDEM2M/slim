@@ -44,6 +44,6 @@ export function main() {
             description: "Run slim in a Continuous Integration environment mode. This produces file outputs for tests and reduces logging."
         })
         .demand(1)
-        .epilog(`Run ${chalk.bold("$0 <command> --help")} for more information on the specific command.`)
+        .epilog(`Run ${chalk.default.bold("$0 <command> --help")} for more information on the specific command.`)
         .help().argv;
 }
