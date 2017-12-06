@@ -1,3 +1,18 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/INSIDEM2M/slim/compare/2.2.0...3.0.0) (2017-12-06)
+
+
+### Chores
+
+* update dependencies ([778405f](https://github.com/INSIDEM2M/slim/commit/778405f))
+
+
+### BREAKING CHANGES
+
+* This version only supports Angular Versions ~4.4.0
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/INSIDEM2M/slim/compare/2.1.2...2.2.0) (2017-11-22)
 
