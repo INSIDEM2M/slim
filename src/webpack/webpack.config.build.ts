@@ -19,7 +19,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
         new SuppressChunksPlugin([{ name: "styles", match: /\.js/ }]),
         new RemoveScriptsPlugin(["styles.js"]),
         new ExtractTextPlugin({
-            filename: "[name].css",
+            filename: "[hash].[name].css",
             allChunks: true
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
@@ -123,7 +123,7 @@ export function getBuildConfigPartial(config: SlimConfig, minify: boolean, index
         },
         output: {
             path: config.targetDir,
-            filename: "[name].js"
+            filename: "[hash].[name].js"
         },
         entry: {
             app: config.typescript.entry

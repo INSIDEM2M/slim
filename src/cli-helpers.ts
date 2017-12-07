@@ -1,13 +1,14 @@
 import * as childProcess from "child_process";
 import * as fs from "fs";
 import { merge } from "lodash";
-import * as opn from "opn";
 import * as path from "path";
 import * as portFinder from "portfinder";
 import * as webpack from "webpack";
 import { argv } from "yargs";
 import { defaultSlimConfig, SlimConfig } from "./config/slim-typings";
 import { logger } from "./utils";
+// tslint:disable-next-line:no-var-requires
+const opn = require("opn");
 
 function getCurrentCommit(): string {
     if (fs.existsSync(path.join(process.cwd(), ".git"))) {

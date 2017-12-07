@@ -1,5 +1,6 @@
 import { Server } from "http";
-import * as opn from "opn";
+// tslint:disable-next-line:no-var-requires
+const opn = require("opn");
 import { getAvailablePort } from "../cli-helpers";
 import { SlimConfig } from "../config/slim-typings/slim-config";
 import { logger } from "../utils";

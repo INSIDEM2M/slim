@@ -14,7 +14,7 @@ export class RemoveScriptsPlugin {
         compiler.plugin("compilation", compilation => {
             compilation.plugin("html-webpack-plugin-before-html-processing", (htmlPluginData, callback) => {
                 for (const script of this.scripts) {
-                    const regex = new RegExp('<script.+src="' + script + '".*?</script>');
+                    const regex = new RegExp('<script.+src="' + script + '".*</script>');
                     if (regex.test(htmlPluginData.html)) {
                         htmlPluginData.html = htmlPluginData.html.replace(regex, "");
                         logger.debug(`Removed ${script} from index.html.`);
