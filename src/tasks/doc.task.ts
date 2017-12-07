@@ -18,7 +18,8 @@ module.exports = function(env: Environment, config: SlimConfig) {
         "docs",
         "--toggleMenuItems",
         "components,directives,injectables,interfaces,pipes,classes",
-        "--disablePrivateOrInternalSupport"
+        "--disablePrivate",
+        "--disableInternal"
     ];
     if (!argv["debug"]) {
         args.push("--silent");
