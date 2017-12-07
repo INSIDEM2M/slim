@@ -1,7 +1,7 @@
 # slim-cli
 
 [![Build Status](https://travis-ci.org/INSIDEM2M/slim.svg?branch=develop)](https://travis-ci.org/INSIDEM2M/slim)
-[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/slim-cli)
+[![npm version](https://badge.fury.io/js/slim-cli.svg)](https://badge.fury.io/js/slim-cli)
 
 An opinionated workflow CLI for [Angular](https://angular.io/) projects that uses [Webpack](https://webpack.js.org/), [TypeScript](https://www.typescriptlang.org/)
 and [Sass](http://sass-lang.com/).
