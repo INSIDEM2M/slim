@@ -1,3 +1,13 @@
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/INSIDEM2M/slim/compare/3.0.0...3.0.1) (2017-12-07)
+
+
+### Bug Fixes
+
+* **doc:** use updated compodoc arguments ([ff1605e](https://github.com/INSIDEM2M/slim/commit/ff1605e))
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/INSIDEM2M/slim/compare/2.2.0...3.0.0) (2017-12-06)
 
