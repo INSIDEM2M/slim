@@ -1,12 +1,10 @@
 # slim-cli
 
 [![Build Status](https://travis-ci.org/INSIDEM2M/slim.svg?branch=develop)](https://travis-ci.org/INSIDEM2M/slim)
+[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/slim-cli)
 
 An opinionated workflow CLI for [Angular](https://angular.io/) projects that uses [Webpack](https://webpack.js.org/), [TypeScript](https://www.typescriptlang.org/)
 and [Sass](http://sass-lang.com/).
-
-> The project is currently under active development. Although the API is pretty stable, there will be
-changes until version 1.0.0 is released.
 
 ## Installation
 
@@ -52,9 +50,6 @@ apt-get install google-chrome-stable
 apt-get install xvfb gtk2-engines-pixbuf
 apt-get install xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
 apt-get install imagemagick x11-apps
-Xvfb -ac :99 -screen 0 1280x1024x16 &
-disown $1
-export DISPLAY=:99
 ```
 
 ## License
