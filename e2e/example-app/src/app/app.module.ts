@@ -1,13 +1,12 @@
-import { NgModule, ApplicationRef } from "@angular/core";
+import { ApplicationRef, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { IonicModule, IonicApp } from "ionic-angular";
+import { createInputTransfer, createNewHosts, removeNgStyles } from "@angularclass/hmr";
+import { IonicApp, IonicModule } from "ionic-angular";
 
 import { AppComponent } from "./app.component";
 
-import { createNewHosts, createInputTransfer, removeNgStyles } from "@angularclass/hmr";
-
 @NgModule({
-    imports: [IonicModule.forRoot(AppComponent)],
+    imports: [BrowserModule, IonicModule.forRoot(AppComponent)],
     declarations: [AppComponent],
     bootstrap: [IonicApp],
     entryComponents: [AppComponent]

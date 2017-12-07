@@ -3,9 +3,9 @@ var path = require("path");
 
 var cwd = process.cwd();
 
-function installExampleProject(projectName) {
+function runNpmScript(projectName, name) {
     return new Promise(function (resolve) {
-        spawn("yarn", ["install"], {
+        spawn("npm", name.split(" "), {
             cwd: path.join(cwd, "e2e", projectName),
             stdio: "inherit"
         }).on("close", function (code) {
@@ -14,16 +14,12 @@ function installExampleProject(projectName) {
     });
 }
 
-function testExampleProject(projectName) {
-    return new Promise(function (resolve) {
-        spawn("yarn", ["run", "e2e"], {
-            cwd: path.join(cwd, "e2e", projectName),
-            stdio: "inherit"
-        }).on("close", function (code) {
-            resolve(code);
-        });
+function installExampleProject(projectName) {
+    return runNpmScript(projectName, "install");
+}
 
-    });
+function testExampleProject(projectName) {
+    return runNpmScript(projectName, "run e2e");
 }
 
 
