@@ -1,3 +1,13 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/INSIDEM2M/slim/compare/3.0.2...3.1.0) (2017-12-07)
+
+
+### Features
+
+* **build:** add hash to outputs for cache busting ([b2868d4](https://github.com/INSIDEM2M/slim/commit/b2868d4))
+
+
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/INSIDEM2M/slim/compare/3.0.1...3.0.2) (2017-12-07)
 
