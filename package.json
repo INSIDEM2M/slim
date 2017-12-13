@@ -15,7 +15,7 @@
     "slim": "dist/cli-entry.js"
   },
   "dependencies": {
-    "@angular-devkit/build-optimizer": "0.0.35",
+    "@angular-devkit/build-optimizer": "0.0.36",
     "@angular/compiler": "~4.4.0",
     "@angular/compiler-cli": "~4.4.0",
     "@angular/core": "~4.4.0",
