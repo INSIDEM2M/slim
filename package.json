@@ -17,7 +17,7 @@
   "dependencies": {
     "@angular-devkit/build-optimizer": "0.0.35",
     "@angular/compiler": "~4.4.0",
-    "@angular/compiler-cli": "~4.4.0",
+    "@angular/compiler-cli": "~5.1.1",
     "@angular/core": "~4.4.0",
     "@angular/tsc-wrapped": "~4.4.0",
     "@angularclass/hmr": "^2.1.3",
