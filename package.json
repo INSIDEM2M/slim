@@ -99,7 +99,7 @@
     "webpack-parallel-uglify-plugin": "^1.0.2",
     "write-file-webpack-plugin": "^4.2.0",
     "xmldom": "^0.1.27",
-    "yargs": "^10.1.1",
+    "yargs": "^11.0.0",
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
