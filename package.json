@@ -81,7 +81,7 @@
     "simple-git": "^1.89.0",
     "source-map": "^0.7.0",
     "source-map-loader": "^0.2.3",
-    "string-replace-loader": "^1.1.0",
+    "string-replace-loader": "^2.0.0",
     "style-loader": "^0.20.1",
     "suppress-chunks-webpack-plugin": "^0.0.4",
     "svg-url-loader": "^2.3.1",
