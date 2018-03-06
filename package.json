@@ -27,7 +27,7 @@
     "angular-router-loader": "^0.8.2",
     "angular2-template-loader": "0.6.0",
     "autoprefixer": "^7.2.5",
-    "awesome-typescript-loader": "^3.4.1",
+    "awesome-typescript-loader": "^4.0.0",
     "cache-loader": "^1.2.0",
     "chalk": "^2.3.0",
     "conventional-changelog": "^1.1.10",
