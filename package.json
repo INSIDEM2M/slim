@@ -35,7 +35,7 @@
     "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.9",
     "enhanced-resolve": "^3.4.1",
-    "extract-loader": "^1.0.2",
+    "extract-loader": "^2.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "glob": "^7.1.2",
