@@ -31,7 +31,7 @@
     "cache-loader": "^1.2.0",
     "chalk": "^2.3.0",
     "conventional-changelog": "^1.1.10",
-    "conventional-changelog-angular": "^1.6.1",
+    "conventional-changelog-angular": "^3.0.0",
     "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.9",
     "enhanced-resolve": "^3.4.1",
