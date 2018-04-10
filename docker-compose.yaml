@@ -3,4 +3,4 @@ services:
 
   slim-cli:
     build: ./
-    image: nexus.inside-m2m.de:5001/slim-cli:latest
+    image: mirco312312/slim-cli
