@@ -1,0 +1,6 @@
+version: '3'
+services:
+
+  slim-cli:
+    build: ./
+    image: nexus.inside-m2m.de:5001/slim-cli:latest

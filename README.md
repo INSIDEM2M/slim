@@ -55,3 +55,13 @@ apt-get install imagemagick x11-apps
 ## License
 
 MIT
+
+## Docker
+
+To publish the `slim-cli:latest` image to the IM2M registry use the following steps:
+
+```
+docker login nexus.inside-m2m.de:5001
+docker-compose build
+docker-compose push
+```
