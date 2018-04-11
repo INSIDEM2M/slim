@@ -58,10 +58,9 @@ MIT
 
 ## Docker
 
-To publish the `slim-cli:latest` image to the IM2M registry use the following steps:
+To publish the `slim-cli:latest` image to the `hub.docker.com` registry use the following steps:
 
 ```
-docker login nexus.inside-m2m.de:5001
 docker-compose build
 docker-compose push
 ```
