@@ -1,3 +1,13 @@
+<a name="3.1.3"></a>
+## [3.1.3](https://github.com/INSIDEM2M/slim/compare/3.1.2...3.1.3) (2018-05-07)
+
+
+### Bug Fixes
+
+* **package.json:** set typescript version to 2.6.2 ([3fb8df5](https://github.com/INSIDEM2M/slim/commit/3fb8df5))
+
+
+
 <a name="3.1.2"></a>
 ## [3.1.2](https://github.com/INSIDEM2M/slim/compare/3.1.1...3.1.2) (2018-01-30)
 
