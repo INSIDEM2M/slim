@@ -1,3 +1,13 @@
+<a name="3.1.4"></a>
+## [3.1.4](https://github.com/INSIDEM2M/slim/compare/3.1.3...3.1.4) (2018-05-25)
+
+
+### Bug Fixes
+
+* **package.json:** set dependencies from ^ to ~ versions ([0032dea](https://github.com/INSIDEM2M/slim/commit/0032dea))
+
+
+
 <a name="3.1.3"></a>
 ## [3.1.3](https://github.com/INSIDEM2M/slim/compare/3.1.2...3.1.3) (2018-05-07)
 
