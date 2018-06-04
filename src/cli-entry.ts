@@ -1,8 +1,15 @@
 #! /usr/bin/env node
 
-import * as cli from "./cli";
+// tslint:disable-next-line:no-var-requires
+require("ts-node").register({
+    fast: true,
+    disableWarnings: true
+});
 
 // Provide a title to the process in `ps`
 process.title = "slim";
+
+// tslint:disable-next-line:no-var-requires
+const cli = require("./cli");
 
 cli.main();
