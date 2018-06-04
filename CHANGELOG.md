@@ -1,3 +1,13 @@
+<a name="3.1.5"></a>
+## [3.1.5](https://github.com/INSIDEM2M/slim/compare/3.1.4...3.1.5) (2018-06-04)
+
+
+### Bug Fixes
+
+* do not use ts-node ([e4e2c8b](https://github.com/INSIDEM2M/slim/commit/e4e2c8b))
+
+
+
 <a name="3.1.4"></a>
 ## [3.1.4](https://github.com/INSIDEM2M/slim/compare/3.1.3...3.1.4) (2018-05-25)
 
