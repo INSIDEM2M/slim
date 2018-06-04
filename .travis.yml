@@ -12,6 +12,5 @@ before_install:
   - sudo dpkg -i google-chrome*.deb
 before_script:
   - npm rebuild node-sass
-  - npm run prepublishOnly
 script:
   - node spec/index.spec.js
