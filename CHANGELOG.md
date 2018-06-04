@@ -1,3 +1,13 @@
+<a name="3.1.6"></a>
+## [3.1.6](https://github.com/INSIDEM2M/slim/compare/3.1.5...3.1.6) (2018-06-04)
+
+
+### Bug Fixes
+
+* fix e2e tests ([2e21e3e](https://github.com/INSIDEM2M/slim/commit/2e21e3e))
+
+
+
 <a name="3.1.5"></a>
 ## [3.1.5](https://github.com/INSIDEM2M/slim/compare/3.1.4...3.1.5) (2018-06-04)
 
