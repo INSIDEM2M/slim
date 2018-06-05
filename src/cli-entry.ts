@@ -2,8 +2,7 @@
 
 // tslint:disable-next-line:no-var-requires
 require("ts-node").register({
-    fast: true,
-    disableWarnings: true
+    skipProject: true
 });
 
 // Provide a title to the process in `ps`
