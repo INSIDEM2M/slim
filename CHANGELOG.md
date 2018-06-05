@@ -1,3 +1,13 @@
+<a name="3.1.8"></a>
+## [3.1.8](https://github.com/INSIDEM2M/slim/compare/3.1.7...3.1.8) (2018-06-05)
+
+
+### Bug Fixes
+
+* **cli-entry:** do not typecheck slim when executing it ([291a11b](https://github.com/INSIDEM2M/slim/commit/291a11b))
+
+
+
 <a name="3.1.7"></a>
 ## [3.1.7](https://github.com/INSIDEM2M/slim/compare/3.1.6...3.1.7) (2018-06-05)
 
