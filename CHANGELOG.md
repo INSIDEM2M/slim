@@ -1,3 +1,13 @@
+<a name="3.1.7"></a>
+## [3.1.7](https://github.com/INSIDEM2M/slim/compare/3.1.6...3.1.7) (2018-06-05)
+
+
+### Bug Fixes
+
+* update newer version of ts-node ([b884237](https://github.com/INSIDEM2M/slim/commit/b884237))
+
+
+
 <a name="3.1.6"></a>
 ## [3.1.6](https://github.com/INSIDEM2M/slim/compare/3.1.5...3.1.6) (2018-06-04)
 
